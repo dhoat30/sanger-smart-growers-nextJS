@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://gonogo.co.nz
+
+# Sitemaps
+Sitemap: https://gonogo.co.nz/sitemap.xml
