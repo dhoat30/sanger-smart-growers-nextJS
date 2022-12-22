@@ -32,8 +32,8 @@ function DesktopMenu({ menuData, services }) {
                     </ImageContainer>
                     <Link href={`/${data.slug}`} passHref>
                         <a>
-                            <p class="body-large">{data.title} </p>
-                            <p class="body-small"> {data.excerpt} </p>
+                            <p className="body-large">{data.title} </p>
+                            <p className="body-small"> {data.excerpt} </p>
                         </a>
 
                     </Link>

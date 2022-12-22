@@ -3,10 +3,11 @@ import Hero from "../../UI/Hero/Hero";
 import styled from "styled-components";
 import Image from "next/image";
 import Services from "./Services/Services";
+import TwoImageSection from "../../UI/Sections/TwoImageSection";
 
 
 function HomePage({ homePageData }) {
-  console.log(homePageData.hero_section)
+  console.log(homePageData)
 
   // main 
   return (
@@ -19,7 +20,14 @@ function HomePage({ homePageData }) {
         callToActionText={homePageData.hero_section.call_to_action_text}
         callToActionLink={homePageData.hero_section.call_to_action_link}
       />
-      <Services align="center" />
+      <Services align="center" servicesArr={homePageData.our_services} />
+      <TwoImageSection
+        title={homePageData.experience_section.section_title}
+        content={homePageData.experience_section.content}
+        backgroundImage={homePageData.experience_section.background_image}
+        frontImage={homePageData.experience_section.front_image}
+        imageText={homePageData.experience_section.years_of_experience}
+      />
     </>
   );
 }

@@ -7,19 +7,19 @@ const ButtonStyle = styled(Button)(({ theme }) => ({
   borderRadius: "100px"
 }));
 
-export default function StyledCustomization({ callToActionText, href }) {
+export default function StyledCustomization({ callToActionText, href, variant }) {
   return (
     <>
       {
         href ?
           <Link href={href} passHref>
-            <ButtonStyle variant="contained" size="large" color="secondary">
+            <ButtonStyle variant={variant} size="large" color="secondary">
               {callToActionText}
             </ButtonStyle>
           </Link>
           :
 
-          <ButtonStyle variant="contained" size="large" color="secondary">
+          <ButtonStyle variant={variant} size="large" color="secondary">
             {callToActionText}
           </ButtonStyle>
 

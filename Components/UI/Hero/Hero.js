@@ -16,8 +16,6 @@ function Hero({
   callToActionText,
   callToActionLink,
 }) {
-
-
   const [width, setWidth] = useState();
   const [height, setheight] = useState();
   const matches = useMediaQuery('(min-width:700px)');
@@ -49,10 +47,10 @@ function Hero({
         }
 
         <Content >
-          <h1 class="display-large">{title}</h1>
-          <h2 class={` ${matches}  ? "headline-medium" : "headline-small" `} >{subtitle}</h2>
+          <h1 className="display-large">{title}</h1>
+          <h2 className={` ${matches}  ? "headline-medium" : "headline-small" `} >{subtitle}</h2>
           <HeroBtnContainer >
-            <PrimaryButton callToActionText={callToActionText} href={callToActionLink} />
+            <PrimaryButton callToActionText={callToActionText} href={callToActionLink} variant="contained" />
 
           </HeroBtnContainer>
         </Content>
@@ -107,7 +105,7 @@ const Overlay = styled.div`
   top: 0; 
   left: 0; 
   width: 100%; 
-  height: 100% ;
+  height: 95vh ;
   background: rgba(0,0,0, 0.37);
   z-index: 1; 
 `
