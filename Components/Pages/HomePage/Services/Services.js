@@ -7,7 +7,7 @@ function Services({ servicesArr }) {
 
     const serviceCards = servicesArr.service_content.map((data, index) => {
         return (
-            <Grid md={4} sm={6} >
+            <Grid md={4} sm={6} key={index}>
                 <Card
                     key={index}
                     title={data.service_name}

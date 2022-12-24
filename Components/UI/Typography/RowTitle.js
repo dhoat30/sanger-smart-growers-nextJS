@@ -2,7 +2,7 @@ import React from 'react'
 import useMediaQuery from '@mui/material/useMediaQuery';
 import styled from 'styled-components';
 import TitleIcon from '../Icons/TitleIcon';
-function RowTitle({ title, align, className }) {
+function RowTitle({ title, align, className, children }) {
     const matches = useMediaQuery('(min-width:700px)');
 
     return (

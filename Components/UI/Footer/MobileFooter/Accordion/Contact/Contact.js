@@ -10,7 +10,7 @@ function Contact({ linksArr }) {
         if (data.type === "phone") {
             return (
                 <li key={data.ID}>
-                    <Link href={data.url} passHref>
+                    <Link legacyBehavior href={data.url} passHref>
                         <a className='body-large'>
                             <span> <PhoneIcon />  </span>
                             {data.title}
@@ -22,7 +22,7 @@ function Contact({ linksArr }) {
         else if (data.type === "email") {
             return (
                 <li key={data.ID}>
-                    <Link href={data.url} passHref>
+                    <Link legacyBehavior href={data.url} passHref>
                         <a className='body-large'>
                             <span> <EmailIcon />  </span>
                             {data.title}
@@ -34,7 +34,7 @@ function Contact({ linksArr }) {
         else if (data.type === "address") {
             return (
                 <li key={data.ID}>
-                    <Link href={data.url} passHref>
+                    <Link legacyBehavior href={data.url} passHref>
                         <a className='body-large'>
                             <span> <AddressIcon />  </span>
                             {data.title}
@@ -46,7 +46,7 @@ function Contact({ linksArr }) {
         else if (data.type === "facebook") {
             return (
                 <li key={data.ID}>
-                    <Link href={data.url} passHref>
+                    <Link legacyBehavior href={data.url} passHref>
                         <a className='body-large'>
                             <span> <FacebookIcon /> </span>
                             {data.title}

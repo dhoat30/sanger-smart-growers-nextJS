@@ -61,7 +61,7 @@ function AccordionComp({ title, linksArr, icons }) {
 
         return (
             <li key={data.ID}>
-                <Link href={data.url} passHref>
+                <Link legacyBehavior href={data.url} passHref>
                     <a className='body-large'>
                         {data.title}
                     </a>

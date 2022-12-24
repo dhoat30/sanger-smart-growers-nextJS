@@ -30,7 +30,7 @@ function DesktopMenu({ menuData, services }) {
                         <Image src={data.image.url} layout="fill" />
 
                     </ImageContainer>
-                    <Link href={`/${data.slug}`} passHref>
+                    <Link legacyBehavior href={`/${data.slug}`} passHref>
                         <a>
                             <p className="body-large">{data.title} </p>
                             <p className="body-small"> {data.excerpt} </p>
@@ -46,7 +46,7 @@ function DesktopMenu({ menuData, services }) {
             return (
                 <li key={data.ID}>
                     <ListItemButton alignItems="center" >
-                        <Link href={data.url} passHref >
+                        <Link legacyBehavior href={data.url} passHref >
                             <a className='body-large' onClick={handleClick} >{data.title}
 
                             </a>
@@ -66,7 +66,7 @@ function DesktopMenu({ menuData, services }) {
         if (data.menu_item_parent === "0") {
             return <li key={data.ID}>
                 <ListItemButton alignItems="center">
-                    <Link href="/" passHref>
+                    <Link legacyBehavior href="/" passHref>
                         <a className='body-large'>{data.title}</a>
                     </Link>
                 </ListItemButton>
