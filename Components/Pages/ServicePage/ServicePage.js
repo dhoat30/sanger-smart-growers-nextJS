@@ -9,6 +9,7 @@ import TwoImageSection from '../../UI/Sections/TwoImageSection'
 import Grid from '@mui/material/Unstable_Grid2';
 import RowTitle from '../../UI/Typography/RowTitle'
 import OverflowImageContentSection from '../../UI/Sections/OverflowImageContentSection'
+import ContactForm from '../../UI/Forms/ContactForm'
 
 function ServicePage({ servicesData }) {
 
@@ -70,6 +71,7 @@ function ServicePage({ servicesData }) {
 
         else if (data.acf_fc_layout === "image_content_section" && data.image_overflow) {
             return <OverflowImageContentSection
+                key={index}
                 image={data.image}
                 title={data.title}
                 content={data.content}
@@ -82,7 +84,7 @@ function ServicePage({ servicesData }) {
     return (
         <>
             {serviceContent}
-
+            <ContactForm />
         </>
     )
 }

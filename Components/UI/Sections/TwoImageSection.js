@@ -98,12 +98,12 @@ top: -80px;
     position: relative;
      left: 60px; 
    top: 60px;
-
     padding: 20px 20px; 
     border-radius: 4px; 
     display:flex; 
     align-items: center; 
-    p{ 
+    @media(max-width: 1200px){ 
+        grid-column: 4/7;
     }
     svg{ 
         position: absolute ;
@@ -112,17 +112,12 @@ top: -80px;
     }
 }
 `
-const Overlay = styled.div`
-    background-color: rgba(61,61,61, 0.7);
-    grid-column: 1/6;
-    grid-row: 1/8;
-`
 
 const ContentColumn = styled.div`
 position: sticky ;
-top: 10;
-        /* grid-column: 9/13; */
-   /* grid-row: 3/13; */
+top: 90px;
+        grid-column: 9/13;
+grid-row: 3/7;
    width: 100%; 
    a{ 
     margin-top: 16px; 

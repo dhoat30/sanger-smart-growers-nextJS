@@ -56,7 +56,7 @@ flex-direction: ${props => props.imageAlignment === "Right" ? "row-reverse" : "r
 @media(max-width: 800px){ 
            flex-wrap: wrap; 
         }
-align-items: center; 
+        align-items: flex-start; 
 justify-content: space-between; 
     .image-container{ 
         position: relative ;
@@ -72,7 +72,11 @@ justify-content: space-between;
     }
 
     .content { 
+        margin-top: 136px;
         width: 50% ;
+        position: sticky ;
+        top: 120px; 
+       margin-bottom: 24px; 
       padding: 0 120px 0 80px;
       @media(max-width: 1366px){
         padding: 0 40px 0 40px;
