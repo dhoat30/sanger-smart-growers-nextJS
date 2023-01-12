@@ -29,11 +29,11 @@ function SEO({ seo }) {
         <meta property="og:description" content={seo.description} key="ogdesc" />
         <meta
           property="og:url"
-          content={`https://gonogosafety.com${router.asPath}`}
+          content={`https://sangersmartgrowers.co.nz${router.asPath}`}
           key="ogurl"
         />
         <meta property="og:image" content={seo.imageSrc} key="ogimage" />
-        <meta property="og:site_name" content={"GonoGo"} key="ogsitename" />
+        <meta property="og:site_name" content={"Sanger Smart Growers"} key="ogsitename" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"></link>

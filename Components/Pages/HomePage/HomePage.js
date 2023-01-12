@@ -1,13 +1,15 @@
 import React from "react";
 import Hero from "../../UI/Hero/Hero";
-import styled from "styled-components";
-import Image from "next/image";
+
 import Services from "./Services/Services";
 import TwoImageSection from "../../UI/Sections/TwoImageSection";
+import ParallaxImage from "../../UI/Images/ParallaxImage";
+import CanopySection from "../../UI/Sections/CanopySection";
+import ImageContentRowSection from "../../UI/Sections/ImageContentRowSection";
+import BackgroundImageSection from "../../UI/Sections/BackgroundImageSection";
 
 
 function HomePage({ homePageData }) {
-  console.log(homePageData)
 
   // main 
   return (
@@ -27,72 +29,36 @@ function HomePage({ homePageData }) {
         backgroundImage={homePageData.experience_section.background_image}
         frontImage={homePageData.experience_section.front_image}
         imageText={homePageData.experience_section.years_of_experience}
+        callToActionText={homePageData.experience_section.call_to_action_text}
+        callToActionLink={homePageData.experience_section.call_to_action_link}
+      />
+      <ParallaxImage image={homePageData.parallax_image.url} />
+
+      <CanopySection
+        title={homePageData.our_canopy_section.title}
+        content={homePageData.our_canopy_section.content}
+        canopyData={homePageData.our_canopy_section.canopy_data}
+        totalAnnualTray={homePageData.our_canopy_section.total_annual_trays}
+      />
+      {/* our story team  */}
+      <ImageContentRowSection
+        title={homePageData.our_team_section.title}
+        content={homePageData.our_team_section.content}
+        image={homePageData.our_team_section.image}
+        linkText="Our Story"
+        link="/about-us"
+      />
+
+      {/* join our team section  */}
+      <BackgroundImageSection
+        title={homePageData.join_our_team_section.title}
+        content={homePageData.join_our_team_section.content}
+        callToActionLink={homePageData.join_our_team_section.call_to_action_link}
+        callToActionText={homePageData.join_our_team_section.call_to_action_text}
+        image={homePageData.join_our_team_section.image}
       />
     </>
   );
 }
 
 export default HomePage;
-
-const ImgContainer = styled.div`
- 
-  display: block;
-  max-width: 400px;
-  width: 100%;
-
-
-`;
-
-const Heading3 = styled.h3`
-  color: var(--midGrey) !important;
-  strong {
-    color: var(--blue);
-  }
-  @media (max-width: 1000px) {
-    text-align: center; 
-  }
-`;
-const ImageStyle = styled(Image)`
- 
-`;
-const AboutSection = styled.section`
-  background-color: var(--lightBlue);
-  > div {
-    padding: 70px 0; 
-    display: flex;
-    align-items: center; 
-  
-    flex-wrap: wrap; 
- 
-    > div {
-      
-      width: 50%;
-      @media (max-width: 1000px) {
-        width: 100%; 
-
-      }
-    }
-  }
-  .first-section-text{ 
-    padding-bottom: 40px; 
-    @media(max-width: 1000px){ 
-      h3{ 
-        margin-top: 20px; 
-      }
-      p{ 
-        text-align: center;   
-      }
-    }
-   
-  }
-  .first-section-img{ 
-    display: flex; 
-    justify-content: center; 
-    .img{ 
-      border-radius: 50%; 
-     
-    }
-
-  }
-  padding: 70px 0;
-`;

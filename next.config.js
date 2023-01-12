@@ -4,6 +4,7 @@ module.exports = (phase, { defaultConfig }) => {
 
   if (phase === PHASE_DEVELOPMENT_SERVER) {
     return {
+      trailingSlash: true,
       i18n: {
         locales: ['en'],
         defaultLocale: 'en',
@@ -15,21 +16,30 @@ module.exports = (phase, { defaultConfig }) => {
       reactStrictMode: true,
       images: {
         domains: ['sangersmartgrowers.local']
+      },
+      compiler: {
+        // Enables the styled-components SWC transform
+        styledComponents: true
       }
     }
   }
   return {
+    trailingSlash: true,
     i18n: {
       locales: ['en'],
       defaultLocale: 'en',
     },
     env: {
-      url: "https://data.gonogo.co.nz",
-      SITE_URL: "https://gonogo.co.nz"
+      url: "https://data.sangergrowers.co.nz",
+      SITE_URL: "sangergrowers.co.nz"
     },
     reactStrictMode: true,
     images: {
-      domains: ['data.gonogo.co.nz']
+      domains: ['data.sangergrowers.co.nz']
+    },
+    compiler: {
+      // Enables the styled-components SWC transform
+      styledComponents: true
     }
   }
 }

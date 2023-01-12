@@ -6,7 +6,6 @@ import EmailIcon from '../../Icons/EmailIcon'
 import AddressIcon from '../../Icons/AddressIcon'
 
 function FooterContact({ title, email, address, phoneNumber, socialMediaLinks }) {
-    console.log(socialMediaLinks)
     return (
         <>
             <Container>

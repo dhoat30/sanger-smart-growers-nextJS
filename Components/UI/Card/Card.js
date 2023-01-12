@@ -11,10 +11,10 @@ function Card({ title, content, image, callToActionText, callToActionLink }) {
     return (
         <CardMUI sx={{ height: "100%" }}>
             <CardActionArea>
-
                 <ImageContainer>
-                    <Image src={image} layout="fill" />
-
+                    <Image src={image} fill={true} alt={title} sizes="(max-width: 600px) 100vw,
+              (max-width: 900px) 50vw,
+              33vw" />
                 </ImageContainer>
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h3" sx={{ color: "var(--sanger--theme--sys--dark--on-secondary)" }}>
@@ -25,10 +25,11 @@ function Card({ title, content, image, callToActionText, callToActionLink }) {
                     </Typography>
                 </CardContent>
             </CardActionArea>
-            <CardActions sx={{ display: "flex", alignItems: "flex-end" }}>
 
+            <CardActions sx={{ display: "flex", alignItems: "flex-end" }}>
                 <PrimaryButton
                     callToActionText={callToActionText}
+                    href={callToActionLink}
                 />
             </CardActions>
         </CardMUI>

@@ -78,7 +78,7 @@ function MobileMenu({ menuData, services }) {
             >
                 <MenuIcon fontSize="large" />
             </IconButton>
-            <Menu
+            {/* <Menu
                 id="menu-appbar"
                 anchorEl={anchorElNav}
                 anchorOrigin={{
@@ -97,7 +97,7 @@ function MobileMenu({ menuData, services }) {
                 }}
             >
                 {menu}
-            </Menu>
+            </Menu> */}
         </Box>
     )
 }

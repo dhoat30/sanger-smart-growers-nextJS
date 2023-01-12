@@ -32,7 +32,7 @@ function Layout(props) {
       router.events.off("routeChangeError", handleComplete);
     };
   });
-  // console.log(props.children.props.menuData)
+  // console.log(props.children.props)
   return (
     <div>
       <Header
@@ -52,7 +52,9 @@ function Layout(props) {
         </>
       )}
       <BackToTop />
-      <Footer footerData={props.children.props.menuData && props.children.props.menuData} />
+      <Footer
+
+        footerData={props.children.props.menuData && props.children.props.menuData} />
     </div>
   );
 }

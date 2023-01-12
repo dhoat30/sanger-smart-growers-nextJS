@@ -3,7 +3,6 @@ import React from 'react'
 import AccordionComp from './Accordion/AccordionComp';
 
 function MobileFooter({ footerData }) {
-    console.log(footerData)
     const contactArr = [
         {
             ID: 1,
@@ -31,7 +30,6 @@ function MobileFooter({ footerData }) {
         }
     ]
 
-    console.log(contactArr)
     return (
         <div>
             <AccordionComp title="FOR GROWERS"

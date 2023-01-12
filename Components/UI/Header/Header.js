@@ -18,12 +18,10 @@ import styled from 'styled-components';
 import { useTheme } from '@mui/material/styles'
 import Grid from '@mui/material/Unstable_Grid2';
 
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-const pages = ['Products', 'Pricing', 'Blog'];
+
 
 function Header({ logo, mainNav, services }) {
   const theme = useTheme();
-
   return (
     <AppBar position="fixed" sx={{ background: theme.palette.background.surface }}>
       <div className="max-width">

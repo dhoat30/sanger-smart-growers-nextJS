@@ -23,19 +23,17 @@ function DesktopMenu({ menuData, services }) {
     };
     // services submenu 
     const subMenu = services.map((data, index) => {
+        // console.log(data.slug)
         return (
             <li key={index}>
                 <ListItemButton alignItems="center">
                     <ImageContainer>
-                        <Image src={data.image.url} layout="fill" />
+                        <Image fill="true" src={data.image.url} alt={data.image.alt} />
 
                     </ImageContainer>
-                    <Link legacyBehavior href={`/${data.slug}`} passHref>
-                        <a>
-                            <p className="body-large">{data.title} </p>
-                            <p className="body-small"> {data.excerpt} </p>
-                        </a>
-
+                    <Link href={`/services/${encodeURIComponent(data.slug)}`}>
+                        <p className="body-large">{data.title} </p>
+                        <p className="body-small"> {data.excerpt} </p>
                     </Link>
                 </ListItemButton>
             </li>
@@ -66,7 +64,7 @@ function DesktopMenu({ menuData, services }) {
         if (data.menu_item_parent === "0") {
             return <li key={data.ID}>
                 <ListItemButton alignItems="center">
-                    <Link legacyBehavior href="/" passHref>
+                    <Link legacyBehavior href={`${data.url}`} passHref>
                         <a className='body-large'>{data.title}</a>
                     </Link>
                 </ListItemButton>
@@ -110,7 +108,7 @@ const SubmenuUL = styled.ul`
 `
 
 const ImageContainer = styled.div`
-width: 120px; 
+width: 200px; 
 height: 120px; 
 position: relative ;
 img{ 

@@ -1,21 +1,23 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import HomePage from '../Components/Pages/HomePage/HomePage'
 import SEO from '../Components/SEO'
 
 import getMenu from '../util/get-menu'
 import getPage from '../util/get-page'
 export default function Home({ homePageData }) {
-  // const seo = {
-  //   title: homePageData[0].yoast_head_json.title,
-  //   description: homePageData[0].yoast_head_json.description,
-  //   imageSrc: homePageData[0].yoast_head_json.og_image > 0 && homePageData[0].yoast_head_json.og_image[0].url
-  // }
+  console.log(homePageData)
+  const seo = {
+    title: homePageData.seo.title,
+    description: homePageData.seo.description,
+    imageSrc: homePageData.seo.image
+  }
+  console.log(homePageData.seo.image)
   return (
 
     <React.Fragment>
-      {/* <SEO
+      <SEO
         seo={seo}
-      /> */}
+      />
       <HomePage homePageData={homePageData} />
     </React.Fragment>
   )

@@ -6,7 +6,7 @@ import Paragraph from '../Typography/Paragraph'
 import PrimaryButton from '../Buttons/PrimaryButton'
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-function TwoImageSection({ title, content, backgroundImage, frontImage, imageText }) {
+function TwoImageSection({ title, content, backgroundImage, frontImage, imageText, callToActionText, callToActionLink, hideImageOnMobile }) {
     const matches = useMediaQuery('(min-width:900px)');
 
     return (
@@ -15,7 +15,7 @@ function TwoImageSection({ title, content, backgroundImage, frontImage, imageTex
                 <Container style={{ background: "var( --sanger--theme--white) " }}>
                     <TwoColumns className='grid max-width'>
                         <div className='first-image-container'>
-                            <Image layout="fill" src={backgroundImage.url} alt={backgroundImage.alt ? backgroundImage.alt : "Background Image"} />
+                            <Image fill={true} src={backgroundImage.url} alt={backgroundImage.alt ? backgroundImage.alt : "Background Image"} sizes="50vw" />
                         </div>
                         <Overlay></Overlay>
                         <div className='image-text'>
@@ -26,36 +26,51 @@ function TwoImageSection({ title, content, backgroundImage, frontImage, imageTex
                             </svg>
                         </div>
                         <div className="second-image-container">
-                            <Image src={frontImage.url} layout="fill" alt={frontImage.alt ? frontImage.alt : "front image"} />
+                            <Image src={frontImage.url} fill={true} alt={frontImage.alt ? frontImage.alt : "front image"} sizes="50vw" />
                         </div>
                         <ContentColumn>
                             <ColumnTitle align="left"> {title} </ColumnTitle>
-                            <Paragraph variant="large" >{content} </Paragraph>
-                            <PrimaryButton variant="contained" callToActionText="Our Story" href="/about-us" />
+                            <Paragraph >{content}</Paragraph>
+                            <PrimaryButton variant="contained" callToActionText={callToActionText} href={callToActionLink} />
                         </ContentColumn>
                     </TwoColumns>
 
                 </Container>
                 :
-                <div>
-                    <Image
-                        src={frontImage.url}
-                        alt={frontImage.alt ? frontImage.alt : "front image"}
-                        fill={true}
-                    />
-                </div>
+                <MobileContainer>
+                    {!hideImageOnMobile
+                        &&
+                        <MobileImageContainer>
+                            <Image
+                                src={frontImage.url}
+                                alt={frontImage.alt ? frontImage.alt : "front image"}
+                                fill={true}
+                                sizes="100vw"
+                            />
+                        </MobileImageContainer>
+                    }
+
+                    <Content>
+                        <ColumnTitle variant="medium">{title} </ColumnTitle>
+                        <Paragraph>{content}</Paragraph>
+                        <PrimaryButton variant="contained" callToActionText={callToActionText} href={callToActionLink} />
+                    </Content>
+                </MobileContainer>
             }
         </>
     )
 }
 
 export default TwoImageSection
-const Container = styled.div`
+const Container = styled.section`
 display: flex ;
 align-items: flex-end; 
+margin-top: 240px; 
+margin-bottom: -120px; 
 `
 const TwoColumns = styled.div`
 position: relative ;
+top: -120px; 
 .first-image-container{ 
     grid-column: 1/6;
     grid-row: 1/8;
@@ -85,7 +100,7 @@ position: relative ;
     top: 10px;
     display: flex; 
     padding: 20px 20px; 
-    border: solid red ;
+ 
     width: 250px; 
     p{ 
         margin: 5px 0 10px 20px; 
@@ -113,4 +128,36 @@ const ContentColumn = styled.div`
    @media(max-width: 1200px){ 
     grid-row: 5/13;
    }
+   p{ 
+    margin-top: 16px; 
+   }
+`
+const MobileContainer = styled.section`
+margin-top: 80px; 
+
+`
+const MobileImageContainer = styled.div`
+position: relative;
+width: 100%; 
+height: 500px; 
+img{ 
+object-fit: cover; 
+        filter: saturate(130%);
+}
+`
+
+const Content = styled.div`
+    border-radius: 32px; 
+    position: relative ;
+    top: -32px; 
+    background: var(--sanger--theme--white) ;
+    padding: 40px 80px 40px 80px;
+    margin: 0 auto ;
+    @media(max-width: 500px){ 
+        padding: 40px 8px 40px 8px;
+
+    }
+    button{ 
+        margin-top: 16px; 
+    }
 `

@@ -251,8 +251,8 @@
     --sanger--theme--headline--small: 1.375rem;
     --sanger--theme--headline--medium: 1.75rem;
     --sanger--theme--headline--large: 2rem;
-    --sanger--theme--display--small: 2.25rem;
-    --sanger--theme--display--medium: 2.813rem;
+    --sanger--theme--display--small: 2rem;
+    --sanger--theme--display--medium: 2.25rem;
     --sanger--theme--display--large: 3rem;
     --sanger--theme--title--small: 0.9rem;
     --sanger--theme--title--medium: 1rem;
@@ -263,9 +263,10 @@
 .display-large {
   font-size: var(--sanger--theme--display--large);
   font-weight: 700;
-  line-height: 3.5rem;
+  line-height: 5rem;
   letter-spacing: -0.016rem;
 }
+
 .display-medium {
   font-size: var(--sanger--theme--display--medium);
   font-weight: 400;
@@ -275,6 +276,14 @@
   font-size: var(--sanger--theme--display--small);
   font-weight: 400;
   line-height: 2.75rem;
+}
+@media (max-width: 900px) {
+  .display-large {
+    line-height: 4rem;
+  }
+  .display-medium {
+    line-height: 2.7rem;
+  }
 }
 
 /* headline fonts */
@@ -286,7 +295,7 @@
 .headline-medium {
   font-size: var(--sanger--theme--headline--medium);
   font-weight: 400;
-  line-height: 2.25rem;
+  line-height: 2.5rem;
 }
 .headline-small {
   font-size: var(--sanger--theme--headline--small);
@@ -339,7 +348,6 @@
   font-weight: 400;
   line-height: 1.4rem;
   letter-spacing: 0.5px;
-  margin-top: 16px;
 }
 .body-medium {
   font-size: var(--sanger--theme--body--medium);

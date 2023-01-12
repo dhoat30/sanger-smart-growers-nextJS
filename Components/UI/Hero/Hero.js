@@ -22,6 +22,7 @@ function Hero({
 
   const videoCtx = useContext(VideoContext)
 
+  const subtitleClass = matches ? "headline-medium" : "headline-small"
   return (
     <>
       <HeroContainer className="hero-section" >
@@ -29,8 +30,8 @@ function Hero({
           <ImageStyle
             placeholder="blur"
             src={desktopImage}
-            layout="fill"
-            objectFit="cover"
+            fill={true}
+
             alt={title}
             blurDataURL={`/_next/image?url=${desktopImage}&w=16&q=1`}
             priority
@@ -38,8 +39,8 @@ function Hero({
           <ImageStyle
             placeholder="blur"
             src={mobileImage}
-            layout="fill"
-            objectFit="cover"
+            fill={true}
+
             alt={title}
             blurDataURL={`/_next/image?url=${desktopImage}&w=16&q=1`}
             priority
@@ -48,7 +49,7 @@ function Hero({
 
         <Content >
           <h1 className="display-large">{title}</h1>
-          <h2 className={` ${matches}  ? "headline-medium" : "headline-small" `} >{subtitle}</h2>
+          <h2 className={subtitleClass} >{subtitle}</h2>
           <HeroBtnContainer >
             <PrimaryButton callToActionText={callToActionText} href={callToActionLink} variant="contained" />
 
@@ -62,21 +63,25 @@ function Hero({
 }
 
 export default Hero;
-const HeroContainer = styled.div`
+const HeroContainer = styled.section`
 overflow: hidden;
 position: relative;
 display: flex; 
 justify-content: center; 
 align-items:center; 
-height:95vh; 
+height:90vh; 
 width: 100%; 
 text-align: center; 
+margin-top: 60px; 
 @media(max-width: 500px){ 
   height:85vh; 
+  margin-top: 40px; 
 }
 `;
 
-const ImageStyle = styled(Image)``
+const ImageStyle = styled(Image)`
+object-fit: cover; 
+`
 const HeroBtnContainer = styled.div`
 display: flex;
 justify-content: center;
@@ -105,7 +110,13 @@ const Overlay = styled.div`
   top: 0; 
   left: 0; 
   width: 100%; 
-  height: 95vh ;
+  height: 90vh ;
   background: rgba(0,0,0, 0.37);
   z-index: 1; 
+  margin-top: 60px; 
+
+  @media(max-width: 500px){ 
+  height:85vh; 
+  margin-top: 50px; 
+}
 `

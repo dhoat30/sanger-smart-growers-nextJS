@@ -1,7 +1,7 @@
 import React from 'react'
 import Card from '../../../UI/Card/Card'
 import RowTitle from '../../../UI/Typography/RowTitle'
-import { Container } from '@mui/material';
+
 import Grid from '@mui/material/Unstable_Grid2';
 function Services({ servicesArr }) {
 
@@ -21,14 +21,14 @@ function Services({ servicesArr }) {
         )
     })
     return (
-        <div className='max-width section-gutter'>
+        <section className='max-width section-gutter'>
 
             <RowTitle title="Our Services" align="center" />
             <Grid container justifyContent="center" rowSpacing={3} columnSpacing={{ xs: 1, sm: 3, md: 1, lg: 3 }} sx={{ maxWidth: "1366px", margin: "40px auto 0 auto" }}>
                 {serviceCards}
 
             </Grid>
-        </div >
+        </section >
     )
 }
 

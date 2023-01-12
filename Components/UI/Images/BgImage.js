@@ -48,7 +48,7 @@ function BgImage({ desktopImage, mobileImage }) {
           src={desktopImage}
           width={width}
           height={height}
-          layout="fill"
+
           quality="50"
         />
       </Box>
@@ -62,7 +62,7 @@ function BgImage({ desktopImage, mobileImage }) {
           src={mobileImage}
           width={width}
           height={height}
-          layout="fill"
+
           quality="50"
 
         />

@@ -9,7 +9,6 @@ import MobileMenu from './MobileMenu/MobileMenu';
 
 function Navbar({ menuData, services }) {
 
-
     const matches = useMediaQuery('(min-width:900px)');
 
 
