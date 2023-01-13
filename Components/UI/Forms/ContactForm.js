@@ -1,31 +1,9 @@
 import React, { useState } from 'react'
+import TextfieldCustom from './TextfieldCustom';
 import { Box, TextField } from '@mui/material';
+
 function ContactForm() {
-    const [enteredFirstName, setEnteredFirstName] = useState('')
-    const [enteredFirstNameTouched, setEnteredFirstNameTouched] = useState(false)
 
-    const [enteredLastName, setEnteredLastName] = useState('')
-    const [enteredLastNameTouched, setEnteredLastNameTouched] = useState(false)
-
-
-    // validate 
-    let enteredFirstNameIsValid = enteredFirstName.trim().length > 2
-    let firstNameInputIsInvalid = !enteredFirstNameIsValid && enteredFirstNameTouched
-
-    //  change handlers
-    const firstNameChangeHandler = (event) => {
-        setEnteredFirstName(event.target.value)
-    }
-    const lastNameChangeHandler = (event) => {
-        setEnteredLastName(event.target.value)
-    }
-    // blur handler 
-    const firstNameBlurHandler = (event) => {
-        setEnteredFirstNameTouched(true)
-    }
-    const lastNameBlurHandler = (event) => {
-        setEnteredLastNameTouched(true)
-    }
     return (
         <Box
             component="form"
@@ -35,15 +13,16 @@ function ContactForm() {
             noValidate
             autoComplete="off"
         >
-            <TextField id="filled-basic"
+            <TextfieldCustom />
+            {/* <TextField id="filled-basic"
                 label="First name"
                 variant="filled"
                 color="tertiary"
                 required
                 helperText={firstNameInputIsInvalid && "Please enter first name"}
                 error={firstNameInputIsInvalid}
-                onChange={firstNameChangeHandler}
-                onBlur={firstNameBlurHandler}
+                onChange={lastNameChangeHandler}
+                onBlur={lastNameBlurHandler}
                 value={enteredFirstName}
             />
 
@@ -63,10 +42,11 @@ function ContactForm() {
             <TextField id="filled-basic" label="Phone number" variant="filled" color="tertiary" />
             <TextField id="filled-basic" label="Size of your orchard" variant="filled" color="tertiary" />
             <TextField id="filled-basic" label="Company name" variant="filled" color="tertiary" />
-            <TextField id="filled-basic" label="Message" variant="filled" color="tertiary" multiline rows={4} fullWidth />
-
+            <TextField id="filled-basic" label="Message" variant="filled" color="tertiary" multiline rows={4} fullWidth /> */}
 
         </Box>
+
+
     )
 }
 
