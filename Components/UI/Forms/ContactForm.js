@@ -8,12 +8,54 @@ function ContactForm() {
         <Box
             component="form"
             sx={{
-                '& > :not(style)': { m: 1, width: '25ch' },
+                '& > :not(style)': { m: 1, width: '50ch' },
             }}
             noValidate
-            autoComplete="off"
+
         >
-            <TextfieldCustom />
+            <input placeholder='first name' autocomplete="name"></input>
+            <TextfieldCustom
+                fieldType="text"
+                label="First name"
+                helperText={"Please enter your first name"}
+                required={true}
+                autocomplete="given-name"
+            />
+            <TextfieldCustom
+                fieldType="text"
+                label="Last name"
+                helperText={"Please enter your last name"}
+                required={true}
+            />
+            <TextfieldCustom
+                fieldType="email"
+                label="Email address"
+                helperText={"Please enter your email address"}
+                required={true}
+            />
+            <TextfieldCustom
+                fieldType="phone"
+                label="Phone Number"
+                helperText={"Please enter your phone number"}
+                required={true}
+            />
+            <TextfieldCustom
+                fieldType="number"
+                label="Orchard Size"
+            />
+            <TextfieldCustom
+                fieldType="text"
+                label="Company name"
+            />
+            <TextfieldCustom
+                fieldType="text"
+                label="Message"
+                helperText={"Please enter your message"}
+                required={true}
+                multiline={true}
+                rows={4}
+                fullWidth={true}
+            />
             {/* <TextField id="filled-basic"
                 label="First name"
                 variant="filled"
