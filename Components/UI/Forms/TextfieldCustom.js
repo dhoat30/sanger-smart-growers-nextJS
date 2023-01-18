@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Box, TextField, InputAdornment, FilledInput, FormControl, FormHelperText } from '@mui/material';
 
-function TextfieldCustom({ fieldType, label, helperText, required, adornment, adornmentText, multiline, rows, fullWidth, autocomplete }) {
+function TextfieldCustom({ fieldType, label, helperText, required, adornment, adornmentText, multiline, rows, fullWidth, autocomplete, getInputValue, submitBtnClicked }) {
 
     const [enteredValue, setEnteredValue] = useState('')
     const [fieldTouched, setFieldTouched] = useState(false)
@@ -32,6 +32,7 @@ function TextfieldCustom({ fieldType, label, helperText, required, adornment, ad
     //  change handlers
     const valueChangeHandler = (event) => {
         setEnteredValue(event.target.value)
+        getInputValue(event.target.value)
     }
 
     // blur handler 
@@ -58,8 +59,8 @@ function TextfieldCustom({ fieldType, label, helperText, required, adornment, ad
                     label={label}
                     variant="filled"
                     color="tertiary"
-                    helperText={enteredValueIsInvalid && helperText}
-                    error={enteredValueIsInvalid}
+                    helperText={(enteredValueIsInvalid || submitBtnClicked) ? helperText : null}
+                    error={enteredValueIsInvalid || submitBtnClicked}
                     onChange={valueChangeHandler}
                     onBlur={fieldBlurHandler}
                     value={enteredValue}

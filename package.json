@@ -12,9 +12,11 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@hubspot/api-client": "^8.4.0",
     "@material-ui/core": "^4.12.4",
     "@mui/icons-material": "^5.11.0",
     "@mui/material": "^5.11.0",
+    "axios": "^1.2.3",
     "babel-preset-next": "^1.4.0",
     "caniuse-lite": "^1.0.30001397",
     "next": "^13.1.0",

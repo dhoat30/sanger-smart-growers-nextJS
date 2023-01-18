@@ -84,7 +84,10 @@ function ServicePage({ servicesData }) {
     return (
         <>
             {serviceContent}
-            <ContactForm />
+            <ContactForm
+                title="Get In Touch"
+                content="Please fill out the form below, and one of our team member will respond to your inquiry as soon as possible."
+            />
         </>
     )
 }

@@ -8,7 +8,7 @@ const ButtonStyle = styled(Button)(({ theme }) => ({
 
 }));
 
-export default function StyledCustomization({ callToActionText, href, variant }) {
+export default function StyledCustomization({ callToActionText, href, variant, onClick }) {
   return (
     <>
       {
@@ -20,7 +20,9 @@ export default function StyledCustomization({ callToActionText, href, variant })
           </Link>
           :
 
-          <ButtonStyle variant={variant} size="large" color="secondary">
+          <ButtonStyle
+            onClick={onClick}
+            variant={variant} size="large" color="secondary">
             {callToActionText}
           </ButtonStyle>
 
