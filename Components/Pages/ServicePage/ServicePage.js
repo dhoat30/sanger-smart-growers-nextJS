@@ -17,7 +17,7 @@ import JustTextSection from '../../UI/Sections/JustTextSection'
 
 function ServicePage({ servicesData }) {
 
-    console.log(servicesData.all_fields.service_content)
+    console.log(servicesData.all_fields.plants)
     const serviceContent = servicesData.all_fields.service_content.map((data, index) => {
         if (data.acf_fc_layout === "hero_section_with_glass_morphism") {
             return <HeroGlassMorphism
@@ -82,8 +82,7 @@ function ServicePage({ servicesData }) {
                 </IconContainer>
             )
         }
-        else if (data.acf_fc_layout === "image_content_section") {
-            console.log(data)
+        else if (data.acf_fc_layout === "image_content_section" && !data.image_overflow) {
             return <ImageContentSection
                 key={index}
                 title={data.title}
@@ -107,7 +106,7 @@ function ServicePage({ servicesData }) {
         }
         else if (data.acf_fc_layout === "just_text") {
 
-            return <JustTextSection>{data.content}</JustTextSection>
+            return <JustTextSection key={index}>{data.content}</JustTextSection>
         }
     })
 

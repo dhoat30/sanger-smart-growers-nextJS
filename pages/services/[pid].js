@@ -2,12 +2,12 @@ import React from 'react'
 import ServicePage from '../../Components/Pages/ServicePage/ServicePage'
 
 import getMenu from '../../util/get-menu'
-function Service({ menuData, slug }) {
+function Service({ menuData, slug, plantData }) {
 
     const serviceData = menuData.services.find(item => slug === item.slug)
     return (
 
-        <ServicePage servicesData={serviceData} />
+        <ServicePage servicesData={serviceData} plantData={plantData} />
     )
 }
 

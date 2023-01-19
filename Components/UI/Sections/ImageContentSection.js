@@ -49,10 +49,11 @@ const Section = styled.section`
 background:  ${props => props.backgroundcolor === "White" && "var(--sanger--theme--white)"};
 
 .container{ 
+    margin: 40px 0; 
     display: flex;
 padding-top: 120px; 
 padding-bottom: 120px; 
-align-items: center; 
+align-items: flex-start; 
 flex-direction: ${props => props.imagealignment === "Right" ? "row-reverse" : null};
 @media(max-width: 600px){ 
     flex-wrap: wrap ;
@@ -76,6 +77,8 @@ flex-direction: ${props => props.imagealignment === "Right" ? "row-reverse" : nu
     .content { 
         width: 50% ;
       padding: 0 80px;
+      position: sticky ;
+      top: 120px; 
       @media(max-width: 900px){ 
         padding: 0 16px;
 

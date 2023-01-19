@@ -16,6 +16,9 @@ const Section = styled.section`
     .max-width{ 
         padding: 80px 0; 
 
+        @media(max-width: 500px){ 
+            padding: 40px 0; 
+            }
         h2{ 
             max-width: 1200px; 
             margin: 0 auto; 
@@ -30,6 +33,10 @@ const Section = styled.section`
                 -webkit-text-fill-color: transparent;
                 background-clip: text;
                 text-fill-color: transparent;
+            }
+
+            @media(max-width: 500px){ 
+                font-size: 1.5rem; 
             }
         }
     }
