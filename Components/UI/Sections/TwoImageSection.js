@@ -36,8 +36,10 @@ function TwoImageSection({ title, content, backgroundImage, frontImage, imageTex
                         <ContentColumn>
                             <ColumnTitle align="left"> {title} </ColumnTitle>
                             <Paragraph >{content}</Paragraph>
+                            {callToActionText &&
+                                <PrimaryButton variant="contained" callToActionText={callToActionText} href={callToActionLink} />
 
-                            <PrimaryButton variant="contained" callToActionText={callToActionText} href={callToActionLink} />
+                            }
                         </ContentColumn>
                     </TwoColumns>
 

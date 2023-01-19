@@ -10,6 +10,10 @@ import Grid from '@mui/material/Unstable_Grid2';
 import RowTitle from '../../UI/Typography/RowTitle'
 import OverflowImageContentSection from '../../UI/Sections/OverflowImageContentSection'
 import ContactForm from '../../UI/Forms/ContactForm'
+import HeroCenter from '../../UI/Hero/HeroCenter'
+import ImageContentRowSection from '../../UI/Sections/ImageContentRowSection'
+import ImageContentSection from '../../UI/Sections/ImageContentSection'
+import JustTextSection from '../../UI/Sections/JustTextSection'
 
 function ServicePage({ servicesData }) {
 
@@ -25,7 +29,17 @@ function ServicePage({ servicesData }) {
                 callToActionLink={data.call_to_action_link}
                 callToActionText={data.call_to_action_text}
             />
-
+        }
+        else if (data.acf_fc_layout === "hero_section_center_align") {
+            return <HeroCenter
+                key={index}
+                desktopImage={data.desktop_image.url}
+                mobileImage={data.mobile_image.url}
+                title={data.title}
+                subtitle={data.subtitle}
+                callToActionLink={data.call_to_action_link}
+                callToActionText={data.call_to_action_text}
+            />
         }
         else if (data.acf_fc_layout === "dual_image_section") {
             return <TwoImageSection
@@ -68,8 +82,20 @@ function ServicePage({ servicesData }) {
                 </IconContainer>
             )
         }
+        else if (data.acf_fc_layout === "image_content_section") {
+            console.log(data)
+            return <ImageContentSection
+                key={index}
+                title={data.title}
+                content={data.content}
+                image={data.image}
+                backgroundColor={data.background_color}
+                imageAlignment={data.image_alignment}
+            />
 
+        }
         else if (data.acf_fc_layout === "image_content_section" && data.image_overflow) {
+
             return <OverflowImageContentSection
                 key={index}
                 image={data.image}
@@ -79,6 +105,10 @@ function ServicePage({ servicesData }) {
                 backgroundColor={data.background_color}
             />
         }
+        else if (data.acf_fc_layout === "just_text") {
+
+            return <JustTextSection>{data.content}</JustTextSection>
+        }
     })
 
     return (
@@ -87,6 +117,10 @@ function ServicePage({ servicesData }) {
             <ContactForm
                 title="Get In Touch"
                 content="Please fill out the form below, and one of our team member will respond to your inquiry as soon as possible."
+                formName="Kiwifruit Orchard Management"
+                emailTo="designer@webduel.co.nz"
+                leadType="lead"
+                emailRoute="/api/sendEmail"
             />
         </>
     )

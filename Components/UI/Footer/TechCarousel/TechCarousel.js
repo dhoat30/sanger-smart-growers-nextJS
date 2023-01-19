@@ -2,6 +2,7 @@ import Image from 'next/image';
 import React from 'react'
 import Slider from "react-slick";
 import styled from 'styled-components';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 function TechCarousel({ logoArr }) {
     var settings = {
@@ -29,19 +30,25 @@ function TechCarousel({ logoArr }) {
             </Card>
         )
     })
+
+    // use media query for responsiveness 
+    const matches = useMediaQuery('(min-width:600px)');
+
+
     return (
-        <Container className='max-width'>
-            <h6 className='display-medium '>We work with trusted industry leaders </h6>
+        <Container className="max-width">
+            <h6 className={`${matches ? 'display-medium' : 'headline-small'} `}> We work with trusted industry leaders </ h6>
             <Slider {...settings} >
                 {carousel}
             </Slider>
-        </Container>
+        </Container >
 
     )
 }
 
 export default TechCarousel
 const Container = styled.section`
+
 overflow: hidden; 
  padding: 56px 0; 
     .slick-slider{ 

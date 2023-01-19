@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
-import TextfieldCustom from './TextfieldCustom';
 import styled from 'styled-components';
 import RowTitle from '../Typography/RowTitle';
 import PrimaryButton from '../Buttons/PrimaryButton'
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { Paper, Box, TextField, InputAdornment, FilledInput, FormControl, FormHelperText } from '@mui/material';
+import { Paper, TextField } from '@mui/material';
 import axios from 'axios';
+import Alert from '@mui/material/Alert';
 
 
-function ContactForm({ title, content }) {
+function ContactForm({ title, content, formName, emailTo, leadType, emailRoute }) {
     // create state variables 
     const [firstName, setFirstName] = useState("")
     const [firstNameTouched, setFirstNameTouched] = useState(false)
@@ -23,14 +23,15 @@ function ContactForm({ title, content }) {
     const [phoneNumberTouched, setPhoneNumberTouched] = useState(false)
 
     const [orchardSize, setOrchardSize] = useState("")
-    const [orchardSizeTouched, setOrchardSizeTouched] = useState(false)
 
     const [companyName, setCompanyName] = useState("")
-    const [companyNameTouched, setCompanyNameTouched] = useState(false)
 
     const [message, setMessage] = useState("")
     const [messageTouched, setMessageTouched] = useState(false)
 
+    const [loading, setLoading] = useState(false)
+    const [success, setSuccess] = useState(false)
+    const [error, setError] = useState(false)
     // validation 
     // first name validation 
     let firstNameIsValid = firstName.trim().length > 2
@@ -98,9 +99,10 @@ function ContactForm({ title, content }) {
             orchardSize: orchardSize,
             companyName: companyName,
             message: message,
-            leadtype: "opportunity"
+            emailTo: emailTo,
+            leadType: leadType,
+            formName: formName
         }
-        console.log(formData)
         var config = {
             method: 'post',
             url: '/api/createContact',
@@ -109,6 +111,7 @@ function ContactForm({ title, content }) {
             },
             data: formData
         };
+        setLoading(true)
 
         axios(config)
             .then(function (response) {
@@ -118,14 +121,42 @@ function ContactForm({ title, content }) {
             .catch(function (error) {
                 console.log(error);
             });
+
+        // send email 
+        var config = {
+            method: 'post',
+            url: `${emailRoute}`,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: formData
+        };
+        axios(config)
+            .then(function (response) {
+                if (response.status === 200) {
+                    setLoading(false)
+                    setSuccess(true)
+                }
+                else {
+                    setLoading(false)
+                    setSuccess(false)
+                    setError(true)
+                }
+
+            })
+            .catch(function (error) {
+                console.log(error);
+                setLoading(false)
+                setSuccess(false)
+            });
     }
 
 
     // use media query for responsiveness 
-    const matches = useMediaQuery('(min- width:900px)');
+    const matches = useMediaQuery('(min-width:900px)');
     const paperStyle = {
         backgroundColor: "var(--sanger--theme--white)",
-        padding: matches ? "56px" : "56px 16px",
+        padding: matches ? "56px 32px" : "56px 8px",
         maxWidth: "900px",
         width: "calc(100% - 16px) ",
         margin: "0 auto"
@@ -150,7 +181,7 @@ function ContactForm({ title, content }) {
                             onBlur={firstNameBlurHandler}
                             value={firstName}
                             required
-                            autoComplete
+                            autoComplete="true"
                         />
 
                         <TextField id="filled-basic"
@@ -163,7 +194,7 @@ function ContactForm({ title, content }) {
                             onBlur={lastNameBlurHandler}
                             value={lastName}
                             required
-                            autoComplete
+                            autoComplete="true"
                         />
                     </InputDiv>
 
@@ -178,7 +209,7 @@ function ContactForm({ title, content }) {
                             onBlur={emailAddressBlurHandler}
                             value={emailAddress}
                             required
-                            autoComplete
+                            autoComplete="true"
                         />
                         <TextField id="filled-basic"
                             label="Phone number"
@@ -186,7 +217,7 @@ function ContactForm({ title, content }) {
                             color="tertiary"
                             onChange={phoneNumberChangeHandler}
                             value={phoneNumber}
-                            autoComplete
+                            autoComplete="true"
                         />
 
                     </InputDiv>
@@ -198,7 +229,7 @@ function ContactForm({ title, content }) {
                             color="tertiary"
                             onChange={orchardSizeChangeHandler}
                             value={orchardSize}
-                            autoComplete
+                            autoComplete="true"
                         />
                         <TextField id="filled-basic"
                             label="Company name"
@@ -206,7 +237,7 @@ function ContactForm({ title, content }) {
                             color="tertiary"
                             onChange={companyNameChangeHandler}
                             value={companyName}
-                            autoComplete
+                            autoComplete="true"
                         />
 
                     </InputDiv>
@@ -221,14 +252,16 @@ function ContactForm({ title, content }) {
                             onBlur={messageBlurHandler}
                             value={message}
                             required
-                            autoComplete
+                            autoComplete="true"
                             fullWidth
                             multiline
                             rows={4}
                         />
 
                     </div>
-                    <PrimaryButton callToActionText="Enquire Now" variant="contained" onClick={submitHandler} />
+                    <PrimaryButton success={success} loading={loading} callToActionText="Enquire Now" variant="contained" onClick={submitHandler} />
+                    {error && <Alert severity="error">Something went wrong, Please try again. </Alert>}
+
                 </form>
             </Paper>
         </Container >
@@ -253,6 +286,10 @@ button{
 }
 form{ 
     margin-top: 32px; 
+    padding: 0 56px; 
+       @media(max-width: 900px){ 
+       padding: 0 8px; 
+    }
 }
 `
 const InputDiv = styled.div`

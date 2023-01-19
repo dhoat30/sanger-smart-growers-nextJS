@@ -10,12 +10,12 @@ module.exports = (phase, { defaultConfig }) => {
         defaultLocale: 'en',
       },
       env: {
-        url: "http://sangersmartgrowers.local/",
-        SITE_URL: "http://localhost:3000"
+        url: "https://data.sangergrowers.co.nz",
+        SITE_URL: "sangergrowers.co.nz"
       },
       reactStrictMode: true,
       images: {
-        domains: ['sangersmartgrowers.local']
+        domains: ['data.sangergrowers.co.nz']
       },
       compiler: {
         // Enables the styled-components SWC transform

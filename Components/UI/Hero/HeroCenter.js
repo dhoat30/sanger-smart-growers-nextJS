@@ -5,7 +5,7 @@ import PrimaryButton from '../Buttons/PrimaryButton'
 import useMediaQuery from '@mui/material/useMediaQuery';
 import ScrollDownIcon from '../Icons/ScrollDownIcon';
 
-function HeroGlassMorphism({
+function HeroCenter({
   desktopImage,
   mobileImage,
   title,
@@ -17,7 +17,6 @@ function HeroGlassMorphism({
   const matches = useMediaQuery('(min-width:700px)');
   const subtitleClass = matches ? "headline-medium" : "body-large"
   const titleClass = matches ? "display-large" : "headline-large"
-
   return (
     <>
       <HeroContainer className="hero-section" >
@@ -36,13 +35,13 @@ function HeroGlassMorphism({
             fill={true}
 
             alt={title}
-            blurDataURL={`/_next/image?url=${desktopImage}&w=16&q=1`}
+            blurDataURL={`/_next/image?url=${mobileImage}&w=16&q=1`}
             priority={true}
           />
         }
         <GlassBackground>
           <Content >
-            <h1 className={titleClass}>{title}</h1>
+            <h1 className={titleClass} >{title}</h1>
             <h2 className={subtitleClass} >{subtitle}</h2>
             <HeroBtnContainer >
               <PrimaryButton callToActionText={callToActionText} href={callToActionLink} variant="contained" />
@@ -57,7 +56,7 @@ function HeroGlassMorphism({
   );
 }
 
-export default HeroGlassMorphism;
+export default HeroCenter;
 const HeroContainer = styled.section`
 overflow: hidden;
 position: relative;
@@ -68,8 +67,8 @@ height:90vh;
 width: 100%; 
 text-align: center; 
 margin-top: 60px; 
-@media(max-width: 500px){ 
-  height:550px; 
+@media(max-width: 700px){ 
+  height:500px;
   margin-top: 40px; 
 }
 `;
@@ -84,54 +83,41 @@ margin-top: 24px;
 flex-wrap: wrap; 
 `
 const GlassBackground = styled.div`
-background: radial-gradient(98.05% 98.05% at 1.89% 1.95%, rgba(255, 255, 255, 0.42) 0%, rgba(81, 90, 2, 0.06) 100%);
-backdrop-filter: blur(10px);
+background: rgb(0,0,0);
+background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 56%, rgba(0,0,0,0.9) 100%);
+
 position: absolute ;
-top: 0%; 
+top: 0; 
 left: 0; 
 z-index: 10; 
-width: 50%;  
+width: 100%;  
 height: 100%;
 display: flex ;
 align-items: center; 
-@media(max-width: 1366px){ 
-  width: 60%;  
-}
-@media(max-width: 500px){ 
-  width: 100%; 
-  background: rgb(0,0,0);
-background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.6) 56%, rgba(0,0,0,0.9) 100%);
-  backdrop-filter: blur(0);
-}
 `
 const Content = styled.div`
 width: 100%; 
 padding: 0 80px; 
-
+display: flex; 
+flex-direction: column; 
+align-items: center; 
 color: var( --sanger--theme--white); 
 @media(max-width: 1366px){ 
   padding: 0 24px; 
 }
-@media(max-width: 500px){ 
-  padding: 0 8px; 
-}
+
 h2{ 
-  margin-top: 16px; 
-  text-align: left; 
+  margin-top: 8px; 
+  text-align: center; 
 }
 h1{ 
-  text-align: left; 
+  text-align: center; 
 }
 `
 const ScrollDownIconStyle = styled(ScrollDownIcon)`
-  top: calc(100% - 56px ); 
-  left: 50%; 
-  @media(max-width: 1366px){ 
-    top: calc(100% - 56px ); 
-  left: 60% ;   
-}
-  @media(max-width: 500px){ 
-    top: calc(100% - 40px ) ; 
-    left: 50%; 
+  top: calc(100% - 56px ) !important; 
+  @media(max-width: 600px){ 
+    top: calc(100% - 40px ) !important; 
+
   } 
 `

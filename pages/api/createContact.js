@@ -11,7 +11,7 @@ export default function handler(req, res) {
         "firstname": req.body.firstName,
         "lastname": req.body.lastName,
         "phone": req.body.phoneNumber,
-        "company": req.body.company,
+        "company": req.body.companyName,
         "orchard_size": req.body.orchardSize,
         "lifecyclestage": req.body.leadType
       }
@@ -30,7 +30,7 @@ export default function handler(req, res) {
     axios(config)
       .then(function (response) {
         res.status(200).json({ data: response.data })
-        console.log(JSON.stringify(response.data));
+
       })
       .catch(function (error) {
         console.log(error);
