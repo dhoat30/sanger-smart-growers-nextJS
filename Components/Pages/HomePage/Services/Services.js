@@ -14,7 +14,7 @@ function Services({ servicesArr }) {
                     content={data.service_excerpt}
                     image={data.thumbnail.url}
                     callToActionText={data.call_to_action_text}
-                    callToActionLink={data.call_to_action_link}
+                    callToActionLink={`/services${data.call_to_action_link}`}
                 />
             </Grid >
 

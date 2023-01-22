@@ -1,8 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import Card from '../../UI/Card/Card'
 import IconCard from '../../UI/Card/IconCard'
-import Hero from '../../UI/Hero/Hero'
 import HeroGlassMorphism from '../../UI/Hero/HeroGlassMorphism'
 import ParallaxImage from '../../UI/Images/ParallaxImage'
 import TwoImageSection from '../../UI/Sections/TwoImageSection'
@@ -11,11 +9,13 @@ import RowTitle from '../../UI/Typography/RowTitle'
 import OverflowImageContentSection from '../../UI/Sections/OverflowImageContentSection'
 import ContactForm from '../../UI/Forms/ContactForm'
 import HeroCenter from '../../UI/Hero/HeroCenter'
-import ImageContentRowSection from '../../UI/Sections/ImageContentRowSection'
 import ImageContentSection from '../../UI/Sections/ImageContentSection'
 import JustTextSection from '../../UI/Sections/JustTextSection'
+import FullWidthCard from '../../UI/Card/FullWidthCard'
+import { useRouter } from 'next/router'
 
 function ServicePage({ servicesData }) {
+    const router = useRouter()
 
     console.log(servicesData.all_fields.plants)
     const serviceContent = servicesData.all_fields.service_content.map((data, index) => {
@@ -110,6 +110,22 @@ function ServicePage({ servicesData }) {
         }
     })
 
+    let plantCards
+    if (router.query.pid === "kiwifruit-nursery") {
+        plantCards = servicesData.all_fields.plants.map((data, index) => {
+            return <FullWidthCard
+                key={index}
+                image={data.image}
+                title={data.title}
+                callToActionLink={data.call_to_action_link}
+                callToActionText={data.call_to_action_text}
+            />
+        }
+
+        )
+    }
+    console.log(plantCards)
+
     return (
         <>
             {serviceContent}
@@ -121,6 +137,14 @@ function ServicePage({ servicesData }) {
                 leadType="lead"
                 emailRoute="/api/sendEmail"
             />
+            {plantCards &&
+                <PlantSection>
+                    {plantCards}
+                </PlantSection>
+            }
+
+
+
         </>
     )
 }
@@ -131,4 +155,10 @@ export default ServicePage
 const IconContainer = styled.div`
     margin-top: 120px; 
     margin-bottom: 120px; 
+`
+const PlantSection = styled.section`
+display:  flex;
+@media(max-width: 600px){ 
+   flex-wrap: wrap; 
+}
 `

@@ -272,6 +272,10 @@ function ContactForm({ title, content, formName, emailTo, leadType, emailRoute }
 
 export default ContactForm
 const Container = styled.section`
+margin: 120px 0; 
+@media(max-width: 900px){ 
+    margin: 40px 0; 
+}
 .heading-small{ 
     color: var(--sanger--theme--sys--light--on-surface-variant); 
     text-align: center; 

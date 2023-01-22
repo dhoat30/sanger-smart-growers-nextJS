@@ -49,7 +49,8 @@ const Section = styled.section`
 background:  ${props => props.backgroundcolor === "White" && "var(--sanger--theme--white)"};
 
 .container{ 
-    margin: 40px 0; 
+    margin-top: 40px;
+    margin-bottom: 40px;  
     display: flex;
 padding-top: 120px; 
 padding-bottom: 120px; 

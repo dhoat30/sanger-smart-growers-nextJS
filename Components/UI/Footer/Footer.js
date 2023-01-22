@@ -58,7 +58,6 @@ function Footer({ footerData }) {
 export default Footer;
 const Container = styled.footer`
 background: white; 
-margin-top: 80px; 
 `
 const FooterStyle = styled.section`
       background: var( --sanger--theme--black);
