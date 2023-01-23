@@ -13,7 +13,6 @@ function OverflowImageContentSection({ title, content, image, link, linkText, im
         return
     }
     let imageHeight
-    console.log(image)
     if (matches) {
         imageHeight = (image.height / image.width * 100) / 2
     }
@@ -25,7 +24,13 @@ function OverflowImageContentSection({ title, content, image, link, linkText, im
         <Section backgroundColor={backgroundColor}>
             <Container className={`${matches && "max-width"}`} imagealignment={imageAlignment} >
                 <div className='image-container' style={{ paddingBottom: `${imageHeight}%` }}>
-                    <Image src={image.url} fill={true} alt={image.alt} />
+                    <Image
+                        src={image.url}
+                        fill
+                        alt={image.alt ? image.alt : title}
+                        sizes="(max-width: 900px) 100vw,
+                                100vw"
+                    />
                 </div>
                 <div className='content' imagealignment={imageAlignment}>
                     <ColumnTitle>{title}</ColumnTitle>

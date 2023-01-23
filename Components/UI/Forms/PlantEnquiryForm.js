@@ -3,12 +3,12 @@ import styled from 'styled-components';
 import RowTitle from '../Typography/RowTitle';
 import PrimaryButton from '../Buttons/PrimaryButton'
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { Paper, TextField } from '@mui/material';
+import { Paper, TextField, FormLabel, FormControlLabel, RadioGroup, Radio } from '@mui/material';
 import axios from 'axios';
 import Alert from '@mui/material/Alert';
 
 
-function ContactForm({ title, content, formName, emailTo, leadType, emailRoute, formType, className }) {
+function PlantEnquiryForm({ title, content, formName, emailTo, leadType, emailRoute, className }) {
     // create state variables 
     const [firstName, setFirstName] = useState("")
     const [firstNameTouched, setFirstNameTouched] = useState(false)
@@ -21,7 +21,7 @@ function ContactForm({ title, content, formName, emailTo, leadType, emailRoute, 
 
     const [phoneNumber, setPhoneNumber] = useState("")
 
-    const [orchardSize, setOrchardSize] = useState("")
+    const [plant, setPlant] = useState("")
 
     const [companyName, setCompanyName] = useState("")
 
@@ -67,6 +67,9 @@ function ContactForm({ title, content, formName, emailTo, leadType, emailRoute, 
     const messageChangeHandler = (e) => {
         setMessage(e.target.value)
     }
+    const plantChangeHandler = (e) => {
+        setPlant(e.target.value)
+    }
     // blur handler 
     const firstNameBlurHandler = (e) => {
         setFirstNameTouched(true)
@@ -95,13 +98,12 @@ function ContactForm({ title, content, formName, emailTo, leadType, emailRoute, 
             lastName: lastName,
             emailAddress: emailAddress,
             phoneNumber: phoneNumber,
-            orchardSize: orchardSize,
+            plant: plant,
             companyName: companyName,
             message: message,
             emailTo: emailTo,
             leadType: leadType,
-            formName: formName,
-            formType: formType
+            formName: formName
         }
         var config = {
             method: 'post',
@@ -115,7 +117,7 @@ function ContactForm({ title, content, formName, emailTo, leadType, emailRoute, 
 
         axios(config)
             .then(function (response) {
-                console.log(response)
+                console.log('saved in database')
             })
             .catch(function (error) {
                 console.log(error);
@@ -135,14 +137,11 @@ function ContactForm({ title, content, formName, emailTo, leadType, emailRoute, 
                 if (response.status === 200) {
                     setLoading(false)
                     setSuccess(true)
-                    // set initial state to empty string 
                     setFirstName('')
                     setEmailAddress('')
                     setPhoneNumber('')
-                    setOrchardSize('')
                     setCompanyName('')
                     setMessage('')
-                    console.log(response)
                 }
                 else {
                     setLoading(false)
@@ -173,6 +172,7 @@ function ContactForm({ title, content, formName, emailTo, leadType, emailRoute, 
             <Paper elevation={2} sx={paperStyle}>
                 <RowTitle align="center" title={title}></RowTitle>
                 <div className="heading-small" dangerouslySetInnerHTML={{ __html: content }} />
+                {/* <input placeholder='first name' autoComplete="name"></input> */}
                 <form >
                     <InputDiv>
 
@@ -186,7 +186,7 @@ function ContactForm({ title, content, formName, emailTo, leadType, emailRoute, 
                             onBlur={firstNameBlurHandler}
                             value={firstName}
                             required
-
+                            autoComplete="true"
                         />
 
                         <TextField id="filled-basic"
@@ -199,7 +199,7 @@ function ContactForm({ title, content, formName, emailTo, leadType, emailRoute, 
                             onBlur={lastNameBlurHandler}
                             value={lastName}
                             required
-
+                            autoComplete="true"
                         />
                     </InputDiv>
 
@@ -214,7 +214,7 @@ function ContactForm({ title, content, formName, emailTo, leadType, emailRoute, 
                             onBlur={emailAddressBlurHandler}
                             value={emailAddress}
                             required
-
+                            autoComplete="true"
                         />
                         <TextField id="filled-basic"
                             label="Phone number"
@@ -222,31 +222,40 @@ function ContactForm({ title, content, formName, emailTo, leadType, emailRoute, 
                             color="tertiary"
                             onChange={phoneNumberChangeHandler}
                             value={phoneNumber}
-
+                            autoComplete="true"
                         />
 
                     </InputDiv>
+                    <div className='full-width'>
+                        <FormLabel id="demo-controlled-radio-buttons-group">Gender</FormLabel>
+                        <RadioGroup
+                            aria-labelledby="demo-controlled-radio-buttons-group"
+                            name="controlled-radio-buttons-group"
+                            value={plant}
+                            onChange={plantChangeHandler}
 
-                    <InputDiv>
-                        <TextField id="filled-basic"
-                            label="Orchard size"
                             variant="filled"
-                            color="tertiary"
-                            onChange={orchardSizeChangeHandler}
-                            value={orchardSize}
 
-                        />
+                        >
+                            <FormControlLabel value="Bounty R19" control={<Radio color="tertiary" />} label="Bruno R19" />
+                            <FormControlLabel value="Bounty G3" control={<Radio color="tertiary" />} label="Bounty G3" />
+                        </RadioGroup>
+                    </div>
+
+                    <div className='full-width'>
+
                         <TextField id="filled-basic"
                             label="Company name"
                             variant="filled"
                             color="tertiary"
                             onChange={companyNameChangeHandler}
                             value={companyName}
-
+                            autoComplete="true"
+                            fullWidth
                         />
 
-                    </InputDiv>
-                    <div className="text-area">
+                    </div>
+                    <div className="full-width">
                         <TextField id="filled-basic"
                             label="Message"
                             variant="filled"
@@ -257,7 +266,7 @@ function ContactForm({ title, content, formName, emailTo, leadType, emailRoute, 
                             onBlur={messageBlurHandler}
                             value={message}
                             required
-
+                            autoComplete="true"
                             fullWidth
                             multiline
                             rows={4}
@@ -275,7 +284,7 @@ function ContactForm({ title, content, formName, emailTo, leadType, emailRoute, 
     )
 }
 
-export default ContactForm
+export default PlantEnquiryForm
 const Container = styled.section`
 margin: 120px 0; 
 @media(max-width: 900px){ 
@@ -290,7 +299,7 @@ button{
     display: block ;
     margin: 16px 0 16px auto; 
 }
-.text-area{ 
+.full-width{ 
     margin-top: 24px; 
 }
 form{ 

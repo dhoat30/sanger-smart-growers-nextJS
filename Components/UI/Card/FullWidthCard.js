@@ -11,7 +11,7 @@ function FullWidthCard({ image, title, callToActionText, callToActionLink }) {
     return (
         <Container>
             <div className='image-box'>
-                <Image src={image.url} fill />
+                <Image src={image.url} fill alt={image.alt ? image.alt : title} />
             </div>
             <div className='content'>
                 <h6 className={headlineClass}>{title}</h6>

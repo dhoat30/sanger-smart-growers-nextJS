@@ -31,7 +31,7 @@ function ImageContentSection({ title, content, image, link, linkText, background
                             margin: "0 auto 0 auto",
                             display: "block"
                         }}
-                        alt={image.alt} />
+                        alt={image.alt ? image.alt : title} />
                 </div>
                 <div className='content'>
                     <ColumnTitle>{title}</ColumnTitle>

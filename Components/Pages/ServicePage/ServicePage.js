@@ -17,7 +17,6 @@ import { useRouter } from 'next/router'
 function ServicePage({ servicesData }) {
     const router = useRouter()
 
-    console.log(servicesData.all_fields.plants)
     const serviceContent = servicesData.all_fields.service_content.map((data, index) => {
         if (data.acf_fc_layout === "hero_section_with_glass_morphism") {
             return <HeroGlassMorphism
@@ -124,27 +123,26 @@ function ServicePage({ servicesData }) {
 
         )
     }
-    console.log(plantCards)
 
     return (
         <>
             {serviceContent}
-            <ContactForm
-                title="Get In Touch"
-                content="Please fill out the form below, and one of our team member will respond to your inquiry as soon as possible."
-                formName="Kiwifruit Orchard Management"
-                emailTo="designer@webduel.co.nz"
-                leadType="lead"
-                emailRoute="/api/sendEmail"
-            />
-            {plantCards &&
+
+            {plantCards ?
                 <PlantSection>
                     {plantCards}
                 </PlantSection>
+                :
+                <ContactForm
+                    title="Get In Touch"
+                    content="Please fill out the form below, and one of our team member will respond to your inquiry as soon as possible."
+                    formName="Kiwifruit Orchard Management"
+                    emailTo="designer@webduel.co.nz"
+                    leadType="lead"
+                    emailRoute="/api/sendEmail"
+                    formType="contact-form"
+                />
             }
-
-
-
         </>
     )
 }

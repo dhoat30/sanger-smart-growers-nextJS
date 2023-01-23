@@ -7,9 +7,13 @@ import { Button, CardActionArea, CardActions } from '@mui/material';
 import Image from 'next/image';
 import styled from 'styled-components';
 import PrimaryButton from '../Buttons/PrimaryButton'
-function Card({ title, content, image, callToActionText, callToActionLink }) {
+import useMediaQuery from '@mui/material/useMediaQuery';
+
+function Card({ title, content, image, callToActionText, callToActionLink, className }) {
+    const matches = useMediaQuery('(min-width:600px)');
+
     return (
-        <CardMUI sx={{ height: "100%" }}>
+        <CardMUI sx={{ height: "100%" }} className={className}>
             <CardActionArea>
                 <ImageContainer>
                     <Image src={image} fill={true} alt={title} sizes="(max-width: 600px) 100vw,
@@ -17,7 +21,7 @@ function Card({ title, content, image, callToActionText, callToActionLink }) {
               33vw" />
                 </ImageContainer>
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="h3" sx={{ color: "var(--sanger--theme--sys--dark--on-secondary)" }}>
+                    <Typography gutterBottom variant={`${matches ? "h5" : "h6"}`} component="h3" sx={{ color: "var(--sanger--theme--sys--dark--on-secondary)" }}>
                         {title}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">

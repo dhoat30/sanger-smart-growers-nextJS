@@ -78,15 +78,14 @@ const Container = styled.section`
     }
     .canopy-data{ 
         width: 50%; 
-     
         background: var( --sanger--theme--sys--dark--secondary) ;
         display: flex;
         align-items: center; 
         flex-wrap: wrap; 
         @media(max-width: 900px){ 
             width: 100%; 
-         
             }
+      
      
     }
 `
@@ -94,10 +93,19 @@ const Container = styled.section`
 const Card = styled.div`
 width: 50%; 
 border: 1px solid var( --sanger--theme--source--secondary);
+padding: 0 8px; 
 
+@media(max-width: 400px){ 
+    width: 100%; 
+    padding: 0 8px; 
+}
 .box{ 
     width: 200px; 
   margin: 40px auto; 
+  @media(max-width: 400px){ 
+   margin: 16px auto; 
+
+}
 }
     .image-container{ 
         background:var( --sanger--theme--source--secondary);
@@ -107,12 +115,22 @@ border: 1px solid var( --sanger--theme--source--secondary);
         align-items: center; 
         justify-content: center; 
         border-radius: 50%; 
+        margin: 0 auto ;
+        @media(max-width: 400px){ 
+   margin: 0 auto; 
+
+}
     }
     .content{ 
-
+        margin-left: 8px; 
+        @media(max-width: 400px){ 
+        text-align: center; 
+        margin-left: 0; 
+        }
         h4{ 
             font-weight: 600; 
             margin-top: 16px; 
+            
         }
         p{ 
             margin-top: 0; 

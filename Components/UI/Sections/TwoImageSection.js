@@ -9,7 +9,7 @@ import { Paper } from '@mui/material';
 
 function TwoImageSection({ title, content, backgroundImage, frontImage, imageText, callToActionText, callToActionLink, hideImageOnMobile }) {
     const matches = useMediaQuery('(min-width:900px)');
-
+    console.log(callToActionText)
     return (
         <>
             {matches ?
@@ -61,7 +61,10 @@ function TwoImageSection({ title, content, backgroundImage, frontImage, imageTex
                     <Content>
                         <ColumnTitle variant="medium">{title} </ColumnTitle>
                         <Paragraph>{content}</Paragraph>
-                        <PrimaryButton variant="contained" callToActionText={callToActionText} href={callToActionLink} />
+                        {callToActionText &&
+                            <PrimaryButton variant="contained" callToActionText={callToActionText} href={callToActionLink} />
+
+                        }
                     </Content>
                 </MobileContainer>
             }

@@ -5,13 +5,11 @@ import SEO from '../Components/SEO'
 import getMenu from '../util/get-menu'
 import getPage from '../util/get-page'
 export default function Home({ homePageData }) {
-  console.log(homePageData)
   const seo = {
     title: homePageData.seo.title,
     description: homePageData.seo.description,
     imageSrc: homePageData.seo.image
   }
-  console.log(homePageData.seo.image)
   return (
 
     <React.Fragment>
