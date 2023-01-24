@@ -9,7 +9,7 @@ import styled from 'styled-components';
 import PrimaryButton from '../Buttons/PrimaryButton'
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-function Card({ title, content, image, callToActionText, callToActionLink, className }) {
+function Card({ title, content, image, callToActionText, callToActionLink, className, align, buttonVariant }) {
     const matches = useMediaQuery('(min-width:600px)');
 
     return (
@@ -21,17 +21,19 @@ function Card({ title, content, image, callToActionText, callToActionLink, class
               33vw" />
                 </ImageContainer>
                 <CardContent>
-                    <Typography gutterBottom variant={`${matches ? "h5" : "h6"}`} component="h3" sx={{ color: "var(--sanger--theme--sys--dark--on-secondary)" }}>
+                    <Typography align={align} gutterBottom variant={`${matches ? "h5" : "h6"}`} component="h3" sx={{ color: "var(--sanger--theme--sys--dark--on-secondary)" }}>
                         {title}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography align={align} variant="body2" color="text.secondary">
                         {content}
                     </Typography>
                 </CardContent>
             </CardActionArea>
 
             <CardActions sx={{ display: "flex", alignItems: "flex-end" }}>
-                <PrimaryButton
+                <PrimaryButtonStyle
+                    align={align}
+                    variant={buttonVariant}
                     callToActionText={callToActionText}
                     href={callToActionLink}
                 />
@@ -48,4 +50,8 @@ height: 240px;
 img{ 
     object-fit: cover; 
 }
+`
+
+const PrimaryButtonStyle = styled(PrimaryButton)`
+    margin: ${props => props.align === "center" && " 0 auto"};
 `

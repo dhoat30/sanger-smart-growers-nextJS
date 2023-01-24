@@ -11,7 +11,7 @@ function RowTitle({ title, align, className, children, hideIcon }) {
                 <TitleIcon align={align} />
 
             }
-            <Title align={align} className={`${className} display-large`}>{title}</Title>
+            <Title color="white" align={align} className={`${className} display-large`}>{title}</Title>
 
         </>
     )

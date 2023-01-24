@@ -7,11 +7,12 @@ import Paragraph from '../Typography/Paragraph'
 import ColumnTitle from '../Typography/ColumnTitle'
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-function ImageContentSection({ title, content, image, link, linkText, backgroundColor, imageAlignment }) {
+function ImageContentSection({ title, content, image, link, linkText, backgroundColor, imageAlignment, className }) {
     const matches = useMediaQuery('(min-width:900px)');
-
+    if (!image) {
+        return
+    }
     let imageHeight
-
     if (matches) {
         imageHeight = (image.height / image.width * 100) / 2
     }
@@ -20,7 +21,7 @@ function ImageContentSection({ title, content, image, link, linkText, background
     }
 
     return (
-        <Section backgroundcolor={backgroundColor} imagealignment={imageAlignment} >
+        <Section className={className} backgroundColor={backgroundColor} imageAlignment={imageAlignment} >
             <div className="container max-width">
                 <div className='image-container'>
                     <Image src={image.url} width={500}
@@ -46,7 +47,7 @@ function ImageContentSection({ title, content, image, link, linkText, background
 
 export default ImageContentSection
 const Section = styled.section`
-background:  ${props => props.backgroundcolor === "White" && "var(--sanger--theme--white)"};
+background:  ${props => props.backgroundColor === "White" && "var(--sanger--theme--white)"};
 
 .container{ 
     margin-top: 40px;
@@ -55,7 +56,7 @@ background:  ${props => props.backgroundcolor === "White" && "var(--sanger--them
 padding-top: 120px; 
 padding-bottom: 120px; 
 align-items: flex-start; 
-flex-direction: ${props => props.imagealignment === "Right" ? "row-reverse" : null};
+flex-direction: ${props => props.imageAlignment === "Right" ? "row-reverse" : null};
 @media(max-width: 600px){ 
     flex-wrap: wrap ;
     padding-top: 0; 
@@ -63,7 +64,6 @@ flex-direction: ${props => props.imagealignment === "Right" ? "row-reverse" : nu
     padding-bottom: 0; 
 }
 }
-
     .image-container{ 
         position: relative ;
         width: 50%; 
@@ -86,7 +86,6 @@ flex-direction: ${props => props.imagealignment === "Right" ? "row-reverse" : nu
       }
       @media(max-width: 600px){ 
         background:  ${props => props.backgroundcolor === "White" && "var(--sanger--theme--white)"};
-            width: 100%; 
                         width: 100%; 
                         padding: 40px 8px 0 8px;
                     border-radius: 32px; 

@@ -5,7 +5,7 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import Link from 'next/link';
 import styledCSS from 'styled-components';
 
-export default function StyledCustomization({ callToActionText, href, variant, onClick, loading, success }) {
+export default function StyledCustomization({ callToActionText, href, variant, onClick, loading, success, className }) {
   const ButtonStyle = styled(Button)(({ theme }) => ({
     // color: theme.palette.success.main,
     color: (loading || success) && theme.palette.tertiary.main,
@@ -17,13 +17,14 @@ export default function StyledCustomization({ callToActionText, href, variant, o
     <>
       {
         href ?
-          <Link href={href} passHref>
+          <Link href={href} passHref className={className}>
             <ButtonStyle variant={variant} size="large" color="secondary">
               {callToActionText}
             </ButtonStyle>
           </Link>
           :
           <ButtonStyle
+            className={className}
             onClick={onClick}
             variant={variant} size="large" color={(loading || success) ? "tertiary" : "secondary"}
 
