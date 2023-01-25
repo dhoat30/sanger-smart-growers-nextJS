@@ -19,6 +19,7 @@
     "axios": "^1.2.3",
     "babel-preset-next": "^1.4.0",
     "caniuse-lite": "^1.0.30001397",
+    "framer-motion": "^8.5.2",
     "next": "^13.1.0",
     "next-sitemap": "^3.1.22",
     "react": "^18.2.0",

@@ -18,8 +18,7 @@ module.exports = (phase, { defaultConfig }) => {
         domains: ['data.sangergrowers.co.nz']
       },
       compiler: {
-        // Enables the styled-components SWC transform
-        styledComponents: true
+        styledComponents: true,
       }
     }
   }
@@ -38,8 +37,7 @@ module.exports = (phase, { defaultConfig }) => {
       domains: ['data.sangergrowers.co.nz']
     },
     compiler: {
-      // Enables the styled-components SWC transform
-      styledComponents: true
+      styledComponents: true,
     }
   }
 }

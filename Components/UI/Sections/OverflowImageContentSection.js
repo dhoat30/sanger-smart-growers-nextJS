@@ -6,6 +6,7 @@ import PrimaryButton from '../Buttons/PrimaryButton'
 import Paragraph from '../Typography/Paragraph'
 import ColumnTitle from '../Typography/ColumnTitle'
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { motion } from 'framer-motion'
 
 function OverflowImageContentSection({ title, content, image, link, linkText, imageAlignment, backgroundColor }) {
     const matches = useMediaQuery('(min-width:900px)');
@@ -19,25 +20,68 @@ function OverflowImageContentSection({ title, content, image, link, linkText, im
     else {
         imageHeight = (image.height / image.width * 100)
     }
-
+    const imageVariants = {
+        offscreen: {
+            opacity: 0,
+            y: 100
+        },
+        onscreen: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 0.5
+            }
+        }
+    };
+    const contentVariants = {
+        offscreen: {
+            opacity: 0,
+            y: 50
+        },
+        onscreen: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                type: "spring",
+                bounce: 0.4,
+                delay: 0.5,
+                duration: 0.8
+            }
+        }
+    };
     return (
         <Section backgroundColor={backgroundColor}>
             <Container className={`${matches && "max-width"}`} imagealignment={imageAlignment} >
-                <div className='image-container' style={{ paddingBottom: `${imageHeight}%` }}>
+                <motion.div
+                    className='image-container'
+                    style={{ paddingBottom: `${imageHeight}%` }}
+                    initial="offscreen"
+                    whileInView="onscreen"
+                    viewport={{ amount: 0.4 }}
+                    variants={imageVariants}
+                >
                     <Image
+
                         src={image.url}
                         fill
                         alt={image.alt ? image.alt : title}
                         sizes="(max-width: 900px) 100vw,
                                 100vw"
                     />
-                </div>
-                <div className='content' imagealignment={imageAlignment}>
+                </motion.div>
+                <motion.div
+                    className='content'
+                    imagealignment={imageAlignment}
+                    initial="offscreen"
+                    whileInView="onscreen"
+                    viewport={{ amount: 1 }}
+                    variants={contentVariants}
+                >
                     <ColumnTitle>{title}</ColumnTitle>
                     <Paragraph >{content}</Paragraph>
                     {link && <PrimaryButton variant="contained" callToActionText={linkText} href={link} />
                     }
-                </div>
+                </motion.div>
 
             </Container>
         </Section>

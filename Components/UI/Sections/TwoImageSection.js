@@ -6,7 +6,7 @@ import Paragraph from '../Typography/Paragraph'
 import PrimaryButton from '../Buttons/PrimaryButton'
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { Paper } from '@mui/material';
-
+import { motion } from 'framer-motion'
 function TwoImageSection({ title, content, backgroundImage, frontImage, imageText, callToActionText, callToActionLink, hideImageOnMobile }) {
     const matches = useMediaQuery('(min-width:900px)');
     console.log(callToActionText)
@@ -21,11 +21,10 @@ function TwoImageSection({ title, content, backgroundImage, frontImage, imageTex
                         <Overlay></Overlay> */}
 
                         <div className="second-image-container">
-                            <Image src={frontImage.url} width="100" height="100" alt={frontImage.alt ? frontImage.alt : "front image"} sizes="50vw" />
+                            <Image src={frontImage.url} fill alt={frontImage.alt ? frontImage.alt : "front image"} sizes="50vw" />
                         </div>
                         <Paper elevation={2} className='image-text'>
-
-                            <div >
+                            <div>
                                 <h6 className="display-large">{imageText} </h6>
                                 <p className="headline-medium"> Years of Experience</p>
                                 <svg width="55" height="54" viewBox="0 0 55 54" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -84,6 +83,7 @@ position: relative ;
 top: -80px; 
 
 .second-image-container{  
+    position: relative;
     grid-column: 1/7;
     grid-row: 1/10;
     img { 

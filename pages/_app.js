@@ -1,6 +1,5 @@
 import '../styles/globals.css'
 
-import { VideoContextProvider } from '../Store/video-context'
 import Layout from '../Components/Layout'
 import { ThemeProvider } from '@mui/material/styles';
 
@@ -14,11 +13,9 @@ function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider theme={theme}>
       {/* <CssBaseline /> */}
-      <VideoContextProvider>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </VideoContextProvider>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </ThemeProvider>
 
   )

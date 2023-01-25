@@ -259,6 +259,26 @@
     --sanger--theme--title--large: 1.3rem;
   }
 }
+
+.elevation-light1 {
+  /* M3/Elevation Light/1 */
+  box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+  filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+}
+.elevation-light2 {
+  /* M3/Elevation Light/2 */
+  box-shadow: 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+  filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+}
+.elevation-light3 {
+  box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.15),
+    0px 1px 3px rgba(0, 0, 0, 0.3);
+}
+.elevation-light5 {
+  /* M3/Elevation Light/5 */
+  box-shadow: 0px 8px 12px 6px rgba(0, 0, 0, 0.15),
+    0px 4px 4px rgba(0, 0, 0, 0.3);
+}
 /* display fonts */
 .display-large {
   font-size: var(--sanger--theme--display--large);

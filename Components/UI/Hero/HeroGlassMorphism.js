@@ -4,7 +4,7 @@ import Image from 'next/image';
 import PrimaryButton from '../Buttons/PrimaryButton'
 import useMediaQuery from '@mui/material/useMediaQuery';
 import ScrollDownIcon from '../Icons/ScrollDownIcon';
-
+import { motion } from 'framer-motion'
 function HeroGlassMorphism({
   desktopImage,
   mobileImage,
@@ -18,6 +18,47 @@ function HeroGlassMorphism({
   const subtitleClass = matches ? "headline-medium" : "body-large"
   const titleClass = matches ? "display-large" : "headline-large"
 
+  // glass variant 
+  const glassVariants = {
+    offscreen: {
+      opacity: 0,
+      x: "-200px"
+    },
+    onscreen: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        type: "spring",
+        bounce: 0,
+        delay: 1,
+        duration: 0.5,
+        delayChildren: 1.8,
+        staggerChildren: 0.05,
+      }
+    },
+    exit: {
+      opacity: 0,
+      x: "-200px"
+    }
+  };
+
+  const childrenVariants = {
+    offscreen: {
+      opacity: 0,
+      y: 20,
+
+    },
+    onscreen: {
+      opacity: 1,
+      y: 0,
+      transition: { type: "spring", stiffness: 300, damping: 24 }
+    },
+    exit: {
+      opacity: 0,
+      y: 20,
+    }
+  };
+
   return (
     <>
       <HeroContainer className="hero-section" >
@@ -25,31 +66,36 @@ function HeroGlassMorphism({
           <ImageStyle
             placeholder="blur"
             src={desktopImage}
-            fill={true}
+            fill
             alt={title}
             blurDataURL={`/_next/image?url=${desktopImage}&w=16&q=1`}
-            priority={true}
+            prioritl
           /> :
           <ImageStyle
             placeholder="blur"
             src={mobileImage}
-            fill={true}
-
+            fill
             alt={title}
             blurDataURL={`/_next/image?url=${desktopImage}&w=16&q=1`}
-            priority={true}
+            prioritl
           />
         }
-        <GlassBackground>
-          <Content >
+        <motion.div
+          className='glass-background'
+          initial="offscreen"
+          animate="onscreen"
+          exit="exit"
+          variants={glassVariants}
+        >
+          <motion.div className='content' variants={childrenVariants}>
             <h1 className={titleClass}>{title}</h1>
             <h2 className={subtitleClass} >{subtitle}</h2>
             <HeroBtnContainer >
               <PrimaryButton callToActionText={callToActionText} href={callToActionLink} variant="contained" />
 
             </HeroBtnContainer>
-          </Content>
-        </GlassBackground>
+          </motion.div>
+        </motion.div>
         <ScrollDownIconStyle />
       </HeroContainer>
     </>
@@ -72,19 +118,9 @@ margin-top: 60px;
   height:550px; 
   margin-top: 40px; 
 }
-`;
 
-const ImageStyle = styled(Image)`
-object-fit: cover; 
-`
-const HeroBtnContainer = styled.div`
-display: flex;
-gap: 15px;
-margin-top: 24px;
-flex-wrap: wrap; 
-`
-const GlassBackground = styled.div`
-background: radial-gradient(98.05% 98.05% at 1.89% 1.95%, rgba(255, 255, 255, 0.42) 0%, rgba(81, 90, 2, 0.06) 100%);
+.glass-background{ 
+  background: radial-gradient(98.05% 98.05% at 1.89% 1.95%, rgba(255, 255, 255, 0.42) 0%, rgba(81, 90, 2, 0.06) 100%);
 backdrop-filter: blur(10px);
 position: absolute ;
 top: 0%; 
@@ -103,9 +139,9 @@ align-items: center;
 background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.6) 56%, rgba(0,0,0,0.9) 100%);
   backdrop-filter: blur(0);
 }
-`
-const Content = styled.div`
-width: 100%; 
+}
+.content{
+  width: 100%; 
 padding: 0 80px; 
 
 color: var( --sanger--theme--white); 
@@ -122,7 +158,19 @@ h2{
 h1{ 
   text-align: left; 
 }
+}
+`;
+
+const ImageStyle = styled(Image)`
+object-fit: cover; 
 `
+const HeroBtnContainer = styled.div`
+display: flex;
+gap: 15px;
+margin-top: 24px;
+flex-wrap: wrap; 
+`
+
 const ScrollDownIconStyle = styled(ScrollDownIcon)`
   top: calc(100% - 56px ); 
   left: 50%; 

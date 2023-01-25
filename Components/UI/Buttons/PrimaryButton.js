@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { Button, CircularProgress } from '@mui/material';
-import { alpha, styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import Link from 'next/link';
-import styledCSS from 'styled-components';
 
 export default function StyledCustomization({ callToActionText, href, variant, onClick, loading, success, className }) {
   const ButtonStyle = styled(Button)(({ theme }) => ({
@@ -17,8 +16,10 @@ export default function StyledCustomization({ callToActionText, href, variant, o
     <>
       {
         href ?
-          <Link href={href} passHref className={className}>
-            <ButtonStyle variant={variant} size="large" color="secondary">
+          <Link href={href} className={className}>
+            <ButtonStyle
+
+              variant={variant} size="large" color="secondary">
               {callToActionText}
             </ButtonStyle>
           </Link>
