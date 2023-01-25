@@ -41,7 +41,6 @@ function WorkWithUsPage({ pageData }) {
             }
         ]
     };
-    console.log(pageData.acf.service_content)
     const matches = useMediaQuery('(min-width:600px)');
 
     const sections = pageData.acf.service_content.map((data, index) => {
@@ -126,15 +125,14 @@ function WorkWithUsPage({ pageData }) {
         }
 
         else if (data.acf_fc_layout === "image_content_section_row") {
-            console.log(data)
             return (
-                <RowSection>
+                <RowSection key={index}>
                     <div className='max-width content'>
                         <h3 className='headline-large'>{data.title}</h3>
                         <Paragraph>{data.content}</Paragraph>
                     </div>
                     <div className='image-container'>
-                        <Image src={data.image.url} fill />
+                        <Image src={data.image.url} fill alt={data.image.alt ? data.image.alt : data.title} />
                     </div>
                 </RowSection>
             )

@@ -21,17 +21,24 @@ function DesktopMenu({ menuData, services }) {
         e.preventDefault()
         setOpen(!open);
     };
+    const handleSubmenuClick = (e) => {
+        setOpen(true)
+    }
+
+    const listStyle = {
+        padding: 0
+    }
     // services submenu 
     const subMenu = services.map((data, index) => {
         // console.log(data.slug)
         return (
-            <li key={index}>
-                <ListItemButton alignItems="center">
+            <li key={index} >
+                <ListItemButton alignItems="center" sx={listStyle}>
                     <ImageContainer>
                         <Image fill="true" src={data.image.url} alt={data.image.alt} />
 
                     </ImageContainer>
-                    <Link href={`/services/${encodeURIComponent(data.slug)}`}>
+                    <Link href={`/services/${encodeURIComponent(data.slug)}`} onClick={handleSubmenuClick} >
                         <p className="body-large">{data.title} </p>
                         <p className="body-small"> {data.excerpt} </p>
                     </Link>
@@ -42,12 +49,10 @@ function DesktopMenu({ menuData, services }) {
     const menu = menuData.map(data => {
         if (data.url === "/our-services") {
             return (
-                <li key={data.ID}>
-                    <ListItemButton alignItems="center" >
+                <li key={data.ID} sx={listStyle}>
+                    <ListItemButton alignItems="center" sx={listStyle}>
                         <Link legacyBehavior href={data.url} passHref >
-                            <a className='body-large' onClick={handleClick} >{data.title}
-
-                            </a>
+                            <a className='body-large main-nav-link' onClick={handleClick} >{data.title}</a>
                         </Link>
                         {!open ? <ExpandLess fontSize="small" /> : <ExpandMore fontSize="small" />}
 
@@ -62,10 +67,10 @@ function DesktopMenu({ menuData, services }) {
             )
         }
         if (data.menu_item_parent === "0") {
-            return <li key={data.ID}>
-                <ListItemButton alignItems="center">
+            return <li key={data.ID} sx={listStyle}>
+                <ListItemButton alignItems="center" sx={listStyle}>
                     <Link legacyBehavior href={`${data.url}`} passHref>
-                        <a className='body-large'>{data.title}</a>
+                        <a className='body-large main-nav-link'>{data.title}</a>
                     </Link>
                 </ListItemButton>
             </li>
@@ -91,7 +96,12 @@ const UnorderedList = styled.ul`
 display: flex; 
 list-style: none; 
 position: relative; 
-
+>li{ 
+    .main-nav-link{ 
+        padding: 8px 16px; 
+        display: block;
+    }
+}
 `
 const SubmenuUL = styled.ul`
     list-style: none; 
