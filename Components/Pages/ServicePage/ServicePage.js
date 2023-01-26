@@ -26,7 +26,7 @@ function ServicePage({ servicesData }) {
                 bounce: 0,
                 duration: 2,
                 delayChildren: 0.7,
-                staggerChildren: 0.05,
+                staggerChildren: 0.1,
             }
         },
         offscreen: {
@@ -37,6 +37,7 @@ function ServicePage({ servicesData }) {
             }
         }
     }
+
     const cardItemVariant = {
         onscreen: {
             opacity: 1,
@@ -49,6 +50,7 @@ function ServicePage({ servicesData }) {
             transition: { duration: 1 }
         }
     };
+
     const serviceContent = servicesData.all_fields.service_content.map((data, index) => {
         if (data.acf_fc_layout === "hero_section_with_glass_morphism") {
             return <HeroGlassMorphism
@@ -92,6 +94,7 @@ function ServicePage({ servicesData }) {
                 image={data.desktop_image.url}
             />
         }
+
         else if (data.acf_fc_layout === "icon_card_section") {
             const card = data.card.map((item, index) => {
                 return (
@@ -107,6 +110,7 @@ function ServicePage({ servicesData }) {
                     </Grid>
                 )
             })
+
             return (
                 <IconContainer
                     className='max-width'

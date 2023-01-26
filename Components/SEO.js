@@ -1,14 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import Script from "next/script";
 
 function SEO({ seo }) {
   const router = useRouter();
 
   return (
     <>
-      <Script src="https://www.googletagmanager.com/gtag/js?id=G-35JTPJVTX9"></Script>
+      {/* <Script src="https://www.googletagmanager.com/gtag/js?id=G-35JTPJVTX9"></Script>
       <Script id="gAnalytics-script"
         dangerouslySetInnerHTML={{
           __html: `  window.dataLayer = window.dataLayer || [];
@@ -17,7 +16,7 @@ function SEO({ seo }) {
 
   gtag('config', 'G-35JTPJVTX9');`,
         }}
-      />
+      /> */}
       <Head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
 
@@ -34,9 +33,7 @@ function SEO({ seo }) {
         />
         <meta property="og:image" content={seo.imageSrc} key="ogimage" />
         <meta property="og:site_name" content={"Sanger Smart Growers"} key="ogsitename" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"></link>
+
       </Head>
     </>
 

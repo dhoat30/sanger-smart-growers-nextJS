@@ -1,11 +1,11 @@
 import Image from 'next/image'
 import React from 'react'
 import styled from 'styled-components'
-import RowTitle from '../Typography/RowTitle'
 import PrimaryButton from '../Buttons/PrimaryButton'
 import Paragraph from '../Typography/Paragraph'
 import ColumnTitle from '../Typography/ColumnTitle'
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { motion } from 'framer-motion'
 
 function ImageContentSection({ title, content, image, link, linkText, backgroundColor, imageAlignment, className }) {
     const matches = useMediaQuery('(min-width:900px)');
@@ -20,10 +20,59 @@ function ImageContentSection({ title, content, image, link, linkText, background
         imageHeight = (image.height / image.width * 100)
     }
 
+
+    const containerVariants = {
+        onscreen: {
+            transition: {
+                type: "spring",
+                bounce: 0,
+                duration: 0.7,
+                delayChildren: 0.3,
+                staggerChildren: 0.05,
+            }
+        },
+        offscreen: {
+
+        }
+    }
+
+    const imgVariants = {
+        onscreen: {
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            transition: { type: "spring", stiffness: 300, damping: 24 }
+        },
+        offscreen: {
+            opacity: 0,
+            scale: 0.7,
+            y: 20,
+            transition: { duration: 0.2 }
+        }
+    };
+    const contentVariants = {
+        onscreen: {
+            opacity: 1,
+            y: 0,
+            transition: { type: "spring", stiffness: 300, damping: 24, delay: 0.8 }
+        },
+        offscreen: {
+            opacity: 0,
+            y: 20,
+            transition: { duration: 0.2 }
+        }
+    };
+
     return (
         <Section className={className} backgroundColor={backgroundColor} imageAlignment={imageAlignment} >
-            <div className="container max-width">
-                <div className='image-container'>
+            <motion.div
+                className="container max-width"
+                initial="offscreen"
+                whileInView="onscreen"
+                viewport={{ amount: 0.6 }}
+                variants={containerVariants}>
+
+                <motion.div className='image-container' variants={imgVariants} >
                     <Image src={image.url} width={500}
                         height={500}
                         style={{
@@ -33,14 +82,16 @@ function ImageContentSection({ title, content, image, link, linkText, background
                             display: "block"
                         }}
                         alt={image.alt ? image.alt : title} />
-                </div>
-                <div className='content'>
+                </motion.div>
+
+                <motion.div className='content' variants={contentVariants}>
                     <ColumnTitle>{title}</ColumnTitle>
                     <Paragraph >{content}</Paragraph>
                     {link && <PrimaryButton variant="contained" callToActionText={linkText} href={link} />
                     }
-                </div>
-            </div>
+                </motion.div>
+
+            </motion.div>
         </Section>
     )
 }

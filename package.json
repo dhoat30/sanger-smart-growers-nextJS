@@ -16,6 +16,7 @@
     "@material-ui/core": "^4.12.4",
     "@mui/icons-material": "^5.11.0",
     "@mui/material": "^5.11.0",
+    "@u-wave/react-vimeo": "^0.9.10",
     "axios": "^1.2.3",
     "babel-preset-next": "^1.4.0",
     "caniuse-lite": "^1.0.30001397",
@@ -24,9 +25,9 @@
     "next-sitemap": "^3.1.22",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-gtm-module": "^2.0.11",
     "react-responsive-carousel": "^3.2.23",
     "react-slick": "^0.29.0",
-    "react-youtube": "^9.0.3",
     "sharp": "^0.31.0",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.6"

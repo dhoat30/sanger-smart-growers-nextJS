@@ -1,12 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react'
-
-
 import styled from "styled-components";
 import VideoContext from '../../../Store/video-context';
 import Image from 'next/image';
 import PrimaryButton from '../../UI/Buttons/PrimaryButton'
 import useMediaQuery from '@mui/material/useMediaQuery';
-
 
 function Hero({
   desktopImage,
@@ -16,11 +13,9 @@ function Hero({
   callToActionText,
   callToActionLink,
 }) {
-  const [width, setWidth] = useState();
-  const [height, setheight] = useState();
+
   const matches = useMediaQuery('(min-width:700px)');
 
-  const videoCtx = useContext(VideoContext)
 
   const subtitleClass = matches ? "headline-medium" : "headline-small"
   return (
@@ -46,13 +41,11 @@ function Hero({
             priority
           />
         }
-
         <Content >
           <h1 className="display-large">{title}</h1>
           <h2 className={subtitleClass} >{subtitle}</h2>
           <HeroBtnContainer >
             <PrimaryButton callToActionText={callToActionText} href={callToActionLink} variant="contained" />
-
           </HeroBtnContainer>
         </Content>
       </HeroContainer>

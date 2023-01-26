@@ -1,9 +1,9 @@
 import React from 'react'
 import HomePage from '../Components/Pages/HomePage/HomePage'
 import SEO from '../Components/SEO'
-
 import getMenu from '../util/get-menu'
 import getPage from '../util/get-page'
+
 export default function Home({ homePageData }) {
   const seo = {
     title: homePageData.seo.title,

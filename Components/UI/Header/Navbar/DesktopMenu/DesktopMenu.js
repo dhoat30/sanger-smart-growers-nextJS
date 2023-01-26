@@ -6,12 +6,12 @@ import ListItemButton from '@mui/material/ListItemButton';
 import Link from 'next/link';
 import styled from 'styled-components';
 import DesktopSubmenu from './DesktopSubmenu';
+
 function DesktopMenu({ menuLinks }) {
     const listStyle = {
         padding: 0,
         position: "relative"
     }
-
 
     const menu = menuLinks.map((data, index) => {
         if (data.subMenu) {

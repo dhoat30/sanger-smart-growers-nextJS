@@ -38,11 +38,13 @@ function OverflowImageContentSection({ title, content, image, link, linkText, im
     const imgVariants = {
         onscreen: {
             opacity: 1,
+            scale: 1,
             y: 0,
             transition: { type: "spring", stiffness: 300, damping: 24 }
         },
         offscreen: {
             opacity: 0,
+            scale: 0,
             y: 20,
             transition: { duration: 0.2 }
         }

@@ -16,11 +16,6 @@ function DesktopSubmenu({ data }) {
         setShowDropDown(!showDropDown);
     };
 
-    const mouseLeaveHandler = () => {
-
-        setShowDropDown(false)
-
-    }
     // mu custom css 
     const listStyle = {
         padding: 0,
@@ -81,10 +76,7 @@ function DesktopSubmenu({ data }) {
 
 
     return (
-        <ParentList
-            onMouseEnter={() => setShowDropDown(true)}
-            onMouseLeave={mouseLeaveHandler}
-        >
+        <ParentList>
             <ListItemButton alignItems="center" sx={listStyle}>
                 <LinkStyle
                     href={`${data.slug}`}
