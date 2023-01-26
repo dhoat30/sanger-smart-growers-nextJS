@@ -20,45 +20,61 @@ function OverflowImageContentSection({ title, content, image, link, linkText, im
     else {
         imageHeight = (image.height / image.width * 100)
     }
-    const imageVariants = {
-        offscreen: {
-            opacity: 0,
-            y: 100
+    const containerVariants = {
+        onscreen: {
+            transition: {
+                type: "spring",
+                bounce: 0,
+                duration: 0.7,
+                delayChildren: 0.3,
+                staggerChildren: 0.05,
+            }
         },
+        offscreen: {
+
+        }
+    }
+
+    const imgVariants = {
         onscreen: {
             opacity: 1,
             y: 0,
-            transition: {
-                duration: 0.5
-            }
+            transition: { type: "spring", stiffness: 300, damping: 24 }
+        },
+        offscreen: {
+            opacity: 0,
+            y: 20,
+            transition: { duration: 0.2 }
         }
     };
     const contentVariants = {
-        offscreen: {
-            opacity: 0,
-            y: 50
-        },
         onscreen: {
             opacity: 1,
             y: 0,
-            transition: {
-                type: "spring",
-                bounce: 0.4,
-                delay: 0.5,
-                duration: 0.8
-            }
+            transition: { type: "spring", stiffness: 300, damping: 24, delay: 0.8 }
+        },
+        offscreen: {
+            opacity: 0,
+            y: 20,
+            transition: { duration: 0.2 }
         }
     };
     return (
-        <Section backgroundColor={backgroundColor}>
-            <Container className={`${matches && "max-width"}`} imagealignment={imageAlignment} >
-                <motion.div
+        <Section
+            backgroundColor={backgroundColor}
+        >
+            <Container
+                as={motion.div}
+                className={`${matches && "max-width"}`}
+                imagealignment={imageAlignment}
+                initial="offscreen"
+                whileInView="onscreen"
+                viewport={{ amount: 0.6, once: true }}
+                variants={containerVariants}
+            >
+                <motion.div variants={imgVariants}
                     className='image-container'
                     style={{ paddingBottom: `${imageHeight}%` }}
-                    initial="offscreen"
-                    whileInView="onscreen"
-                    viewport={{ amount: 0.4 }}
-                    variants={imageVariants}
                 >
                     <Image
 
@@ -72,9 +88,6 @@ function OverflowImageContentSection({ title, content, image, link, linkText, im
                 <motion.div
                     className='content'
                     imagealignment={imageAlignment}
-                    initial="offscreen"
-                    whileInView="onscreen"
-                    viewport={{ amount: 1 }}
                     variants={contentVariants}
                 >
                     <ColumnTitle>{title}</ColumnTitle>
@@ -84,7 +97,7 @@ function OverflowImageContentSection({ title, content, image, link, linkText, im
                 </motion.div>
 
             </Container>
-        </Section>
+        </Section >
 
     )
 }

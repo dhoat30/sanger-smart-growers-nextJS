@@ -16,6 +16,11 @@ function DesktopSubmenu({ data }) {
         setShowDropDown(!showDropDown);
     };
 
+    const mouseLeaveHandler = () => {
+
+        setShowDropDown(false)
+
+    }
     // mu custom css 
     const listStyle = {
         padding: 0,
@@ -58,7 +63,7 @@ function DesktopSubmenu({ data }) {
     const menu = data.subMenu.map((data, index) => {
         return (
             // add motion to child item for staggering effect
-            <motion.li key={index} variants={itemVariants} className="submenu-item">
+            <motion.li key={index} variants={itemVariants} className="submenu-item" onClick={() => setShowDropDown(false)}>
                 <ListItemButton alignItems="center" sx={listStyle}>
                     <Link href={`/services${(data.slug)}`}   >
                         <ImageContainer>
@@ -76,9 +81,17 @@ function DesktopSubmenu({ data }) {
 
 
     return (
-        <ParentList>
+        <ParentList
+            onMouseEnter={() => setShowDropDown(true)}
+            onMouseLeave={mouseLeaveHandler}
+        >
             <ListItemButton alignItems="center" sx={listStyle}>
-                <LinkStyle href={`${data.slug}`} onClick={clickHandler} className="body-large">
+                <LinkStyle
+                    href={`${data.slug}`}
+                    onClick={clickHandler}
+                    className="body-large"
+
+                >
                     <span>{data.title}</span>
                     {showDropDown ? <ExpandLess fontSize="small" /> : <ExpandMore fontSize="small" />}
                 </LinkStyle>
@@ -101,9 +114,9 @@ position: relative;
     list-style: none;
     list-style: none; 
     position: absolute;
-    left: -50%; 
     transform: translate(-50%, 0);
-    left: 0;
+    left: 0; 
+
     border-radius: 8px; 
     max-width: 600px; 
     padding: 16px; 

@@ -6,14 +6,16 @@ import { CardActionArea, CardActions } from '@mui/material';
 import Image from 'next/image';
 import styled from 'styled-components';
 import PrimaryButton from '../Buttons/PrimaryButton'
+import { motion } from 'framer-motion'
 function IconCard({ title, content, image, callToActionText, callToActionLink }) {
+
     return (
         <CardMUI sx={{
             height: "100%",
             backgroundColor: "rgba(0,0,0,0)",
             boxShadow: 0,
-
-        }} >
+        }}
+        >
             <div>
                 <ImageContainer>
                     <Image src={image.url} width="70" height="70" alt={title} sizes="(max-width: 600px) 100vw,

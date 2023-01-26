@@ -1,9 +1,29 @@
 import React from 'react'
 import styled from 'styled-components'
+import { motion } from 'framer-motion'
 
-function TitleIcon({ className, align }) {
+function TitleIcon({ className, align, animation }) {
+    const iconVariant = {
+        offscreen: {
+            scale: 0,
+        },
+        onscreen: {
+            scale: 1,
+            transition: {
+                duration: 1,
+                type: "spring", stiffness: 500,
+                delay: 1
+            }
+        }
+    };
+
     return (
-        <SVGStyle align={align} className={className} viewBox="0 0 60 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <SVGStyle
+            initial="offscreen"
+            whileInView="onscreen"
+            viewport={{ amount: 1, once: true }}
+            variants={iconVariant}
+            as={motion.svg} align={align} className={className} viewBox="0 0 60 23" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clipPath="url(#clip0_200_3702)">
                 <path d="M45.7202 22.4242H14.2798C17.2535 16.8844 23.1772 13.1062 29.9983 13.1062C36.8194 13.1062 42.7466 16.8828 45.7186 22.4242H45.7202Z" fill="#FFCB01" />
                 <path d="M30 0C15.6781 0 3.6197 9.4952 0 22.4242H12.5593C15.6528 16.0235 22.3018 11.5979 30 11.5979C37.6982 11.5979 44.3472 16.0235 47.4407 22.4242H60.0017C56.3803 9.4952 44.3203 0 30 0ZM48.1238 21.3414C44.6424 14.742 37.602 10.5151 30 10.5151C22.398 10.5151 15.3576 14.742 11.8762 21.3414H1.48431C3.34645 15.7917 6.92061 10.8181 11.6603 7.21867C16.9515 3.20536 23.2936 1.0828 30 1.0828C36.7064 1.0828 43.0468 3.20536 48.3397 7.22033C53.0794 10.8181 56.6552 15.7933 58.5174 21.3431H48.1255L48.1238 21.3414Z" fill="#2E9B0E" />

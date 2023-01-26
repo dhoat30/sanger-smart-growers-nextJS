@@ -171,7 +171,7 @@ function ContactForm({ title, content, formName, emailTo, leadType, emailRoute, 
     return (
         <Container className={className}>
             <Paper elevation={2} sx={paperStyle}>
-                <RowTitle align="center" title={title}></RowTitle>
+                <RowTitle align="center" title={title} ></RowTitle>
                 <div className="heading-small" dangerouslySetInnerHTML={{ __html: content }} />
                 <form >
                     <InputDiv>

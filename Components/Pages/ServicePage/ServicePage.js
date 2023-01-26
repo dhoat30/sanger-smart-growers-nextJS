@@ -13,10 +13,42 @@ import ImageContentSection from '../../UI/Sections/ImageContentSection'
 import JustTextSection from '../../UI/Sections/JustTextSection'
 import FullWidthCard from '../../UI/Card/FullWidthCard'
 import { useRouter } from 'next/router'
+import { motion } from 'framer-motion'
 
 function ServicePage({ servicesData }) {
     const router = useRouter()
 
+    // card animation 
+    const iconContainerVariant = {
+        onscreen: {
+            transition: {
+                type: "spring",
+                bounce: 0,
+                duration: 2,
+                delayChildren: 0.7,
+                staggerChildren: 0.05,
+            }
+        },
+        offscreen: {
+            transition: {
+                type: "spring",
+                bounce: 0,
+                duration: 0.3
+            }
+        }
+    }
+    const cardItemVariant = {
+        onscreen: {
+            opacity: 1,
+            y: 0,
+            transition: { type: "spring", stiffness: 300, damping: 24 }
+        },
+        offscreen: {
+            opacity: 0,
+            y: 20,
+            transition: { duration: 1 }
+        }
+    };
     const serviceContent = servicesData.all_fields.service_content.map((data, index) => {
         if (data.acf_fc_layout === "hero_section_with_glass_morphism") {
             return <HeroGlassMorphism
@@ -63,7 +95,10 @@ function ServicePage({ servicesData }) {
         else if (data.acf_fc_layout === "icon_card_section") {
             const card = data.card.map((item, index) => {
                 return (
-                    <Grid md={4} sm={6} key={index} >
+                    <Grid md={4} sm={6} key={index}
+                        component={motion.div}
+                        variants={cardItemVariant}
+                    >
                         <IconCard
                             title={item.card_title}
                             content={item.content}
@@ -73,9 +108,21 @@ function ServicePage({ servicesData }) {
                 )
             })
             return (
-                <IconContainer className='max-width' key={index}>
-                    <RowTitle title={data.section_title} align="center" />
-                    <Grid container justifyContent="center" rowSpacing={4} columnSpacing={{ xs: 4, sm: 8, md: 8, lg: 16 }} sx={{ maxWidth: "1366px", margin: "40px auto 0 auto" }}>
+                <IconContainer
+                    className='max-width'
+                    key={index}>
+                    <RowTitle title={data.section_title} align="center" animation={true} />
+                    <Grid
+                        as={motion.div}
+                        initial="offscreen"
+                        whileInView="onscreen"
+                        viewport={{ amount: 0.4, once: true }}
+                        variants={iconContainerVariant}
+                        container
+                        justifyContent="center"
+                        rowSpacing={4}
+                        columnSpacing={{ xs: 4, sm: 8, md: 8, lg: 16 }}
+                        sx={{ maxWidth: "1366px", margin: "40px auto 0 auto" }}>
                         {card}
                     </Grid>
                 </IconContainer>

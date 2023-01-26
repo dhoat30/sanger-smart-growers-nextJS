@@ -4,6 +4,7 @@ import Image from 'next/image';
 import PrimaryButton from '../Buttons/PrimaryButton'
 import useMediaQuery from '@mui/material/useMediaQuery';
 import ScrollDownIcon from '../Icons/ScrollDownIcon';
+import { motion } from 'framer-motion'
 
 function HeroCenter({
   desktopImage,
@@ -13,10 +14,41 @@ function HeroCenter({
   callToActionText,
   callToActionLink,
 }) {
-
   const matches = useMediaQuery('(min-width:700px)');
   const subtitleClass = matches ? "headline-medium" : "body-large"
   const titleClass = matches ? "display-large" : "headline-large"
+
+  const overlayVariants = {
+
+    onscreen: {
+      y: "0",
+      opacity: 1,
+      transition: {
+        type: "spring",
+        bounce: 0,
+        duration: 1.5,
+        delayChildren: 0.3,
+        staggerChildren: 0.05,
+      }
+    },
+    offscreen: {
+      y: "-100vh",
+      opacity: 0
+    }
+  }
+  const childVariants = {
+    onscreen: {
+      opacity: 1,
+      y: 0,
+      transition: { type: "spring", stiffness: 300, damping: 24, delay: 2 }
+    },
+    offscreen: {
+      opacity: 0,
+      y: 20,
+      transition: { duration: 0.2 }
+    }
+  };
+
   return (
     <>
       <HeroContainer className="hero-section" >
@@ -39,13 +71,17 @@ function HeroCenter({
             priority={true}
           />
         }
-        <GlassBackground>
-          <Content >
+        <GlassBackground
+          as={motion.div}
+          initial="offscreen"
+          animate="onscreen"
+          variants={overlayVariants}
+        >
+          <Content as={motion.div} variants={childVariants}>
             <h1 className={titleClass} >{title}</h1>
             <h2 className={subtitleClass} >{subtitle}</h2>
             <HeroBtnContainer >
               <PrimaryButton callToActionText={callToActionText} href={callToActionLink} variant="contained" />
-
             </HeroBtnContainer>
           </Content>
         </GlassBackground>

@@ -6,10 +6,53 @@ import Paragraph from '../Typography/Paragraph'
 import PrimaryButton from '../Buttons/PrimaryButton'
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { Paper } from '@mui/material';
-import { motion } from 'framer-motion'
+import { motion, useScroll } from 'framer-motion'
 function TwoImageSection({ title, content, backgroundImage, frontImage, imageText, callToActionText, callToActionLink, hideImageOnMobile }) {
     const matches = useMediaQuery('(min-width:900px)');
-    console.log(callToActionText)
+    const imageVariants = {
+        offscreen: {
+            opacity: 0,
+            y: 100,
+            scale: 0.8
+        },
+        onscreen: {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            transition: {
+                duration: 0.5
+            }
+        }
+    };
+
+    const paperVariants = {
+        offscreen: {
+            opacity: 0,
+            scale: 0.3
+        },
+        onscreen: {
+            opacity: 1,
+            scale: 1,
+            transition: {
+                duration: 0.5
+            }
+        }
+    };
+
+    const contentVariants = {
+        offscreen: {
+            opacity: 0,
+            y: 50,
+        },
+        onscreen: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                delay: 0.5,
+                duration: 0.5
+            }
+        }
+    };
     return (
         <>
             {matches ?
@@ -20,10 +63,24 @@ function TwoImageSection({ title, content, backgroundImage, frontImage, imageTex
                         </div>
                         <Overlay></Overlay> */}
 
-                        <div className="second-image-container">
+                        <motion.div
+                            className="second-image-container"
+                            initial="offscreen"
+                            whileInView="onscreen"
+                            viewport={{ amount: 0.4, once: true }}
+                            variants={imageVariants}
+                        >
                             <Image src={frontImage.url} fill alt={frontImage.alt ? frontImage.alt : "front image"} sizes="50vw" />
-                        </div>
-                        <Paper elevation={2} className='image-text'>
+                        </motion.div>
+
+                        <motion.div
+                            elevation={2}
+                            className='image-text elevation-light2'
+                            initial="offscreen"
+                            whileInView="onscreen"
+                            viewport={{ amount: 0.1, once: true }}
+                            variants={paperVariants}
+                        >
                             <div>
                                 <h6 className="display-large">{imageText} </h6>
                                 <p className="headline-medium"> Years of Experience</p>
@@ -31,15 +88,21 @@ function TwoImageSection({ title, content, backgroundImage, frontImage, imageTex
                                     <path d="M23.5537 17.3536L37.2505 17.3536L37.2505 30.9454M18.0705 36.3866L37.0587 17.544" stroke="#241A00" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
                             </div>
-                        </Paper>
-                        <ContentColumn>
+                        </motion.div>
+                        <motion.div
+                            className='content-column'
+                            initial="offscreen"
+                            whileInView="onscreen"
+                            viewport={{ amount: 0.7, once: true }}
+                            variants={contentVariants}
+                        >
                             <ColumnTitle align="left"> {title} </ColumnTitle>
                             <Paragraph >{content}</Paragraph>
                             {callToActionText &&
                                 <PrimaryButton variant="contained" callToActionText={callToActionText} href={callToActionLink} />
 
                             }
-                        </ContentColumn>
+                        </motion.div >
                     </TwoColumns>
 
                 </Container>
@@ -57,14 +120,20 @@ function TwoImageSection({ title, content, backgroundImage, frontImage, imageTex
                         </MobileImageContainer>
                     }
 
-                    <Content>
+                    <motion.div
+                        initial="offscreen"
+                        whileInView="onscreen"
+                        viewport={{ amount: 0.7 }}
+                        variants={contentVariants}
+                        className="content"
+                    >
                         <ColumnTitle variant="medium">{title} </ColumnTitle>
                         <Paragraph>{content}</Paragraph>
                         {callToActionText &&
                             <PrimaryButton variant="contained" callToActionText={callToActionText} href={callToActionLink} />
 
                         }
-                    </Content>
+                    </motion.div>
                 </MobileContainer>
             }
         </>
@@ -116,10 +185,8 @@ top: -80px;
         top: 0; 
     }
 }
-`
-
-const ContentColumn = styled.div`
-position: sticky ;
+.content-column{ 
+    position: sticky ;
 top: 90px;
         grid-column: 9/13;
 grid-row: 3/7;
@@ -134,12 +201,24 @@ grid-row: 3/7;
    p{ 
     margin-top: 16px; 
    }
+}
 `
+
+
 
 // mobile css 
 const MobileContainer = styled.section`
-margin-top: 80px; 
 
+.content{ 
+    position: relative ;
+   
+    padding: 40px 8px 40px 8px;
+    margin: 0 auto ;
+ 
+    button{ 
+        margin-top: 16px; 
+    }
+}
 `
 const MobileImageContainer = styled.div`
 position: relative;
@@ -149,20 +228,6 @@ img{
 object-fit: cover; 
         filter: saturate(130%);
 }
+
 `
 
-const Content = styled.div`
-    border-radius: 32px; 
-    position: relative ;
-    top: -32px; 
-    background: var(--sanger--theme--white) ;
-    padding: 40px 80px 40px 80px;
-    margin: 0 auto ;
-    @media(max-width: 500px){ 
-        padding: 40px 8px 40px 8px;
-
-    }
-    button{ 
-        margin-top: 16px; 
-    }
-`

@@ -69,7 +69,7 @@ function HeroGlassMorphism({
             fill
             alt={title}
             blurDataURL={`/_next/image?url=${desktopImage}&w=16&q=1`}
-            prioritl
+            priority
           /> :
           <ImageStyle
             placeholder="blur"
@@ -77,7 +77,7 @@ function HeroGlassMorphism({
             fill
             alt={title}
             blurDataURL={`/_next/image?url=${desktopImage}&w=16&q=1`}
-            prioritl
+            priority
           />
         }
         <motion.div
