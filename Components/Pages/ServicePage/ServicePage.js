@@ -155,7 +155,6 @@ function ServicePage({ servicesData }) {
             />
         }
         else if (data.acf_fc_layout === "just_text") {
-
             return <JustTextSection key={index}>{data.content}</JustTextSection>
         }
     })

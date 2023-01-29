@@ -7,7 +7,6 @@ import { Paper, TextField } from '@mui/material';
 import axios from 'axios';
 import Alert from '@mui/material/Alert';
 
-
 function ContactForm({ title, content, formName, emailTo, leadType, emailRoute, formType, className }) {
     // create state variables 
     const [firstName, setFirstName] = useState("")

@@ -115,7 +115,7 @@ function Services({ servicesArr }) {
                     as={motion.div}
                     initial="offscreen"
                     whileInView="onscreen"
-                    viewport={{ amount: 0.4 }}
+                    viewport={{ amount: 0.4, once: true }}
                     variants={iconContainerVariant}
 
                 >

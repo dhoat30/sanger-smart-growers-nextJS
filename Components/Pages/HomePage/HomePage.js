@@ -11,14 +11,13 @@ import VideoHero from "../../UI/Hero/VideoHero";
 
 
 function HomePage({ homePageData }) {
-
   // main 
   return (
     <>
-
       <VideoHero
-        desktopVideoID="791855851"
-        mobileVideoID="410381969"
+
+        desktopVideo={homePageData.hero_section.desktop_video.url}
+        mobileVideo={homePageData.hero_section.mobile_video.url}
         desktopImage={homePageData.hero_section.desktop_hero_image.url}
         mobileImage={homePageData.hero_section.mobile_hero_image.url}
         title={homePageData.hero_section.title}

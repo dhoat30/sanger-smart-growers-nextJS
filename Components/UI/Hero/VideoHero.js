@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import Vimeo from '@u-wave/react-vimeo';
 import styled from 'styled-components';
 import PrimaryButton from '../Buttons/PrimaryButton'
@@ -6,47 +6,40 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import Image from 'next/image';
 
 function VideoHero({
-    desktopVideoID,
-    mobileVideoID,
+    desktopVideo,
+    mobileVideo,
     desktopImage,
     mobileImage,
     title,
     subtitle,
     callToActionText,
     callToActionLink,
-}) {
 
-    const [showImage, setShowImage] = useState(true)
-    console.log(showImage)
+}) {
+    const [showVideo, setShowVideo] = useState(false)
+
     const matches = useMediaQuery('(min-width:700px)');
     const videoMatches = useMediaQuery('(max-width:550px)');
 
     // const titleClass = matches ? "headline-medium" : "headline-small"
     const subtitleClass = matches ? "headline-medium" : "headline-small"
 
+    useEffect(() => {
+        setTimeout(() => {
+            setShowVideo(true)
+        }, 2000)
+    }, [])
 
     return (
         <Container>
             <div className='overlay'></div>
-
             <div className='video-box'>
-                {showImage &&
-                    <Image src={videoMatches ? mobileImage : desktopImage} fill alt={title} priority />
+                <Image src={videoMatches ? mobileImage : desktopImage} fill alt={title} priority />
+                {showVideo &&
+                    <video loop autoPlay muted>
+                        <source src={videoMatches ? mobileVideo : desktopVideo} type="video/mp4" />
+                    </video>
                 }
-                <Vimeo
-                    className="hero-video"
-                    video={videoMatches ? mobileVideoID : desktopVideoID}
-                    autoplay={true}
-                    controls={false}
-                    loop={true}
-                    muted={true}
-                    width="100%"
-                    height="100%"
-                    dnt={true}
-                    background={true}
-                    responsive={true}
-                    onProgress={() => console.log("loaded")}
-                />
             </div>
 
             <div className='content'>
@@ -85,11 +78,15 @@ const Container = styled.div`
                 width: 100%; 
                 height: 100%; 
                 object-fit: cover; 
+             
+            }
+            video{ 
+                width: 100%; 
+            height: 100%; 
+            position: absolute;
             }
         .hero-video{ 
-            width: 100%; 
-            height: 100%; 
-            position: absolute ;
+           
             >div{ 
                 @media(max-width: 550px){ 
                     padding: 0 0 125% 0 !important; 

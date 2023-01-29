@@ -69,7 +69,7 @@ function ImageContentSection({ title, content, image, link, linkText, background
                 className="container max-width"
                 initial="offscreen"
                 whileInView="onscreen"
-                viewport={{ amount: 0.6 }}
+                viewport={{ amount: 0.6, once: true }}
                 variants={containerVariants}>
 
                 <motion.div className='image-container' variants={imgVariants} >
@@ -119,8 +119,8 @@ flex-direction: ${props => props.imageAlignment === "Right" ? "row-reverse" : nu
         position: relative ;
         width: 50%; 
         @media(max-width: 600px){ 
-   width: 100%; 
-}
+            width: 100%; 
+        }
         img{ 
             object-fit: contain; 
         }
@@ -133,15 +133,14 @@ flex-direction: ${props => props.imageAlignment === "Right" ? "row-reverse" : nu
       top: 120px; 
       @media(max-width: 900px){ 
         padding: 0 16px;
-
       }
       @media(max-width: 600px){ 
         background:  ${props => props.backgroundcolor === "White" && "var(--sanger--theme--white)"};
-                        width: 100%; 
-                        padding: 40px 8px 0 8px;
+                    width: 100%; 
+                    padding: 16px 8px 0 8px;
                     border-radius: 32px; 
                     position: relative;
-                    top: -48px; 
+                    top: 0; 
                     margin-bottom: 0; 
 }
         p{ 

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-function Paragraph({ align, children, variant, className }) {
+function Paragraph({ align, children, variant, className, singleListRow }) {
     let sizeClass
 
     if (variant === "medium") {
@@ -15,9 +15,7 @@ function Paragraph({ align, children, variant, className }) {
     }
 
     return (
-
-        <ParagraphStyle align={align} className={`${className} ${sizeClass}`} dangerouslySetInnerHTML={{ __html: children }} ></ParagraphStyle>
-
+        <ParagraphStyle singleListRow={singleListRow} align={align} className={`${className} ${sizeClass}`} dangerouslySetInnerHTML={{ __html: children }} ></ParagraphStyle>
     )
 }
 
@@ -26,6 +24,9 @@ export default Paragraph
 const ParagraphStyle = styled.div`
     text-align: ${props => props.align && props.align}; 
     color: var( --sanger--theme--sys--light--on-surface-variant); 
+    p{ 
+        margin: 8px 0; 
+    }
     ul{ 
         list-style:none;
         display: flex; 
@@ -35,14 +36,15 @@ const ParagraphStyle = styled.div`
         justify-content: space-between; 
         list-style-position: inside;
         li{ 
-            width: 50%;
+            width: ${props => props.singleListRow ? "100%" : "50%"};
             list-style-image: url("/check-icon.png"); 
+          
             @media(max-width: 500px){ 
                 width: 100%; 
             }
             span{ 
-          position:relative; 
-          top: -6px; 
+                position:relative; 
+                top: -6px; 
                 padding: 0 0 10px 5px; 
                 display: inline-block ;
             }

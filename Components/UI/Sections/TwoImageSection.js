@@ -123,7 +123,7 @@ function TwoImageSection({ title, content, backgroundImage, frontImage, imageTex
                     <motion.div
                         initial="offscreen"
                         whileInView="onscreen"
-                        viewport={{ amount: 0.7 }}
+                        viewport={{ amount: 0.7, once: true }}
                         variants={contentVariants}
                         className="content"
                     >

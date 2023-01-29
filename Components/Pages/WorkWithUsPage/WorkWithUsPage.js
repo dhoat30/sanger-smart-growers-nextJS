@@ -7,9 +7,9 @@ import Slider from "react-slick";
 import Card from '../../UI/Card/Card';
 import styled from 'styled-components';
 import ImageContentSection from '../../UI/Sections/ImageContentSection';
-import { Typography } from '@mui/material';
 import Paragraph from '../../UI/Typography/Paragraph';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 function WorkWithUsPage({ pageData }) {
     // slider settings 
@@ -43,6 +43,54 @@ function WorkWithUsPage({ pageData }) {
     };
     const matches = useMediaQuery('(min-width:600px)');
 
+
+    // animation variations 
+    const containerVariants = {
+        onscreen: {
+            opacity: 1,
+            y: 0,
+            transition: { type: "spring", stiffness: 300, damping: 24, delay: 0.8 }
+        },
+        offscreen: {
+            opacity: 0,
+            y: 20,
+            transition: { duration: 0.2 }
+        }
+    }
+
+    // card animation 
+    const cardContainerVariant = {
+        onscreen: {
+            transition: {
+                type: "spring",
+                bounce: 0,
+                duration: 2,
+                delayChildren: 0.7,
+                staggerChildren: 0.1,
+            }
+        },
+        offscreen: {
+            transition: {
+                type: "spring",
+                bounce: 0,
+                duration: 0.3
+            }
+        }
+    }
+
+    const cardItemVariant = {
+        onscreen: {
+            opacity: 1,
+            y: 0,
+            transition: { type: "spring", stiffness: 300, damping: 24 }
+        },
+        offscreen: {
+            opacity: 0,
+            y: 20,
+            transition: { duration: 1 }
+        }
+    };
+
     const sections = pageData.acf.service_content.map((data, index) => {
 
         if (data.acf_fc_layout === "hero_section_just_image") {
@@ -61,12 +109,23 @@ function WorkWithUsPage({ pageData }) {
                 return (
                     <CardSection key={index}>
                         <div className='max-width'>
-                            <RowTitle title="Seasonal Work" align="center" />
-                            <Grid container justifyContent="center" rowSpacing={3} columnSpacing={{ xs: 1, sm: 3, md: 1, lg: 3 }} sx={{ maxWidth: "1366px", margin: "40px auto 0 auto" }}>
+                            <RowTitle title="Seasonal Work" align="center" animation={true} />
+                            <Grid
+                                as={motion.div}
+                                initial="offscreen"
+                                whileInView="onscreen"
+                                viewport={{ amount: 0.4, once: true }}
+                                variants={cardContainerVariant}
+                                container
+                                justifyContent="center"
+                                rowSpacing={3}
+                                columnSpacing={{ xs: 1, sm: 3, md: 1, lg: 3 }}
+                                sx={{ maxWidth: "1366px", margin: "40px auto 0 auto" }}>
                                 {/* nest map to create cards */}
                                 {data.card.map((item, i) => {
                                     return (
-                                        <Grid md={4} sm={6} key={i}>
+                                        <Grid md={4} sm={6} key={i} component={motion.div}
+                                            variants={cardItemVariant}>
                                             <Card
                                                 align="center"
                                                 title={item.title}
@@ -127,10 +186,17 @@ function WorkWithUsPage({ pageData }) {
         else if (data.acf_fc_layout === "image_content_section_row") {
             return (
                 <RowSection key={index}>
-                    <div className='max-width content'>
+                    <motion.div
+                        className='max-width content'
+                        as={motion.div}
+                        initial="offscreen"
+                        whileInView="onscreen"
+                        viewport={{ amount: 0.6, once: true }}
+                        variants={containerVariants}
+                    >
                         <h3 className='headline-large'>{data.title}</h3>
-                        <Paragraph>{data.content}</Paragraph>
-                    </div>
+                        <Paragraph >{data.content}</Paragraph>
+                    </motion.div>
                     <div className='image-container'>
                         <Image src={data.image.url} fill alt={data.image.alt ? data.image.alt : data.title} />
                     </div>
@@ -199,10 +265,14 @@ const ImageContentSectionStyle = styled(ImageContentSection)`
 `
 
 const RowSection = styled.section`
-padding-top: 40px; 
+padding-top: 80px;
+@media(max-width: 600px){ 
+    padding-top: 40px; 
+}
 background: linear-gradient(179.15deg,#010101 0.73%,#050102 95.84%);
 .content{ 
     max-width: 900px; 
+    padding-bottom: 40px;  
 
     @media(min-width: 900px){ 
         margin: 0 auto; 

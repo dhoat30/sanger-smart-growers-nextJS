@@ -23,6 +23,7 @@ function HeroCenter({
     onscreen: {
       y: "0",
       opacity: 1,
+      background: "linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 56%, rgba(0,0,0,0.9) 100%)",
       transition: {
         type: "spring",
         bounce: 0,
@@ -32,7 +33,8 @@ function HeroCenter({
       }
     },
     offscreen: {
-      y: "-100vh",
+      y: "0",
+      background: "none",
       opacity: 0
     }
   }

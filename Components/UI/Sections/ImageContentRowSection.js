@@ -1,11 +1,11 @@
 import Image from 'next/image'
 import React from 'react'
 import styled from 'styled-components'
-import RowTitle from '../Typography/RowTitle'
 import PrimaryButton from '../Buttons/PrimaryButton'
 import Paragraph from '../Typography/Paragraph'
 import ColumnTitle from '../Typography/ColumnTitle'
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { motion } from 'framer-motion'
 
 function ImageContentRowSection({ title, content, image, link, linkText }) {
     const matches = useMediaQuery('(min-width:1000px)');
