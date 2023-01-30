@@ -67,6 +67,7 @@ function HeroGlassMorphism({
             placeholder="blur"
             src={desktopImage}
             fill
+            sizes="100vw"
             alt={title}
             blurDataURL={`/_next/image?url=${desktopImage}&w=16&q=1`}
             priority
@@ -75,6 +76,7 @@ function HeroGlassMorphism({
             placeholder="blur"
             src={mobileImage}
             fill
+            sizes="100vw"
             alt={title}
             blurDataURL={`/_next/image?url=${desktopImage}&w=16&q=1`}
             priority

@@ -7,8 +7,12 @@ import ImageContentSection from "../../../UI/Sections/ImageContentSection"
 import * as Scroll from 'react-scroll';
 import { Link, Button, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 import HorizontalScroll from "../../../UI/Scroll/HorizontalScroll"
+import useMediaQuery from '@mui/material/useMediaQuery';
+import GlassMorphismSection from "../../../UI/Sections/GlassMorphismSection"
 
 function SeasonPage({ pageData }) {
+    const matches = useMediaQuery('(min-width:1000px)');
+    console.log(pageData)
     const sections = pageData.acf.service_content.map((data, index) => {
         if (data.acf_fc_layout === "hero_section_with_just_image") {
             return (
@@ -46,7 +50,28 @@ function SeasonPage({ pageData }) {
             />
         }
         else if (data.acf_fc_layout === "scrolled_content") {
-            return <HorizontalScroll key={25} items={data.item} />
+            if (matches) {
+                return <HorizontalScroll key={25} items={data.item} />
+            }
+            else {
+                return data.item.map((data, index) => {
+                    return <ImageContentSection key={index + 102}
+                        title={data.title}
+                        content={data.content}
+                        image={data.image}
+                    />
+                })
+            }
+        }
+
+        else if (data.acf_fc_layout === "glass_morphism_section") {
+            return <GlassMorphismSection key={index + 62}
+                title={data.title}
+                content={data.content}
+                image={data.background_image}
+            />
+
+
         }
     })
     return (

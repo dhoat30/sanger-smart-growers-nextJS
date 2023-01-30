@@ -13,6 +13,7 @@ function HeroCenter({
   subtitle,
   callToActionText,
   callToActionLink,
+  className
 }) {
   const matches = useMediaQuery('(min-width:700px)');
   const subtitleClass = matches ? "headline-medium" : "body-large"
@@ -53,7 +54,7 @@ function HeroCenter({
 
   return (
     <>
-      <HeroContainer className="hero-section" >
+      <HeroContainer className={`${className} hero-section`} >
         {matches ?
           <ImageStyle
             placeholder="blur"
@@ -62,12 +63,13 @@ function HeroCenter({
             alt={title}
             blurDataURL={`/_next/image?url=${desktopImage}&w=16&q=1`}
             priority={true}
+            sizes="100vw"
           /> :
           <ImageStyle
             placeholder="blur"
             src={mobileImage}
             fill={true}
-
+            sizes="100vw"
             alt={title}
             blurDataURL={`/_next/image?url=${mobileImage}&w=16&q=1`}
             priority={true}
@@ -82,9 +84,12 @@ function HeroCenter({
           <Content as={motion.div} variants={childVariants}>
             <h1 className={titleClass} >{title}</h1>
             <h2 className={subtitleClass} >{subtitle}</h2>
-            <HeroBtnContainer >
-              <PrimaryButton callToActionText={callToActionText} href={callToActionLink} variant="contained" />
-            </HeroBtnContainer>
+            {callToActionText &&
+              <HeroBtnContainer >
+                <PrimaryButton callToActionText={callToActionText} href={callToActionLink} variant="contained" />
+              </HeroBtnContainer>
+            }
+
           </Content>
         </GlassBackground>
         <ScrollDownIconStyle />

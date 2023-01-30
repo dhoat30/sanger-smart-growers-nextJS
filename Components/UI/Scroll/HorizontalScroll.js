@@ -16,7 +16,12 @@ function HorizontalScroll({ items }) {
     const scrollYProgress1 = useScroll({ target: contentRef1, offset: ["start center", "end end"] }).scrollYProgress
     const scrollYProgress2 = useScroll({ target: contentRef2, offset: ["start center", "end end"] }).scrollYProgress
     const scrollYProgress3 = useScroll({ target: contentRef3, offset: ["start center", "end end"] }).scrollYProgress
-    const scrollYProgress4 = useScroll({ target: contentRef4, offset: ["start center", "end end"] }).scrollYProgress
+    const scrollYProgress4 = useScroll({ target: contentRef4, offset: ["start end", "end end"] }).scrollYProgress
+
+    // const scrollYProgress1 = useScroll({ target: contentRef1, offset: ["start center", "end end"] }).scrollYProgress
+    // const scrollYProgress2 = useScroll({ target: contentRef2, offset: ["start center", "end end"] }).scrollYProgress
+    // const scrollYProgress3 = useScroll({ target: contentRef3, offset: ["start center", "end end"] }).scrollYProgress
+    // const scrollYProgress4 = useScroll({ target: contentRef4, offset: ["start end", "end end"] }).scrollYProgress
 
 
     const linkClickHandler = (index) => {
@@ -72,8 +77,8 @@ function HorizontalScroll({ items }) {
                 href={`#${(item.title.replace(/\s/g, '-').toLowerCase())}`}
                 onClick={() => linkClickHandler(index)}
             >
-                <motion.span className={scroll} style={{
-                    opacity: scroll,
+                <motion.span style={{
+                    opacity: scroll ? scroll : "0.4",
                     zIndex: index + 1
                 }}>
                     {item.title}
@@ -105,7 +110,13 @@ function HorizontalScroll({ items }) {
                 }}
                 key={item.image.ID}
                 className={`image-container image-container${index + 1}`}>
-                <Image src={item.image.url} fill alt={item.title} />
+                <Image
+                    src={item.image.url}
+                    fill
+                    alt={item.title}
+                    sizes="(max-width: 900px) 100vw,
+                50vw"
+                />
             </motion.div >
         )
     })
@@ -137,29 +148,24 @@ export default HorizontalScroll
 
 const Container = styled.section`
 position: relative;
-border: solid red; 
+ 
 
 padding: 120px 0; 
 .sticky-wrapper{ 
     display: flex;
     justify-content: space-between; 
     align-items: flex-start; 
-gap: 20px; 
-border: solid red; 
 }
 
 .links-wrapper { 
-    width: 200px;
+    width: 230px;
     position: sticky ;
     top: 30vh; 
     display: flex;
     flex-direction: column;
     align-items: flex-start; 
     a{ 
-       
-     
         span{ 
-        
             margin-bottom: 24px; 
         padding-bottom: 4px; 
         border-bottom: 3px solid var( --sanger--theme--sys--dark--secondary); 
@@ -171,31 +177,31 @@ border: solid red;
     }
 }
 .content-wrapper{ 
-    width: 40%; 
+    width: 500px; 
    .content{ 
     height: 100vh;
     padding-top: 50vh;
-    border: solid red; 
+     
    }
 }
 .images-wrapper { 
     width: 50%; 
+    height: 500px; 
     position: sticky ;
     top: 30vh; 
+    margin-left:40px; 
+    overflow: hidden ;
     .image-container{ 
     position: absolute ;
     width: 100%; 
-    height: 400px; 
- 
+    height: 500px; 
+
     img{ 
         object-fit: cover; 
         position: absolute ;   
+        filter: contrast(120%);
+filter: saturate(130%);
 }
 }
-
 }
-
-
-
-
 `

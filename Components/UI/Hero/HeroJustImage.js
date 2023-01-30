@@ -26,12 +26,13 @@ function HeroJustImage({
             alt={alt ? alt : title}
             blurDataURL={`/_next/image?url=${desktopImage}&w=16&q=1`}
             priority={true}
+            sizes="100vw"
           /> :
           <ImageStyle
             placeholder="blur"
             src={mobileImage}
             fill={true}
-
+            sizes="100vw"
             alt={alt ? alt : title}
             blurDataURL={`/_next/image?url=${mobileImage}&w=16&q=1`}
             priority={true}
@@ -64,6 +65,9 @@ margin-top: 60px;
 const ImageStyle = styled(Image)`
 object-fit: cover; 
 object-position: top; 
+filter: contrast(120%);
+filter: saturate(130%);
+
 `
 
 const ScrollDownIconStyle = styled(ScrollDownIcon)`

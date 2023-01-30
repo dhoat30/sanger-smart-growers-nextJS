@@ -37,16 +37,15 @@ const ParagraphStyle = styled.div`
         list-style-position: inside;
         li{ 
             width: ${props => props.singleListRow ? "100%" : "50%"};
-            list-style-image: url("/check-icon.png"); 
-          
-            @media(max-width: 500px){ 
-                width: 100%; 
+            display: flex ;
+            align-items: center; 
+            gap: 10px; 
+            margin-bottom: 16px; 
+            strong{ 
+            font-weight: 400; 
             }
-            span{ 
-                position:relative; 
-                top: -6px; 
-                padding: 0 0 10px 5px; 
-                display: inline-block ;
+            @media(max-width: 400px){ 
+                width: 100%; 
             }
         }
     }

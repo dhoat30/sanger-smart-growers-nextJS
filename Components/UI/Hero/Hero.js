@@ -26,7 +26,7 @@ function Hero({
             placeholder="blur"
             src={desktopImage}
             fill={true}
-
+            sizes="100vw"
             alt={title}
             blurDataURL={`/_next/image?url=${desktopImage}&w=16&q=1`}
             priority
@@ -35,7 +35,7 @@ function Hero({
             placeholder="blur"
             src={mobileImage}
             fill={true}
-
+            sizes="100vw"
             alt={title}
             blurDataURL={`/_next/image?url=${desktopImage}&w=16&q=1`}
             priority

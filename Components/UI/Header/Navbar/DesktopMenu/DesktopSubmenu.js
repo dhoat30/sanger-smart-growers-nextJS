@@ -82,7 +82,6 @@ function DesktopSubmenu({ data }) {
                     href={`${data.slug}`}
                     onClick={clickHandler}
                     className="body-large"
-
                 >
                     <span>{data.title}</span>
                     {showDropDown ? <ExpandLess fontSize="small" /> : <ExpandMore fontSize="small" />}

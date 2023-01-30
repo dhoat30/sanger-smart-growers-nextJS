@@ -108,17 +108,17 @@ padding-top: 120px;
 padding-bottom: 120px; 
 align-items: flex-start; 
 flex-direction: ${props => props.imageAlignment === "Right" ? "row-reverse" : null};
-@media(max-width: 600px){ 
+@media(max-width: 900px){ 
     flex-wrap: wrap ;
     padding-top: 0; 
-    margin:  24px 0;
+    margin:  40px 0;
     padding-bottom: 0; 
 }
 }
     .image-container{ 
         position: relative ;
         width: 50%; 
-        @media(max-width: 600px){ 
+        @media(max-width: 900px){ 
             width: 100%; 
         }
         img{ 
@@ -132,9 +132,6 @@ flex-direction: ${props => props.imageAlignment === "Right" ? "row-reverse" : nu
       position: sticky ;
       top: 120px; 
       @media(max-width: 900px){ 
-        padding: 0 16px;
-      }
-      @media(max-width: 600px){ 
         background:  ${props => props.backgroundcolor === "White" && "var(--sanger--theme--white)"};
                     width: 100%; 
                     padding: 16px 8px 0 8px;
@@ -142,6 +139,9 @@ flex-direction: ${props => props.imageAlignment === "Right" ? "row-reverse" : nu
                     position: relative;
                     top: 0; 
                     margin-bottom: 0; 
+      }
+      @media(max-width: 600px){ 
+     
 }
         p{ 
             margin-top: 16px; 
