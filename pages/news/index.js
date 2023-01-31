@@ -7,18 +7,17 @@ import SeasonPage from '../../Components/Pages/WorkWithUsPage/SeasonPage/SeasonP
 import OurProcess from '../../Components/Pages/ServicePage/OurProcess/OurProcess'
 import getPost from '../../util/get-post'
 import getAllPosts from '../../util/get-all-posts'
+import NewsPage from '../../Components/Pages/NewsPage/NewsPage'
 function PickingSeason({ postsData }) {
-    console.log(postsData)
 
-    // const seo = {
-    //     title: postsData.yoast_head_json.og_title,
-    //     description: postsData.yoast_head_json.og_description,
-    //     imageSrc: postsData.yoast_head_json.og_image && pageData.yoast_head_json.og_image[0].url
-    // }
+    const seo = {
+        title: "Kiwifruit News and Insights | Sanger Smart Growers",
+        description: "Our industry is rapidly advancing and so are we. We are eager to disseminate the latest and most significant updates, including news articles, employee news, and other relevant event information that could be of benefit to you"
+    }
     return (
         <>
-            {/* <SEO  /> */}
-            <h1>hello</h1>
+            <SEO seo={seo} />
+            <NewsPage postsData={postsData} />
         </>
     )
 }

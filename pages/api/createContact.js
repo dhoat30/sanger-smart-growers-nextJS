@@ -2,7 +2,6 @@
 const formApiKey = "pat-na1-59bcc5be-e72e-4a87-bf25-58f4efb3a18c"
 
 export default function handler(req, res) {
-
   if (req.method === 'POST') {
     var axios = require('axios');
     var data = JSON.stringify({
@@ -30,10 +29,10 @@ export default function handler(req, res) {
     axios(config)
       .then(function (response) {
         res.status(200).json({ data: response.data })
-
       })
       .catch(function (error) {
         console.log(error);
+        res.status(409).json({ data: error.data })
       });
   }
 }

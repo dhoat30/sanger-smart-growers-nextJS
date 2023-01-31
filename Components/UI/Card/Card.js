@@ -8,8 +8,9 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import PrimaryButton from '../Buttons/PrimaryButton'
 import useMediaQuery from '@mui/material/useMediaQuery';
+import Paragraph from '../Typography/Paragraph';
 
-function Card({ title, content, image, callToActionText, callToActionLink, className, align, buttonVariant }) {
+function Card({ title, content, image, callToActionText, callToActionLink, className, align, buttonVariant, date }) {
     const matches = useMediaQuery('(min-width:600px)');
 
     return (
@@ -21,10 +22,12 @@ function Card({ title, content, image, callToActionText, callToActionLink, class
               33vw" />
                 </ImageContainer>
                 <CardContent>
-                    <Typography align={align} gutterBottom variant={`${matches ? "h5" : "h6"}`} component="h3" sx={{ color: "var(--sanger--theme--sys--dark--on-secondary)" }}>
+
+                    <Typography align={align} gutterBottom variant={`${matches ? "h5" : "h6"}`} component="h3" sx={{ color: "var(--sanger--theme--sys--dark--on-secondary)" }} >
                         {title}
                     </Typography>
-                    <Typography align={align} variant="body2" color="text.secondary">
+                    <h4 className='body-medium'>{date}</h4>
+                    <Typography align={align} variant="body2" color="text.secondary" >
                         {content}
                     </Typography>
                 </CardContent>

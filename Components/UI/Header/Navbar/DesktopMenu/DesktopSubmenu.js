@@ -16,6 +16,7 @@ function DesktopSubmenu({ data }) {
         setShowDropDown(!showDropDown);
     };
 
+
     // mu custom css 
     const listStyle = {
         padding: 0,
@@ -82,6 +83,7 @@ function DesktopSubmenu({ data }) {
                     href={`${data.slug}`}
                     onClick={clickHandler}
                     className="body-large"
+
                 >
                     <span>{data.title}</span>
                     {showDropDown ? <ExpandLess fontSize="small" /> : <ExpandMore fontSize="small" />}
@@ -103,7 +105,6 @@ const ParentList = styled.li`
 position: relative; 
 >ul{ 
     list-style: none;
-    list-style: none; 
     position: absolute;
     transform: translate(-50%, 0);
     left: 0; 

@@ -41,8 +41,8 @@ const menuLinks = [
         title: "About Us",
     },
     {
-        slug: "/community-work",
-        title: "Community Work",
+        slug: "/news",
+        title: "News",
     },
     {
         slug: "/contact-us",

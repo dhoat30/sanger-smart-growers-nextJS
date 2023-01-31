@@ -1,4 +1,4 @@
-async function getPost(postSlug) {
+async function getPost(slug) {
     let response
     await fetch(`${process.env.url}/wp-json/wp/v2/posts?slug=${slug}`)
         .then(res => res.json())

@@ -12,7 +12,6 @@ import GlassMorphismSection from "../../../UI/Sections/GlassMorphismSection"
 
 function SeasonPage({ pageData }) {
     const matches = useMediaQuery('(min-width:1000px)');
-    console.log(pageData)
     const sections = pageData.acf.service_content.map((data, index) => {
         if (data.acf_fc_layout === "hero_section_with_just_image") {
             return (
