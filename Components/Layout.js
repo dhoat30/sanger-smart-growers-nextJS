@@ -7,8 +7,8 @@ import Overlay from "./UI/Overlay/Overlay";
 import Footer from "./UI/Footer/Footer";
 import LoadingAnimation from "./UI/LoadingAnimation/LoadingAnimation";
 import BackToTop from "./UI/Footer/BackToTop/BackToTop";
-function Layout(props) {
 
+function Layout(props) {
   return (
     <div>
       <Header

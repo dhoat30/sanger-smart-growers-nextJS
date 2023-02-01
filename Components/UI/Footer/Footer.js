@@ -9,8 +9,43 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import TechCarousel from "./TechCarousel/TechCarousel";
 
+const footerLinks = {
+  growers: [
+    {
+      slug: "/services/kiwifruit-orchard-management",
+      title: "Kiwifruit Orchard Management",
+    },
+    {
+      slug: "/services/kiwifruit-orchard-contracting",
+      title: "Kiwifruit Orchard Contracting",
+    },
+    {
+      slug: "/services/kiwifruit-nursery",
+      title: "Kiwifruit Nursery",
+    },
+    {
+      slug: "/services/our-process",
+      title: "Our Process",
+    }
+  ],
+  ourCompany: [
+    {
+      slug: "/about-us",
+      title: "About Us",
+    },
+    {
+      slug: "/work-with-us",
+      title: "Work With Us",
+    },
+    {
+      slug: "/news",
+      title: "News",
+    },
+  ]
+}
 
 function Footer({ footerData }) {
+  console.log(footerLinks)
   const matches = useMediaQuery('(min-width:700px)');
   return (
     <Container>
@@ -24,13 +59,13 @@ function Footer({ footerData }) {
               <Grid item lg={3} md={3} sm={3} >
                 <FooterLinkColumn
                   title="FOR GROWERS"
-                  linkData={footerData.growers}
+                  linkData={footerLinks.growers}
                 />
               </Grid>
               <Grid item lg={3} md={3} sm={3} >
                 <FooterLinkColumn
                   title="OUR COMPANY"
-                  linkData={footerData.our_company}
+                  linkData={footerLinks.ourCompany}
                 />
               </Grid>
               <Grid item lg={3} md={4} sm={4} >

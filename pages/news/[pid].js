@@ -4,12 +4,22 @@ import getAllPosts from '../../util/get-all-posts'
 
 import getMenu from '../../util/get-menu'
 import getPost from '../../util/get-post'
+import SEO from '../../Components/SEO'
 function Service({ menuData, slug, postData }) {
-    console.log(postData)
+    const seo = {
+        title: "Kiwifruit News and Insights | Sanger Smart Growers",
+        description: "Our industry is rapidly advancing and so are we. We are eager to disseminate the latest and most significant updates, including news articles, employee news, and other relevant event information that could be of benefit to you",
+        imageSrc: postData[0].yoast_head_json.og_image && postData[0].yoast_head_json.og_image[0].url
+
+    }
     return (
-        <SingleNews
-            postData={postData[0]}
-        />
+        <>
+            <SEO seo={seo} />
+            <SingleNews
+                postData={postData[0]}
+            />
+        </>
+
     )
 }
 

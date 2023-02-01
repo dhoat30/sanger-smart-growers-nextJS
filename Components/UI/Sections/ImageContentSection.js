@@ -7,7 +7,7 @@ import ColumnTitle from '../Typography/ColumnTitle'
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { motion } from 'framer-motion'
 
-function ImageContentSection({ title, content, image, link, linkText, backgroundColor, imageAlignment, className }) {
+function ImageContentSection({ title, content, image, link, linkText, backgroundColor, imageAlignment, className, singleListRow }) {
     const matches = useMediaQuery('(min-width:900px)');
     if (!image) {
         return
@@ -27,7 +27,7 @@ function ImageContentSection({ title, content, image, link, linkText, background
                 type: "spring",
                 bounce: 0,
                 duration: 0.7,
-                delayChildren: 0.3,
+                delayChildren: 0.1,
                 staggerChildren: 0.05,
             }
         },
@@ -86,7 +86,7 @@ function ImageContentSection({ title, content, image, link, linkText, background
 
                 <motion.div className='content' variants={contentVariants}>
                     <ColumnTitle>{title}</ColumnTitle>
-                    <Paragraph >{content}</Paragraph>
+                    <Paragraph singleListRow={true}>{content}</Paragraph>
                     {link && <PrimaryButton variant="contained" callToActionText={linkText} href={link} />
                     }
                 </motion.div>

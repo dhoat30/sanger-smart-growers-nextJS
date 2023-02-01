@@ -6,7 +6,7 @@ function FooterLinkColumn({ title, linkData }) {
   const links = linkData.map(data => {
     return (
       <li key={data.ID}>
-        <Link legacyBehavior href={data.url} passHref>
+        <Link legacyBehavior href={data.slug} passHref>
           <AnchorStyle className='body-medium' dangerouslySetInnerHTML={{ __html: data.title }} />
         </Link>
       </li>
