@@ -45,7 +45,6 @@ const footerLinks = {
 }
 
 function Footer({ footerData }) {
-  console.log(footerLinks)
   const matches = useMediaQuery('(min-width:700px)');
   return (
     <Container>
@@ -81,7 +80,7 @@ function Footer({ footerData }) {
             </Grid>
           </Box> :
           // mobile footer accordion 
-          <MobileFooter footerData={footerData} />
+          <MobileFooter footerData={footerData} footerLinks={footerLinks} />
         }
 
 

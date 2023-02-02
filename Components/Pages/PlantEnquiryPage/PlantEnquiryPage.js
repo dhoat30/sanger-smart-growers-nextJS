@@ -3,7 +3,6 @@ import PlantEnquiryForm from '../../UI/Forms/PlantEnquiryForm'
 import HeroJustImage from '../../UI/Hero/HeroJustImage'
 import styled from 'styled-components'
 const PlantEnquiryPage = ({ pageData }) => {
-    console.log(pageData)
     return (
         <>
             <HeroJustImage

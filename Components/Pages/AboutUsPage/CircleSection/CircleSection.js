@@ -1,19 +1,69 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-import ColumnTitle from '../../../UI/Typography/ColumnTitle'
-import Paragraph from '../../../UI/Typography/Paragraph'
 import RowTitle from '../../../UI/Typography/RowTitle'
+import { Paper } from '@mui/material'
+import Paragraph from '../../../UI/Typography/Paragraph'
+import useMediaQuery from '@mui/material/useMediaQuery';
+
 function CircleSection({ data }) {
+    const matches = useMediaQuery('(max-width:700px)');
+    const [showBox, setShowBox] = useState({ index: null })
+
+    const circles = data.circle_content.map((item, index) => {
+        let circleSize, zIndex, backgroundColor, zIndexContent
+        if (index === 0) {
+            circleSize = "200px"
+            zIndex = 10
+            backgroundColor = "rgba(242, 192, 0, 1)"
+            zIndexContent = 9
+        }
+        if (index === 1) {
+            circleSize = "300px"
+            zIndex = 4
+            backgroundColor = "#FFD63D"
+            zIndexContent = 3
+        }
+        if (index === 2) {
+            circleSize = "400px"
+            zIndex = 2
+            backgroundColor = "#FFE584"
+            zIndexContent = 1
+        }
+
+        return <div className='graphic-wrapper' key={index}>
+            <Circle
+                onMouseLeave={() => setShowBox({ index: null })}
+                onMouseEnter={e => setShowBox({ index: index })}
+                circleSize={circleSize}
+                zIndex={zIndex}
+                backgroundColor={backgroundColor}
+            >
+                <div className='label'>{item.label}</div>
+
+            </Circle >
+            {showBox.index === index && !matches ?
+                <Paper
+                    sx={{ zIndex: zIndexContent, background: backgroundColor }}
+                    className='content-wrapper'
+                    elevation={1}>
+                    <span className='content'>{item.content}</span>
+                    <span className='pin-overflow-container'></span>
+                </Paper>
+                : null
+            }
+
+        </div>
+    })
+
+
     return (
-        <CircleSectionStyle className='max-width'>
-            <div className='content-wrapper'>
+        <CircleSectionStyle >
+            <div className='title-wrapper max-width'>
                 <RowTitle title={data.title} align="center" animation="true" />
                 <Paragraph className="paragraph" align="center">{data.content}</Paragraph>
             </div>
-            <div className='circle-wrapper'>
-                <div className='circle'><span>Sports Sponsor</span></div>
-                <div className='circle'><span>Donations</span></div>
-                <div className='circle'><span>Visa Assistance</span></div>
+            <div className='circle-wrapper '>
+                {circles}
             </div>
         </CircleSectionStyle >
     )
@@ -22,9 +72,12 @@ function CircleSection({ data }) {
 export default CircleSection
 const CircleSectionStyle = styled.section`
     padding-top: 120px; 
-    padding-bottom: 120px; 
+    padding-bottom: 40px; 
     background: var(--sanger--theme--white);
-    .content-wrapper{ 
+    @media(max-width: 900px){ 
+        padding-top: 40px; 
+    }
+    .title-wrapper{ 
         max-width: 900px; 
         margin: 0 auto; 
         .paragraph{ 
@@ -34,10 +87,55 @@ const CircleSectionStyle = styled.section`
     .circle-wrapper{ 
         position: relative;
         width: 100%; 
-        height: 50vh; 
-        .circle{ 
-            position: absolute;
-            background: rgba(242, 192, 0, 1); 
+        padding: 240px 0; 
+        cursor: pointer; 
+        .graphic-wrapper{ 
+            position: relative;
+            width: 400px;
+            margin: 0 auto;
+            
+            @media(max-width: 1000px){ 
+                margin: 0 8px 0 8px;
+            }
+            @media(max-width: 700px){ 
+                margin: 0 auto 0 auto;
+            }
+            .content-wrapper{ 
+                position: absolute ;
+                left: 500px; 
+                /* background: var(--sanger--theme--sys--dark--secondary) ; */
+                width: 300px; 
+                top: -70px; 
+                height: 150px; 
+              
+                padding: 16px;
+                @media(max-width: 1350px){ 
+                    left: 420px; 
+            }
+             @media(max-width: 1120px){ 
+                width: 250px; 
+                height: 200px; 
+                top: -100px; 
+            }
+               
+                &:before{ 
+                    content:"" ;
+                    position:absolute;
+                    width: 300px; 
+                    height: 1px; 
+                    background: black;
+                    left: -300px;
+                    top: 50%;
+               
+                }
+            }
+        }   
+        
+    }
+`
+const Circle = styled.div`
+     position: absolute;
+            background: ${props => props.backgroundColor && props.backgroundColor}; 
             border-radius: 50%;  
             top: 50%; 
             left: 50%; 
@@ -45,36 +143,11 @@ const CircleSectionStyle = styled.section`
             display: flex ;
             align-items: flex-start; 
             justify-content: center; 
-            span{ 
+            width: ${props => props.circleSize && props.circleSize}; 
+            height: ${props => props.circleSize && props.circleSize}; 
+            z-index: ${props => props.zIndex && props.zIndex}; 
+            .label{ 
                 position: relative ;
-                top: 24px; 
+                top: 20px; 
             }
-        }
-        & .circle:nth-child(1){ 
-           z-index: 3; 
-           width: 200px; 
-            height: 200px;
-           
-        }
-        & .circle:nth-child(2){ 
-            background: green ;
-            width: 300px; 
-            height: 300px; 
-            z-index: 2; 
-            background: #FFD63D; 
-            span{ 
-                top: 16px; 
-            }
-        }
-        & .circle:nth-child(3){ 
-            background: blue ;
-            width: 400px; 
-            height: 400px; 
-            z-index: 1; 
-            background: #FFE584; 
-            span{ 
-                top: 16px; 
-            }
-        }
-    }
 `

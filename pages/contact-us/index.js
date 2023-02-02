@@ -27,7 +27,6 @@ export async function getStaticProps(context) {
     //get home page data using category from hero images 
     const menuData = await getMenu()
     const pageData = await getSinglePage('wed-love-to-hear-from-you')
-    console.log(pageData)
     return {
         props: {
             menuData: menuData,

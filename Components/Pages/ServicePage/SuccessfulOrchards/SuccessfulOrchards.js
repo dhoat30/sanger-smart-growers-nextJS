@@ -5,7 +5,6 @@ import OrchardCard from './OrchardCard/OrchardCard'
 import { motion } from 'framer-motion'
 
 function SuccessfulOrchards({ pageData }) {
-    console.log(pageData)
     const sections = pageData.acf.orchards.map((data, index) => {
         return <OrchardCard
             title={data.orchard.title}

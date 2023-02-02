@@ -30,7 +30,6 @@ export async function getStaticProps(context) {
 
 export async function getStaticPaths() {
     const servicesData = await getMenu()
-    console.log(servicesData[0])
     const paths = servicesData.services.map((item) => ({ params: { pid: item.slug } }))
     return {
         paths: paths,

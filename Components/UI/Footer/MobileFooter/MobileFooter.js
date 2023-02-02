@@ -2,7 +2,7 @@ import React from 'react'
 
 import AccordionComp from './Accordion/AccordionComp';
 
-function MobileFooter({ footerData }) {
+function MobileFooter({ footerData, footerLinks }) {
     const contactArr = [
         {
             ID: 1,
@@ -33,10 +33,10 @@ function MobileFooter({ footerData }) {
     return (
         <div>
             <AccordionComp title="FOR GROWERS"
-                linksArr={footerData.growers}
+                linksArr={footerLinks.growers}
             />
             <AccordionComp title="OUR COMPANY"
-                linksArr={footerData.our_company}
+                linksArr={footerLinks.ourCompany}
             />
             <AccordionComp title="CONTACT"
                 linksArr={contactArr}

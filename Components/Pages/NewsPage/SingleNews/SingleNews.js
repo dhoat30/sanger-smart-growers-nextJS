@@ -5,7 +5,6 @@ import SubscribeForm from '../../../UI/Forms/SubscribeForm'
 import Paper from '@mui/material/Paper';
 import FacebookIcon from '../../../UI/Icons/SocialMedia/FacebookIcon';
 function SingleNews({ postData }) {
-    console.log(postData.acf.date)
     return (
         <>
             <HeroJustImageStyle

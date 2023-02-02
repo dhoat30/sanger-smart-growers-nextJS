@@ -10,7 +10,6 @@ import ImageContentSection from '../../UI/Sections/ImageContentSection'
 
 function AboutUsPage({ pageData }) {
     const heroSection = pageData.acf.service_content.map((item, index) => {
-        console.log(item)
         if (item.acf_fc_layout === "hero_section_center_align") {
             return <HeroCenterStyle
                 key={index}
@@ -26,6 +25,7 @@ function AboutUsPage({ pageData }) {
     const directorSection = pageData.acf.service_content.map((item, index) => {
         if (item.acf_fc_layout === "image_content_section") {
             return <ImageContentSection
+                key={index + 67}
                 title={item.title}
                 content={item.content}
                 image={item.image}
@@ -172,7 +172,7 @@ gap: 32px;
 justify-content: center; 
 align-items: center; 
 margin-top: 60px; 
-
+margin-bottom: 60px; 
 @media(max-width: 1100px){ 
 flex-wrap: wrap; 
 gap: 16px; 

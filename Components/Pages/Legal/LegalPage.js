@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 function LegalPage({ pageData }) {
-  console.log(pageData);
   return (
     <>
       <Section>
@@ -27,7 +26,7 @@ const Hero = styled.div`
     color: white;
   }
 `;
-const MainSection =styled.section`
+const MainSection = styled.section`
 padding: 50px 0 100px 0; 
 h2{ 
     

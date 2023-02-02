@@ -14,7 +14,6 @@ function VideoHero({
     subtitle,
     callToActionText,
     callToActionLink,
-
 }) {
     const [showVideo, setShowVideo] = useState(false)
 
@@ -22,8 +21,7 @@ function VideoHero({
     const videoMatches = useMediaQuery('(max-width:550px)');
 
     // const titleClass = matches ? "headline-medium" : "headline-small"
-    const subtitleClass = matches ? "headline-medium" : "headline-small"
-
+    const subtitleClass = matches ? "headline-small" : "headline-small"
     useEffect(() => {
         setTimeout(() => {
             setShowVideo(true)
@@ -43,7 +41,7 @@ function VideoHero({
             </div>
 
             <div className='content'>
-                <h1 className="display-large">{title}</h1>
+                <h1 className="display-medium">{title}</h1>
                 <h2 className={subtitleClass} >{subtitle}</h2>
                 <PrimaryButton callToActionText={callToActionText} href={callToActionLink} variant="contained" />
             </div>
@@ -60,13 +58,7 @@ const Container = styled.div`
         @media(max-width: 600px){ 
             top:56px;
         }
-        .overlay{ 
-            position: absolute ;
-            width: 100%; 
-            height: 100%; 
-            background: rgba(0,0,0,0.4);
-            z-index: 1; 
-        }
+
     .video-box{ 
        width: 100%; 
         padding-bottom: 56.25%; 
@@ -101,19 +93,24 @@ const Container = styled.div`
         top: 50%; 
         left: 50%; 
         transform: translate(-50%, -50%) ;
-        text-align: center; 
-        max-width: 1200px;
+        text-align: left; 
         width: 100%;  
         z-index: 1; 
         color: white; 
-        
+        margin-left: 80px; 
+        @media(max-width: 1366px){ 
+            margin: 0 8px; 
+        }
         h1{ 
+            font-weight: 500; 
            @media(max-width: 350px){ 
             font-size: 2rem; 
             line-height: 2.5rem; 
+         
            }
         }
         h2{ 
+            font-weight: 300; 
             margin-top: 16px;
             @media(max-width: 350px){ 
             font-size: 1.2rem; 

@@ -4,7 +4,6 @@ import PlantEnquiryPage from '../../Components/Pages/PlantEnquiryPage/PlantEnqui
 import getMenu from '../../util/get-menu'
 import getSinglePage from '../../util/get-single-page'
 function JobForm({ pageData }) {
-    console.log(pageData)
     return (
         // <PlantEnquiryPage
         //     pageData={pageData}
@@ -19,7 +18,6 @@ export async function getStaticProps(context) {
     //get home page data using category from hero images 
     const menuData = await getMenu()
     const pageData = await getSinglePage('job-application-form')
-    console.log(pageData)
     return {
         props: {
             menuData: menuData,

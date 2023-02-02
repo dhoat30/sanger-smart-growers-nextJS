@@ -4,7 +4,6 @@ import HeroJustImage from '../../UI/Hero/HeroJustImage'
 import styled from 'styled-components'
 import ContactForm from '../../UI/Forms/ContactForm'
 const ContactUsPage = ({ pageData }) => {
-    console.log(pageData)
     return (
         <>
             <HeroJustImage

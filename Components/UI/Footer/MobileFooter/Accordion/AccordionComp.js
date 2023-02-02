@@ -56,12 +56,12 @@ function AccordionComp({ title, linksArr, icons }) {
     const handleChange = (panel) => (event, newExpanded) => {
         setExpanded(newExpanded ? panel : false);
     };
-    const links = linksArr.map(data => {
+    const links = linksArr.map((data, index) => {
         // check if the links need icons
 
         return (
-            <li key={data.ID}>
-                <Link legacyBehavior href={data.url} passHref>
+            <li key={index}>
+                <Link legacyBehavior href={data.slug} passHref>
                     <a className='body-large'>
                         {data.title}
                     </a>

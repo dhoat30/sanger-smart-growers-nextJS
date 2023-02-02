@@ -5,7 +5,6 @@ import JustTextSection from '../../../UI/Sections/JustTextSection'
 import ImageContentSection from '../../../UI/Sections/ImageContentSection'
 
 function OurProcess({ pageData }) {
-    console.log(pageData)
     const sections = pageData.acf.service_content.map((item, index) => {
         if (item.acf_fc_layout === "hero_section_center_align") {
             return <HeroCenterStyle

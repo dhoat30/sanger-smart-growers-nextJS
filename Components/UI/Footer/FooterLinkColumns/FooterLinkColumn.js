@@ -3,9 +3,9 @@ import Link from 'next/link'
 import styled from 'styled-components'
 function FooterLinkColumn({ title, linkData }) {
 
-  const links = linkData.map(data => {
+  const links = linkData.map((data, index) => {
     return (
-      <li key={data.ID}>
+      <li key={index}>
         <Link legacyBehavior href={data.slug} passHref>
           <AnchorStyle className='body-medium' dangerouslySetInnerHTML={{ __html: data.title }} />
         </Link>
