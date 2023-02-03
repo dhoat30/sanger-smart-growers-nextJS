@@ -7,6 +7,7 @@ import Overlay from "./UI/Overlay/Overlay";
 import Footer from "./UI/Footer/Footer";
 import LoadingAnimation from "./UI/LoadingAnimation/LoadingAnimation";
 import BackToTop from "./UI/Footer/BackToTop/BackToTop";
+import Consent from "./UI/Consent/Consent";
 
 function Layout(props) {
   return (
@@ -24,8 +25,8 @@ function Layout(props) {
 
       <BackToTop />
       <Footer
-
         footerData={props.children.props.menuData && props.children.props.menuData} />
+      <Consent />
     </div>
   );
 }

@@ -93,7 +93,7 @@ const Container = styled.div`
         top: 50%; 
         left: 50%; 
         transform: translate(-50%, -50%) ;
-        text-align: left; 
+        text-align: left;  
         width: 100%;  
         z-index: 1; 
         color: white; 
