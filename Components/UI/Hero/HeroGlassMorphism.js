@@ -46,7 +46,6 @@ function HeroGlassMorphism({
     offscreen: {
       opacity: 0,
       y: 20,
-
     },
     onscreen: {
       opacity: 1,

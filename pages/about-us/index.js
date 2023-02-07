@@ -7,7 +7,7 @@ function AboutUs({ menuData, pageData }) {
     const seo = {
         title: pageData.yoast_head_json.og_title,
         description: pageData.yoast_head_json.og_description,
-        imageSrc: pageData.yoast_head_json.og_image && postData[0].yoast_head_json.og_image[0].url
+        imageSrc: pageData.yoast_head_json.og_image && pageData.yoast_head_json.og_image[0].url
     }
 
     return (

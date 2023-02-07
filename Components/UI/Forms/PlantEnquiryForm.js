@@ -142,6 +142,10 @@ function PlantEnquiryForm({ title, content, formName, emailTo, leadType, emailRo
                     setPhoneNumber('')
                     setCompanyName('')
                     setMessage('')
+                    setFirstNameTouched(false)
+                    setLastNameTouched(false)
+                    setEmailAddressTouched(false)
+                    setMessageTouched(false)
                 }
                 else {
                     setLoading(false)

@@ -58,11 +58,14 @@ function Navbar({ menuData, services }) {
 
     return (
         <>
-            {matches &&
+            {matches ?
                 <DesktopMenu menuLinks={menuLinks} />
+                :
+                <MobileMenu menuLinks={menuLinks} />
             }
-            {/* mobile menu  */}
-            <MobileMenu menuData={menuData} services={services} />
+
+
+
         </>
     )
 }

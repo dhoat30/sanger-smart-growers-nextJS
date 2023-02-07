@@ -4,10 +4,51 @@ import RowTitle from '../../../UI/Typography/RowTitle'
 import { Paper } from '@mui/material'
 import Paragraph from '../../../UI/Typography/Paragraph'
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { motion } from 'framer-motion'
 
 function CircleSection({ data }) {
     const matches = useMediaQuery('(max-width:700px)');
     const [showBox, setShowBox] = useState({ index: null })
+    // card animation 
+    const paragraphVariant = {
+        onscreen: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 0.3,
+                ease: "easeInOut"
+            }
+        },
+        offscreen: {
+            opacity: 0,
+            y: 50,
+        }
+    }
+    // card animation 
+    const circleContainerVariant = {
+        onscreen: {
+            transition: {
+                type: "spring",
+                duration: 0.3,
+                delayChildren: 3,
+                staggerChildren: 2,
+            }
+        },
+        offscreen: {
+            transition: {
+            }
+        }
+    }
+    const circleItemVariant = {
+        onscreen: {
+            opacity: 1,
+            transition: { delay: 0.2 }
+        },
+        offscreen: {
+            opacity: 0,
+            transition: { duration: 1 }
+        }
+    };
 
     const circles = data.circle_content.map((item, index) => {
         let circleSize, zIndex, backgroundColor, zIndexContent
@@ -30,17 +71,22 @@ function CircleSection({ data }) {
             zIndexContent = 1
         }
 
-        return <div className='graphic-wrapper' key={index}>
-            <Circle
+        return <motion.div
+            initial="offscreen"
+            whileInView="onscreen"
+            variants={circleContainerVariant}
+            viewport={{ margin: "600px 0px 0px 0px", once: true }}
+            className='graphic-wrapper'
+            key={index}>
+            <Circle as={motion.div}
+                variants={circleItemVariant}
                 onMouseLeave={() => setShowBox({ index: null })}
                 onMouseEnter={e => setShowBox({ index: index })}
                 circleSize={circleSize}
                 zIndex={zIndex}
-                backgroundColor={backgroundColor}
-            >
+                backgroundColor={backgroundColor}>
                 <div className='label'>{item.label}</div>
-
-            </Circle >
+            </Circle>
             {showBox.index === index && !matches ?
                 <Paper
                     sx={{ zIndex: zIndexContent, background: backgroundColor }}
@@ -52,7 +98,7 @@ function CircleSection({ data }) {
                 : null
             }
 
-        </div>
+        </motion.div>
     })
 
 
@@ -60,7 +106,14 @@ function CircleSection({ data }) {
         <CircleSectionStyle >
             <div className='title-wrapper max-width'>
                 <RowTitle title={data.title} align="center" animation="true" />
-                <Paragraph className="paragraph" align="center">{data.content}</Paragraph>
+                <motion.div
+                    initial="offscreen"
+                    whileInView="onscreen"
+                    viewport={{ amount: 1, once: true }}
+                    variants={paragraphVariant}
+                >
+                    <Paragraph className="paragraph" align="center">{data.content}</Paragraph>
+                </motion.div>
             </div>
             <div className='circle-wrapper '>
                 {circles}
@@ -134,7 +187,8 @@ const CircleSectionStyle = styled.section`
     }
 `
 const Circle = styled.div`
-     position: absolute;
+
+             position: absolute;
             background: ${props => props.backgroundColor && props.backgroundColor}; 
             border-radius: 50%;  
             top: 50%; 

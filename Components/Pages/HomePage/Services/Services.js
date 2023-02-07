@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import Card from '../../../UI/Card/Card'
 import RowTitle from '../../../UI/Typography/RowTitle'
 import Slider from "react-slick";
@@ -9,6 +9,7 @@ import { motion } from 'framer-motion'
 
 function Services({ servicesArr }) {
     const matches = useMediaQuery('(min-width:600px)');
+    const scrollRef = useRef(null)
 
     var settings = {
         // dots: true,
@@ -45,8 +46,8 @@ function Services({ servicesArr }) {
             transition: {
                 type: "spring",
                 bounce: 0,
-                duration: 2,
-                delayChildren: 0.7,
+                duration: 0.3,
+                delayChildren: 0.4,
                 staggerChildren: 0.1,
             }
         },
@@ -102,7 +103,7 @@ function Services({ servicesArr }) {
 
     })
     return (
-        <Section className='max-width section-gutter'>
+        <Section className='max-width section-gutter' >
             <RowTitle title="Our Services" align="center" animation={true} />
 
             {matches ?
@@ -115,7 +116,7 @@ function Services({ servicesArr }) {
                     as={motion.div}
                     initial="offscreen"
                     whileInView="onscreen"
-                    viewport={{ amount: 0.4, once: true }}
+                    viewport={{ amount: 1, once: true }}
                     variants={iconContainerVariant}
 
                 >

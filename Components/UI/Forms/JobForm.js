@@ -148,6 +148,10 @@ function JobForm({ title, content, formName, emailTo, leadType, emailRoute, form
                     setOrchardSize('')
                     setCompanyName('')
                     setMessage('')
+                    setFirstNameTouched(false)
+                    setLastNameTouched(false)
+                    setEmailAddressTouched(false)
+                    setMessageTouched(false)
                     console.log(response)
                 }
                 else {

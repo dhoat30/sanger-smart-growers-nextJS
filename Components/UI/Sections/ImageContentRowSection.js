@@ -19,23 +19,75 @@ function ImageContentRowSection({ title, content, image, link, linkText }) {
         imageHeight = (image.height / image.width * 100)
     }
 
+    // card animation 
+    const containerVariant = {
+        onscreen: {
+            transition: {
+                bounce: 0,
+                staggerChildren: 0.3,
+            }
+        },
+        offscreen: {
+            transition: {
+                ease: "easeInOut",
+                bounce: 0,
+                duration: 0.3
+            }
+        }
+    }
+    const imageVariant = {
+        onscreen: {
+            opacity: 1,
+            x: 0,
+            scale: 1,
+            transition: {
+                ease: "easeInOut",
+                duration: 0.3
+            }
+        },
+        offscreen: {
+            opacity: 0,
+            x: "-100%",
+            scale: 0.5,
+
+        }
+    };
+    const contentVariant = {
+        onscreen: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                ease: "easeInOut",
+                duration: 0.3
+            }
+        },
+        offscreen: {
+            opacity: 0,
+            y: 50,
+        }
+    };
     return (
-        <Container>
-            <div className='image-container' style={{ paddingBottom: `${imageHeight}%` }}>
+        <Container as={motion.section}
+            initial="offscreen"
+            whileInView="onscreen"
+            viewport={{ amount: 1, once: true }}
+            variants={containerVariant}
+        >
+            <motion.div variants={imageVariant} className='image-container' style={{ paddingBottom: `${imageHeight}%` }}>
                 <Image src={image.url} fill={true} alt={image.alt} />
-            </div>
-            <div className='content'>
-                <ColumnTitle>{title} </ColumnTitle>
-                <Paragraph >{content} </Paragraph>
+            </motion.div>
+            <motion.div variants={contentVariant} className='content'>
+                <ColumnTitle>{title}</ColumnTitle>
+                <Paragraph >{content}</Paragraph>
                 {link && <PrimaryButton variant="contained" callToActionText={linkText} href={link} />
-                }            </div>
+                }            </motion.div>
 
         </Container>
     )
 }
 
 export default ImageContentRowSection
-const Container = styled.div`
+const Container = styled.section`
 display: flex;
 @media(max-width: 1000px){ 
             margin-top: 8px; 

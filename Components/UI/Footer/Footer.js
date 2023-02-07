@@ -8,6 +8,7 @@ import MobileFooter from "./MobileFooter/MobileFooter";
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import TechCarousel from "./TechCarousel/TechCarousel";
+import FooterSocial from "./FooterSocial/FooterSocial";
 
 const footerLinks = {
   growers: [
@@ -41,6 +42,14 @@ const footerLinks = {
       slug: "/news",
       title: "News",
     },
+    {
+      slug: "/privacy-policy",
+      title: "Privacy Policy",
+    },
+    {
+      slug: "/terms-and-conditions/",
+      title: "Terms & Conditions",
+    },
   ]
 }
 
@@ -52,7 +61,7 @@ function Footer({ footerData }) {
       <FooterStyle>
         {/* desktop footer columns  */}
         {matches ?
-          <Box  >
+          <Box>
             <Grid container columnSpacing={{ xs: 1, sm: 2, md: 4, lg: 8 }} justifyContent="center"
             >
               <Grid item lg={3} md={3} sm={3} >
@@ -75,6 +84,7 @@ function Footer({ footerData }) {
                   phoneNumber={footerData.phone_number}
                   socialMediaLinks={footerData.social_media_links}
                 />
+                <FooterSocial />
               </Grid>
 
             </Grid>
@@ -83,8 +93,16 @@ function Footer({ footerData }) {
           <MobileFooter footerData={footerData} footerLinks={footerLinks} />
         }
 
-
+        <CopyrightSection className="max-width">
+          <div className="body-large">
+            © 2022 | All Rights Reserved.
+          </div>
+          <div className="body-large">
+            Design By Web<span>Duel</span>
+          </div>
+        </CopyrightSection>
       </FooterStyle>
+
     </Container>
   );
 }
@@ -95,9 +113,17 @@ background: white;
 `
 const FooterStyle = styled.section`
       background: var( --sanger--theme--black);
-      padding: 54px 0;
+      padding: 54px 0 16px 0;
       ul{ 
-        list-style: none ;
+        list-style: none;
       }
-      `;
+`;
 
+const CopyrightSection = styled.div`
+  border-top: 1px solid var(--sanger--theme--sys--dark--secondary);
+  color: white; 
+  display: flex; 
+  padding-top: 16px; 
+  justify-content: space-between; 
+  margin-top: 32px; 
+`

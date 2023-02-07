@@ -10,9 +10,10 @@ function TitleIcon({ className, align, animation }) {
         onscreen: {
             scale: 1,
             transition: {
-                duration: 1,
-                type: "spring", stiffness: 500,
-                delay: 1
+                duration: 0.3,
+
+                delay: 0.3,
+                ease: "easeInOut"
             }
         }
     };
@@ -21,7 +22,7 @@ function TitleIcon({ className, align, animation }) {
         <SVGStyle
             initial="offscreen"
             whileInView="onscreen"
-            viewport={{ amount: 1, once: true }}
+            viewport={{ amount: 1 }}
             variants={iconVariant}
             as={motion.svg} align={align} className={className} viewBox="0 0 60 23" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clipPath="url(#clip0_200_3702)">

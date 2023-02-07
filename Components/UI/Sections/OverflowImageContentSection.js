@@ -46,7 +46,7 @@ function OverflowImageContentSection({ title, content, image, link, linkText, im
             opacity: 0,
             scale: 0,
             y: 20,
-            transition: { duration: 0.2 }
+            transition: { duration: 0.3 }
         }
     };
     const contentVariants = {
@@ -58,7 +58,7 @@ function OverflowImageContentSection({ title, content, image, link, linkText, im
         offscreen: {
             opacity: 0,
             y: 20,
-            transition: { duration: 0.2 }
+            transition: { duration: 0.3 }
         }
     };
     return (

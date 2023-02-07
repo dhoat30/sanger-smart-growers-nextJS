@@ -375,6 +375,7 @@
   line-height: 1.3rem;
   letter-spacing: 0.25px;
 }
+
 .body-small {
   font-size: var(--sanger--theme--body--small);
   font-weight: 400;

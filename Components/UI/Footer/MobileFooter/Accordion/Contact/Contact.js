@@ -48,7 +48,7 @@ function Contact({ linksArr }) {
                 <li key={data.ID}>
                     <Link legacyBehavior href={data.url} passHref>
                         <a className='body-large'>
-                            <span> <FacebookIcon /> </span>
+                            <span> <FacebookIcon style={{ fill: "var(--sanger--theme--sys--dark--secondary)" }} /> </span>
                             {data.title}
                         </a>
                     </Link>

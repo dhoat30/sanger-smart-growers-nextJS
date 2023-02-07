@@ -1,7 +1,6 @@
 import React from 'react'
 import SingleNews from '../../Components/Pages/NewsPage/SingleNews/SingleNews'
 import getAllPosts from '../../util/get-all-posts'
-
 import getMenu from '../../util/get-menu'
 import getPost from '../../util/get-post'
 import SEO from '../../Components/SEO'

@@ -1,105 +1,144 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
+import React, { useState } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+import CloseIcon from '@mui/icons-material/Close';
 import useMediaQuery from '@mui/material/useMediaQuery';
-const pages = ['Products', 'Pricing', 'Blog'];
+import styled from 'styled-components';
+import Link from 'next/link';
+import SubmenuLink from './SubmenuLink/SubmenuLink';
+import { motion } from 'framer-motion'
+import PrimaryButton from '../../../Buttons/PrimaryButton'
+function MobileMenu({ menuLinks }) {
+    const [showDropDown, setShowDropDown] = useState(false)
+    const [active, setActive] = useState({ index: null })
+    const activeStyle = {
+        color: "var(--sanger--theme--sys--light--tertiary)"
+    }
 
-function MobileMenu({ menuData, services }) {
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
-    const [anchorElUser, setAnchorElUser] = React.useState(null);
-    const handleOpenNavMenu = (event) => {
-        setAnchorElNav(event.currentTarget);
-    };
+    const menuVariants = {
+        show: {
+            scale: 1,
+            y: 0,
+            transition: {
+                type: "spring",
+                duration: 0.4,
+                delayChildren: 0.2,
+                staggerChildren: 0.05,
+            },
+        },
+        hide: {
+            scale: 0,
+            y: "-50%",
+            transition: {
+                type: "spring",
+                duration: 0.4,
 
-    const handleOpenUserMenu = (event) => {
-        setAnchorElUser(event.currentTarget);
-    };
+            },
+        }
+    }
+    const linksVariant = {
+        show: {
+            x: 0,
+            opacity: 1
+        },
+        hide: {
+            opacity: 0,
+            x: -10,
+        }
+    }
 
-    const handleCloseNavMenu = () => {
-        setAnchorElNav(null);
-    };
-
-    const handleCloseUserMenu = () => {
-        setAnchorElUser(null);
-    };
-
-    const menu = menuData.map(data => {
-        if (data.url === "/our-services") {
+    const links = menuLinks.map((item, index) => {
+        if (item.subMenu) {
             return (
-                <li key={data.ID}>
-                    <MenuItem divider={true} sx={{ width: "100%" }} onClick={handleCloseNavMenu}>
-                        <Typography textAlign="center">{data.title}</Typography>
-                    </MenuItem>
-                </li>
-
+                <motion.li key={index} variants={linksVariant} onClick={() => setActive({ index: index })}  >
+                    <SubmenuLink title={item.title} subMenuLinks={item.subMenu} onClickChild={() => setShowDropDown(false)} />
+                </motion.li>
             )
         }
-        if (data.menu_item_parent === "0") {
-            return <li key={data.ID}>
-                <MenuItem divider={true} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">{data.title}</Typography>
-                </MenuItem>
-            </li>
-        }
-
-
-
+        return (
+            <motion.li style={active.index === index && activeStyle} key={index} variants={linksVariant} onClick={() => setActive({ index: index })}>
+                <Link className='title-large' href={item.slug} onClick={() => setShowDropDown(false)}>{item.title}</Link>
+            </motion.li>
+        )
 
     })
 
 
     return (
-        <Box sx={{
+        <MenuWrapper>
+            <div className='icons-wrapper'>
+                {showDropDown ?
+                    <CloseIcon sx={{ fontSize: "3rem" }}
+                        onClick={() => setShowDropDown(false)}
+                    />
+                    :
+                    <MenuIcon sx={{ fontSize: "3rem" }}
+                        onClick={() => setShowDropDown(true)}
+                    />
+                }
+            </div>
+            {
+                showDropDown &&
+                <motion.div className="dropdown-wrapper"
+                    initial="hide"
+                    animate={showDropDown ? "show" : "hide"}
+                    variants={menuVariants}
+                >
+                    <ul className='main-category-wrapper'>
+                        {links}
 
-            flexGrow: 1, display: { xs: 'flex', md: 'none' }
-        }}>
-            <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleOpenNavMenu}
-                color="inherit"
-                sx={{
-                    padding: "8px"
+                        <PrimaryButton
+                            onClick={() => setShowDropDown(false)}
+                            href="/work-with-us"
+                            callToActionText="JOIN OUR TEAM"
+                            variant="contained" />
 
-                }}
-            >
-                <MenuIcon fontSize="large" />
-            </IconButton>
-            {/* <Menu
-                id="menu-appbar"
-                anchorEl={anchorElNav}
-                anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'left',
-                }}
-                keepMounted
-                transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'left',
-                }}
-                open={Boolean(anchorElNav)}
-                onClose={handleCloseNavMenu}
-                sx={{
-                    display: { xs: 'block', md: 'none' },
-                }}
-            >
-                {menu}
-            </Menu> */}
-        </Box>
+                    </ul>
+                </motion.div>
+            }
+
+        </MenuWrapper >
     )
 }
 
 export default MobileMenu
+
+const MenuWrapper = styled.div`
+    .dropdown-wrapper{ 
+        position: fixed; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    z-index: 10; 
+    background: var(--sanger--theme--sys--light--surface);
+    top: 60px; 
+    border-top: 1px solid var(--sanger--theme--sys--light--surface-variant);
+        @media(max-width: 600px){ 
+            top: 56px; 
+        }
+    .main-category-wrapper{ 
+        margin: 40px 40px;
+        list-style: none ; 
+        @media(max-width: 600px){ 
+            margin: 16px;
+        }
+        @media(max-width: 350px){ 
+                    margin: 16px 8px; 
+        }
+        li{ 
+            a{ 
+                padding: 16px 0; 
+                display: block;
+                @media(max-width: 600px){ 
+                    padding: 10px 0; 
+        }
+            }
+            div{ 
+                padding: 16px 0; 
+            }
+        }
+        button{ 
+            margin-top: 16px; 
+        }
+    }
+    }
+`

@@ -20,7 +20,7 @@ export default function handler(req, res) {
       method: 'post',
       url: 'https://api.hubapi.com/crm/v3/objects/contacts',
       headers: {
-        'Authorization': 'Bearer pat-na1-59bcc5be-e72e-4a87-bf25-58f4efb3a18c',
+        'Authorization': 'Bearer pat-na1-dbe412ac-b53d-47ed-a104-07a481fe73ae',
         'Content-Type': 'application/json'
       },
       data: data

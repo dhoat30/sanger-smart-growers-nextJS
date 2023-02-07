@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import Link from 'next/link';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -7,15 +7,21 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 
 import { motion } from 'framer-motion'
-
+import { useRouter } from 'next/router';
 function DesktopSubmenu({ data }) {
-
     const [showDropDown, setShowDropDown] = React.useState(false);
+    const router = useRouter();
+    const activeLinkStyle = {
+        color: "var(--sanger--theme--sys--light--tertiary)"
+    }
+
     const clickHandler = (e) => {
         e.preventDefault()
         setShowDropDown(!showDropDown);
     };
-
+    useEffect(() => {
+        setShowDropDown(false)
+    }, [router.asPath]);
 
     // mu custom css 
     const listStyle = {
@@ -83,7 +89,7 @@ function DesktopSubmenu({ data }) {
                     href={`${data.slug}`}
                     onClick={clickHandler}
                     className="body-large"
-
+                    style={{ color: router.asPath.includes('/services') && activeLinkStyle.color }}
                 >
                     <span>{data.title}</span>
                     {showDropDown ? <ExpandLess fontSize="small" /> : <ExpandMore fontSize="small" />}

@@ -16,13 +16,11 @@ function Consent() {
     const acceptCookie = () => {
         setConsent(true);
         setCookie('localConsent', 'true', { maxAge: 60 * 60 * 24 * 365 });
-        console.log('accepring cookies');
-        window.gtag = function () {
-            window.dataLayer.push('consent', 'update', {
-                'ad_storage': 'granted',
-                'analytics_storage': 'granted'
-            })
-        }
+        // google tag manager cookies 
+        gtag('consent', 'update', {
+            ad_storage: 'granted',
+            analytics_storage: 'granted',
+        });
     };
     const closeP = () => {
         setConsent(true);

@@ -1,13 +1,24 @@
 import React from 'react'
 import ServicePage from '../../Components/Pages/ServicePage/ServicePage'
+import SEO from '../../Components/SEO'
 
 import getMenu from '../../util/get-menu'
 function Service({ menuData, slug, plantData }) {
 
     const serviceData = menuData.services.find(item => slug === item.slug)
+    const seo = {
+        title: serviceData.seo.title,
+        description: serviceData.seo.description,
+        imageSrc: serviceData.seo.image
+    }
+    // console.log(seo)
+    console.log(seo)
     return (
+        <>
+            <SEO seo={seo} />
+            <ServicePage servicesData={serviceData} plantData={plantData} />
 
-        <ServicePage servicesData={serviceData} plantData={plantData} />
+        </>
     )
 }
 

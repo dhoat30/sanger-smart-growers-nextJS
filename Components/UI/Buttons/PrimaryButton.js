@@ -18,7 +18,7 @@ export default function StyledCustomization({ callToActionText, href, variant, o
         href ?
           <Link href={href} className={className}>
             <ButtonStyle
-
+              onClick={onClick}
               variant={variant} size="large" color="secondary">
               {callToActionText}
             </ButtonStyle>

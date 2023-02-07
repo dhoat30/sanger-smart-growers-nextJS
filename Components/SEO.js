@@ -31,7 +31,7 @@ function SEO({ seo }) {
           content={`https://sangersmartgrowers.co.nz${router.asPath}`}
           key="ogurl"
         />
-        <meta property="og:image" content={seo.imageSrc} key="ogimage" />
+        <meta property="og:image" content={seo.imageSrc ? seo.imageSrc : "http://sangergrowers.co.nz/news-hero.jpg"} key="ogimage" />
         <meta property="og:site_name" content={"Sanger Smart Growers"} key="ogsitename" />
 
       </Head>

@@ -3,6 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Paragraph from '../Typography/Paragraph'
 import RowTitle from '../Typography/RowTitle'
+import { motion } from 'framer-motion'
 
 function CanopySection({ title, content, canopyData, totalAnnualTray }) {
     const canopy = canopyData.map((data, index) => {
@@ -41,8 +42,22 @@ function CanopySection({ title, content, canopyData, totalAnnualTray }) {
         <Container>
             <div>
                 <div className='title-container'>
-                    <RowTitle title={title} />
-                    <p className='headline-small'>{content} </p>
+                    <RowTitle title={title} animation />
+                    <motion.p className='headline-small'
+                        initial={{
+                            opacity: 0,
+                            y: 50
+                        }}
+                        whileInView={{
+                            opacity: 1,
+                            y: 0,
+                            transition: {
+                                duration: 0.3,
+                                delay: 0.3
+                            }
+                        }}
+                        viewport={{ amount: 0.4, once: true }}
+                    >{content} </motion.p>
                 </div>
 
                 <div className='canopy-data'>
@@ -50,7 +65,7 @@ function CanopySection({ title, content, canopyData, totalAnnualTray }) {
                     {annualTrays}
                 </div>
             </div>
-        </Container>
+        </Container >
     )
 }
 
@@ -123,6 +138,7 @@ padding: 0 8px;
     }
     .content{ 
         margin-left: 8px; 
+        text-align: center; 
         @media(max-width: 400px){ 
         text-align: center; 
         margin-left: 0; 

@@ -47,14 +47,21 @@ function WorkWithUsPage({ pageData }) {
     // animation variations 
     const containerVariants = {
         onscreen: {
+            y: "0",
             opacity: 1,
-            y: 0,
-            transition: { type: "spring", stiffness: 300, damping: 24, delay: 0.8 }
+            transition: {
+                duration: 0.3,
+                staggerChildren: 0.1,
+            }
         },
         offscreen: {
+            y: "50%",
             opacity: 0,
-            y: 20,
-            transition: { duration: 0.2 }
+            transition: {
+                type: "spring",
+                bounce: 0,
+                duration: 0.3
+            }
         }
     }
 
@@ -64,8 +71,8 @@ function WorkWithUsPage({ pageData }) {
             transition: {
                 type: "spring",
                 bounce: 0,
-                duration: 2,
-                delayChildren: 0.7,
+                duration: 1,
+                delayChildren: 0.3,
                 staggerChildren: 0.1,
             }
         },

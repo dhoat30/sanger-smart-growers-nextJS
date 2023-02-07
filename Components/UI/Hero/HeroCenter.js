@@ -28,8 +28,7 @@ function HeroCenter({
       transition: {
         type: "spring",
         bounce: 0,
-        duration: 1.5,
-        delayChildren: 0.3,
+        delayChildren: 1,
         staggerChildren: 0.05,
       }
     },
@@ -43,12 +42,12 @@ function HeroCenter({
     onscreen: {
       opacity: 1,
       y: 0,
-      transition: { type: "spring", stiffness: 300, damping: 24, delay: 2 }
+      transition: { ease: "easeInOut", duration: 0.3 }
     },
     offscreen: {
       opacity: 0,
       y: 20,
-      transition: { duration: 0.2 }
+      transition: { duration: 0.3 }
     }
   };
 

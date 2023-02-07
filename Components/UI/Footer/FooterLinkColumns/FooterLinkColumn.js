@@ -44,6 +44,7 @@ const UnorderedList = styled.ul`
 margin-top: 16px; 
 li{ 
   margin-top: 8px; 
+  cursor: pointer; 
 }
 @media(max-width: 700px){ 
     display: none ;

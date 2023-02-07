@@ -13,7 +13,7 @@ function RowTitle({ title, align, className, children, hideIcon, animation }) {
         onscreen: {
             opacity: 1,
             y: 0,
-            transition: { ease: "easeIn", duration: 0.5 }
+            transition: { ease: "easeIn", duration: 0.3 }
         }
     };
 
@@ -25,7 +25,7 @@ function RowTitle({ title, align, className, children, hideIcon, animation }) {
             <Title
                 initial="offscreen"
                 whileInView="onscreen"
-                viewport={{ amount: 1, once: true }}
+                viewport={{ amount: 1 }}
                 variants={titleVariant}
                 as={!animation ? null : motion.h2}
                 color="white"

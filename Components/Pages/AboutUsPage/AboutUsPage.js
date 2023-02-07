@@ -7,8 +7,90 @@ import Paper from '@mui/material/Paper';
 import RowTitle from '../../UI/Typography/RowTitle'
 import CircleSection from './CircleSection/CircleSection'
 import ImageContentSection from '../../UI/Sections/ImageContentSection'
+import { motion } from 'framer-motion';
 
 function AboutUsPage({ pageData }) {
+    // card animation 
+    const teamContainerVariant = {
+        onscreen: {
+            transition: {
+                type: "spring",
+                bounce: 0,
+                duration: 1,
+                delayChildren: 0.3,
+                staggerChildren: 0.1,
+            }
+        },
+        offscreen: {
+            transition: {
+                type: "spring",
+                bounce: 0,
+                duration: 0.3
+            }
+        }
+    }
+
+    const teamImageVariant = {
+        onscreen: {
+            opacity: 1,
+            scale: 1,
+            transition: {
+                ease: "easeInOut",
+                duration: 0.3
+            }
+        },
+        offscreen: {
+            opacity: 0,
+            scale: 0.5,
+        }
+    };
+    const teamContentVariant = {
+        onscreen: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                ease: "easeInOut",
+                duration: 0.3
+            }
+        },
+        offscreen: {
+            opacity: 0,
+            y: 50,
+        }
+    };
+
+    // card animation 
+    const iconContainerVariant = {
+        onscreen: {
+            transition: {
+                type: "spring",
+                bounce: 0,
+                duration: 0.3,
+                delayChildren: 0.4,
+                staggerChildren: 0.1,
+            }
+        },
+        offscreen: {
+            transition: {
+                type: "spring",
+                bounce: 0,
+                duration: 0.3
+            }
+        }
+    }
+
+    const cardItemVariant = {
+        onscreen: {
+            opacity: 1,
+            y: 0,
+            transition: { type: "spring", stiffness: 300, damping: 24 }
+        },
+        offscreen: {
+            opacity: 0,
+            y: 20,
+            transition: { duration: 1 }
+        }
+    };
     const heroSection = pageData.acf.service_content.map((item, index) => {
         if (item.acf_fc_layout === "hero_section_center_align") {
             return <HeroCenterStyle
@@ -19,8 +101,6 @@ function AboutUsPage({ pageData }) {
 
             />
         }
-
-
     })
     const directorSection = pageData.acf.service_content.map((item, index) => {
         if (item.acf_fc_layout === "image_content_section") {
@@ -37,21 +117,33 @@ function AboutUsPage({ pageData }) {
         if (item.acf_fc_layout === "team_section_with_description") {
             return item.sections.map((data, i) => {
                 return (
-                    <div className='team-wrapper' key={i + 52}>
-                        <div className='flex-image-right' style={{ flexDirection: data.image_alignment === "Right" ? "row-reverse" : "row" }}>
-                            <div className="image-container">
+                    <div
+                        className='team-wrapper' key={i + 52}>
+                        <motion.div
+                            as={motion.section}
+                            initial="offscreen"
+                            whileInView="onscreen"
+                            viewport={{ amount: 0.8, once: true }}
+                            variants={teamContainerVariant}
+                            className='flex-image-right'
+                            style={{ flexDirection: data.image_alignment === "Right" ? "row-reverse" : "row" }}>
+                            <motion.div
+                                variants={teamImageVariant}
+                                className="image-container">
                                 <Image src={data.image.url} fill
                                     sizes="(min-width: 900px) 60vw,
                                     100vw"
                                     alt={data.name}
                                 />
-                            </div>
-                            <div className='content-wrapper'>
+                            </motion.div>
+                            <motion.div
+                                variants={teamContentVariant}
+                                className='content-wrapper'>
                                 <h3 className='headline-medium'>{data.name}</h3>
                                 <h4 className='headline-small'>{data.designation}</h4>
                                 <Paragraph>{data.description}</Paragraph>
-                            </div>
-                        </div>
+                            </motion.div>
+                        </motion.div>
                     </div>
                 )
             })
@@ -62,11 +154,21 @@ function AboutUsPage({ pageData }) {
         // team section cards
         if (item.acf_fc_layout === "team_section_cards") {
             return (
-                <CardWrapper className='max-width' key={index + 10}>
+                <CardWrapper
+                    as={motion.section}
+                    initial="offscreen"
+                    whileInView="onscreen"
+                    viewport={{ amount: 1, once: true }}
+                    variants={iconContainerVariant}
+                    className='max-width' key={index + 10}>
                     {
                         item.sections.map((data, i) => {
                             return (
-                                <Paper elevation={1} key={i + 68} className="surface">
+                                <Paper
+                                    component={motion.div}
+                                    variants={cardItemVariant}
+                                    elevation={1} key={i + 68}
+                                    className="surface">
                                     <div className="image-container">
                                         <Image src={data.image.url} fill
                                             sizes="(min-width: 900px) 30vw,
@@ -99,7 +201,8 @@ function AboutUsPage({ pageData }) {
         <>
             {heroSection}
             {directorSection}
-            <TeamSection>
+            <TeamSection
+            >
                 <RowTitle title="Our Team" align="center" animation={true} />
                 {teamSection}
             </TeamSection>

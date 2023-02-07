@@ -141,6 +141,10 @@ function ContactForm({ title, content, formName, emailTo, leadType, emailRoute, 
                     setOrchardSize('')
                     setCompanyName('')
                     setMessage('')
+                    setFirstNameTouched(false)
+                    setLastNameTouched(false)
+                    setEmailAddressTouched(false)
+                    setMessageTouched(false)
                     console.log(response)
                 }
                 else {

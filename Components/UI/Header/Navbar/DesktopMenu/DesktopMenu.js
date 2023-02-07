@@ -1,18 +1,19 @@
 import * as React from 'react';
-
 import ListItemButton from '@mui/material/ListItemButton';
-
-
 import Link from 'next/link';
 import styled from 'styled-components';
 import DesktopSubmenu from './DesktopSubmenu';
-
+import { useRouter } from 'next/router';
 function DesktopMenu({ menuLinks }) {
+    const router = useRouter()
+
     const listStyle = {
         padding: 0,
         position: "relative"
     }
-
+    const activeLinkStyle = {
+        color: "var(--sanger--theme--sys--light--tertiary)"
+    }
     const menu = menuLinks.map((data, index) => {
         if (data.subMenu) {
             return (
@@ -23,11 +24,15 @@ function DesktopMenu({ menuLinks }) {
             return (
                 <li key={index} >
                     <ListItemButton alignItems="center" sx={listStyle}>
-                        <Link legacyBehavior href={`${data.slug}`} passHref>
-                            <a className='body-large main-nav-link'>{data.title}</a>
+                        <Link
+                            href={`${data.slug}`}
+                            className='body-large main-nav-link'
+                            style={{ color: router.pathname === data.slug && "var(--sanger--theme--sys--light--tertiary)" }}
+                        >
+                            {data.title}
                         </Link>
                     </ListItemButton>
-                </li>
+                </li >
             )
         }
 
@@ -36,7 +41,6 @@ function DesktopMenu({ menuLinks }) {
 
         <UnorderedList>
             {menu}
-
         </UnorderedList>
     );
 }
