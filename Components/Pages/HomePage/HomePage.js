@@ -15,7 +15,6 @@ function HomePage({ homePageData }) {
   return (
     <>
       <VideoHero
-
         desktopVideo={homePageData.hero_section.desktop_video.url}
         mobileVideo={homePageData.hero_section.mobile_video.url}
         desktopImage={homePageData.hero_section.desktop_hero_image.url}

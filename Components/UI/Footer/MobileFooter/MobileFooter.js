@@ -34,13 +34,19 @@ function MobileFooter({ footerData, footerLinks }) {
         <div>
             <AccordionComp title="FOR GROWERS"
                 linksArr={footerLinks.growers}
+                ID="for-growers"
+                ariaControls="panel1d-content1"
             />
             <AccordionComp title="OUR COMPANY"
                 linksArr={footerLinks.ourCompany}
+                ID="our-company"
+                ariaControls="panel1d-content2"
             />
             <AccordionComp title="CONTACT"
                 linksArr={contactArr}
                 icons={true}
+                ID="contact"
+                ariaControls="panel1d-content3"
             />
         </div>
     );

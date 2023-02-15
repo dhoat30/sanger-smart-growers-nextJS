@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import PrimaryButton from '../Buttons/PrimaryButton'
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Image from 'next/image';
+import { motion } from 'framer-motion'
 
 function VideoHero({
     desktopVideo,
@@ -21,13 +22,50 @@ function VideoHero({
     const videoMatches = useMediaQuery('(max-width:550px)');
 
     // const titleClass = matches ? "headline-medium" : "headline-small"
-    const subtitleClass = matches ? "headline-small" : "headline-small"
+    const subtitleClass = matches ? "headline-medium" : "headline-small"
     useEffect(() => {
         setTimeout(() => {
             setShowVideo(true)
         }, 2000)
     }, [])
-
+    // animation variants 
+    const heroContentVariant = {
+        show: {
+            scale: 1,
+            top: "50%",
+            left: "50%",
+            opacity: 1,
+            transform: "translate(-50%, -50%)",
+            transition: {
+                delay: 35,
+                duration: 0.4,
+                delayChildren: 35,
+                staggerChildren: 0.1,
+            },
+        },
+        hide: {
+            scale: 0,
+            top: "70%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            opacity: 0
+        }
+    }
+    const heroContentItemsVariants = {
+        show: {
+            scale: 1,
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 0.5,
+                ease: "easeInOut"
+            }
+        },
+        hide: {
+            opacity: 0,
+            y: 50,
+        }
+    }
     return (
         <Container>
             <div className='overlay'></div>
@@ -40,11 +78,17 @@ function VideoHero({
                 }
             </div>
 
-            <div className='content'>
-                <h1 className="display-medium">{title}</h1>
-                <h2 className={subtitleClass} >{subtitle}</h2>
-                <PrimaryButton callToActionText={callToActionText} href={callToActionLink} variant="contained" />
-            </div>
+            <motion.div
+                initial="hide"
+                animate={"show"}
+                variants={heroContentVariant}
+                className='content'>
+                <motion.h1 variants={heroContentItemsVariants} className="display-large">{title}</motion.h1>
+                <motion.h2 variants={heroContentItemsVariants} className={subtitleClass} >{subtitle}</motion.h2>
+                <motion.div variants={heroContentItemsVariants} >
+                    <PrimaryButton callToActionText={callToActionText} href={callToActionLink} variant="contained" />
+                </motion.div>
+            </motion.div>
         </Container>
 
     )
@@ -93,25 +137,23 @@ const Container = styled.div`
         top: 50%; 
         left: 50%; 
         transform: translate(-50%, -50%) ;
-        text-align: left;  
         width: 100%;  
         z-index: 1; 
         color: white; 
-        margin-left: 80px; 
         @media(max-width: 1366px){ 
             margin: 0 8px; 
         }
         h1{ 
-            font-weight: 500; 
+            text-align: center; 
            @media(max-width: 350px){ 
             font-size: 2rem; 
             line-height: 2.5rem; 
-         
            }
         }
         h2{ 
             font-weight: 300; 
             margin-top: 16px;
+            text-align:center; 
             @media(max-width: 350px){ 
             font-size: 1.2rem; 
             line-height: 1.4rem; 
@@ -120,8 +162,10 @@ const Container = styled.div`
         }
         button{ 
             margin-top: 24px; 
+            margin-left: auto; 
+            margin-right: auto; 
+            display: block ;
             @media(max-width: 350px){ 
-            
             margin-top: 16px; 
            }
         }

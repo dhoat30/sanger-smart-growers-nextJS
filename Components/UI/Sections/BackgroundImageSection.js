@@ -8,9 +8,7 @@ function BackgroundImageSection({ title, content, callToActionLink, callToAction
     return (
         <Container>
             <div className='overlay'></div>
-
             <BackgroundImage className={className} image={image} style={{ backgroundImage: `url(${image.url})` }} />
-
             <div className='content'>
                 <RowTitle title={title} align="center" hideIcon={true}></RowTitle>
                 <Paragraph align="center">{content}</Paragraph>
@@ -29,7 +27,6 @@ const Container = styled.section`
 .content{ 
 max-width: 800px; 
 width: 95% ;
-
 margin: 0 auto; 
 position: absolute ;
 top: 50%; 
@@ -40,12 +37,31 @@ background: radial-gradient(98.05% 98.05% at 1.89% 1.95%, rgba(0, 0, 0, 0.42) 0%
 backdrop-filter: blur(30px);
 padding: 40px; 
 border-radius: 8px; 
-
-@media(max-width: 600px){ 
+@media(max-width: 700px){ 
     padding: 16px 8px; 
+    position: relative ;
+    top: 0%; 
+left: 0%;
+z-index: 11; 
+transform: translate(-0%, -0%); 
+background: none;
+width: 100%; 
+
 }
+
     h2, p, div{ 
         color: var(--sanger--theme--white); 
+    }
+    h2{ 
+        @media(max-width: 700px){ 
+            color: var(--sanger--theme--sys--dark--on-secondary);
+}
+    }
+    p, div{ 
+        @media(max-width: 700px){ 
+
+        color: var( --sanger--theme--sys--light--on-surface-variant); 
+        } 
     }
     a{ 
         display: flex ;
@@ -67,5 +83,9 @@ const BackgroundImage = styled.div`
     filter: saturate(120%); 
     @media(max-width: 600px){ 
     padding-bottom:90vh;
+}
+
+@media(max-width: 700px){ 
+    display: none; 
 }
 `

@@ -49,7 +49,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
     borderTop: '1px solid rgba(255, 255, 255, .125)'
 }));
 
-function AccordionComp({ title, linksArr, icons }) {
+function AccordionComp({ title, linksArr, icons, ID, ariaControls }) {
 
     const [expanded, setExpanded] = React.useState('panel1');
 
@@ -78,7 +78,7 @@ function AccordionComp({ title, linksArr, icons }) {
                     bgcolor: "var(--sanger--theme--black)",
                 }}
                 onChange={handleChange('panel1')}>
-                <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+                <AccordionSummary aria-controls={ariaControls} id={ID}>
                     <Typography className='body-large'
                         sx={{
                             color: "var(--sanger--theme--sys--dark--secondary)",
