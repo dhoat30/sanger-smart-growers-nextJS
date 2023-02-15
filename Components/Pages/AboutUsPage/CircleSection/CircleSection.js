@@ -103,7 +103,7 @@ function CircleSection({ data }) {
 
 
     return (
-        <CircleSectionStyle >
+        <CircleSectionStyle>
             <div className='title-wrapper max-width'>
                 <RowTitle title={data.title} align="center" animation="true" />
                 <motion.div

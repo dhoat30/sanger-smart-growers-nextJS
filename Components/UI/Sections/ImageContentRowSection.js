@@ -47,8 +47,8 @@ function ImageContentRowSection({ title, content, image, link, linkText }) {
         },
         offscreen: {
             opacity: 0,
-            x: "-100%",
-            scale: 0.5,
+            x: "-30%",
+            scale: 0.7,
 
         }
     };

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import HeroCenter from '../../UI/Hero/HeroCenter'
 import styled from 'styled-components'
 import Image from 'next/image'
@@ -12,14 +12,15 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 
 function AboutUsPage({ pageData }) {
     const matches = useMediaQuery('(max-width:700px)');
-
+    const [entry, setEntry] = useState('')
+    console.log(entry)
     // card animation 
     const teamContainerVariant = {
         onscreen: {
             transition: {
                 type: "spring",
                 bounce: 0,
-                duration: 1,
+                duration: 0.1,
                 delayChildren: 0.3,
                 staggerChildren: 0.1,
             }
@@ -44,9 +45,10 @@ function AboutUsPage({ pageData }) {
         },
         offscreen: {
             opacity: 0,
-            scale: 0.5,
+            scale: 0.9,
         }
     };
+
     const teamContentVariant = {
         onscreen: {
             opacity: 1,
@@ -126,7 +128,7 @@ function AboutUsPage({ pageData }) {
                             as={motion.section}
                             initial="offscreen"
                             whileInView="onscreen"
-                            viewport={{ amount: 0.8, once: true }}
+                            viewport={{ amount: 0.7, once: true }}
                             variants={teamContainerVariant}
                             className='flex-image-right'
                             style={{ flexDirection: data.image_alignment === "Right" ? "row-reverse" : "row" }}>
@@ -157,23 +159,27 @@ function AboutUsPage({ pageData }) {
         // team section cards
         if (item.acf_fc_layout === "team_section_cards") {
             return (
-                <CardWrapper
-                    as={motion.section}
+                <motion.div
                     initial="offscreen"
                     whileInView="onscreen"
-                    viewport={{ amount: 1, once: true }}
+                    viewport={{ amount: 0.4, once: true }}
                     variants={iconContainerVariant}
-                    className='max-width' key={index + 10}>
+                    className='max-width card-wrapper' key={index + 10}
+                    onViewportEnter={() => setEntry("viewport entered")}
+                    onViewportLeave={() => setEntry("viewport exit")}
+
+                >
                     {
                         item.sections.map((data, i) => {
                             return (
-                                <div
-                                    className="surface"
+                                <motion.div
+                                    key={i + 23423}
+                                    variants={cardItemVariant}
+                                    className="surface elevation-light2"
                                 >
                                     <div className="image-container">
                                         <Image src={data.image.url} fill
-                                            sizes="(min-width: 900px) 30vw,
-                                    100vw"
+
                                             alt={data.name}
                                         />
                                     </div>
@@ -182,12 +188,12 @@ function AboutUsPage({ pageData }) {
                                         <h4 className='headline-small'>{data.designation}</h4>
                                     </div>
                                     <div className="yellow-brick" />
-                                </div>
+                                </motion.div>
 
                             )
                         })
                     }
-                </CardWrapper>
+                </motion.div>
             )
         }
     })
@@ -208,7 +214,9 @@ function AboutUsPage({ pageData }) {
                 <RowTitle title="Our Team" align="center" animation={true} />
                 {teamSection}
             </TeamSection>
-            {cardSection}
+            <CardSection>
+                {cardSection}
+            </CardSection>
             {circleSection}
         </>
     )
@@ -276,24 +284,25 @@ h2{
 }
 }
 `
-
-const CardWrapper = styled.section`
-display: grid; 
-grid-template-columns: 1fr 1fr 1fr; 
+const CardSection = styled.section`
+.card-wrapper{ 
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; 
 gap: 40px; 
 justify-content: center; 
 align-items: center; 
-margin-top: 60px; 
+margin-top: 80px; 
 margin-bottom: 60px; 
-
 @media(max-width: 1100px){ 
 gap: 16px; 
 grid-template-columns: 1fr 1fr ; 
 }
 @media(max-width: 700px){ 
-grid-template-columns:  1fr ; 
+grid-template-columns: 1fr; 
 }
+
 .surface{ 
+    border-radius: 4px; 
     width: 100%;
     position: relative ;
  background: white; 
@@ -309,13 +318,17 @@ z-index:2;
     border-radius: 0 0 4px 4px; 
 }
 }
+}
 
 .image-container{ 
-    position:  relative;
+    position:relative ;
     width: 100%; 
-    height: 400px; 
+    height: 400px;
 
-
+    overflow: hidden ;
+    @media(max-width: 1500px){ 
+        height: 350px; 
+    }
     @media(max-width: 700px){ 
         height: 500px; 
     }
@@ -325,14 +338,20 @@ z-index:2;
     img{ 
         object-fit: cover; 
         object-position: top; 
+        transition: .3s;
+        transition-timing-function: ease-in-out;
+        cursor: pointer; 
+        &:hover{ 
+            transform: scale(1.1); 
+            
+        }
     }
 }
-.content-wrapper{ 
+    .content-wrapper{ 
     text-align: center; 
     padding:  16px; 
     h4{ 
         color: var(--sanger--theme--sys--light--on-surface-variant);
     }
-
 }
 `

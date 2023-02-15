@@ -175,7 +175,8 @@ function PlantEnquiryForm({ title, content, formName, emailTo, leadType, emailRo
         <Container className={className}>
             <Paper elevation={2} sx={paperStyle}>
                 <RowTitle align="center" title={title}></RowTitle>
-                <div className="heading-small" dangerouslySetInnerHTML={{ __html: content }} />
+                <h2 className="heading-small" dangerouslySetInnerHTML={{ __html: content }} />
+                <div className='label-large'>*We are currently in the process of obtaining certification for our Red-19 Grafted Plants. Once this process is completed, you will be able to purchase the plants from us.</div>
                 {/* <input placeholder='first name' autoComplete="name"></input> */}
                 <form >
                     <InputDiv>
@@ -297,6 +298,10 @@ margin: 120px 0;
 .heading-small{ 
     color: var(--sanger--theme--sys--light--on-surface-variant); 
     text-align: center; 
+    margin-top: 8px; 
+}
+.label-large{ 
+    text-align:center; 
     margin-top: 8px; 
 }
 button{ 
