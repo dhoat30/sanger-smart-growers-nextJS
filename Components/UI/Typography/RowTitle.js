@@ -25,7 +25,7 @@ function RowTitle({ title, align, className, children, hideIcon, animation }) {
             <Title
                 initial="offscreen"
                 whileInView="onscreen"
-                viewport={{ amount: 1 }}
+                viewport={{ amount: 1, once: true }}
                 variants={titleVariant}
                 as={!animation ? null : motion.h2}
                 color="white"

@@ -98,7 +98,10 @@ function Footer({ footerData }) {
             © 2022 | All Rights Reserved.
           </div>
           <div className="body-large">
-            Design By Web<span>Duel</span>
+            <a href="https://webduel.co.nz"
+              target="_blank">
+              Design By Web<span>Duel</span>
+            </a>
           </div>
         </CopyrightSection>
       </FooterStyle>

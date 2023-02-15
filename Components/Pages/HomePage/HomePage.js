@@ -23,7 +23,7 @@ function HomePage({ homePageData }) {
         title={homePageData.hero_section.title}
         subtitle={homePageData.hero_section.subtitle}
         callToActionText={homePageData.hero_section.call_to_action_text}
-        callToActionLink={homePageData.hero_section.call_to_action_link}
+        callToActionLink="/work-with-us/"
       />
 
       <Services align="center" servicesArr={homePageData.our_services} />
@@ -57,7 +57,7 @@ function HomePage({ homePageData }) {
       <BackgroundImageSection
         title={homePageData.join_our_team_section.title}
         content={homePageData.join_our_team_section.content}
-        callToActionLink={homePageData.join_our_team_section.call_to_action_link}
+        callToActionLink="/work-with-us"
         callToActionText={homePageData.join_our_team_section.call_to_action_text}
         image={homePageData.join_our_team_section.image}
       />

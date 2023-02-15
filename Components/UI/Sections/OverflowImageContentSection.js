@@ -23,8 +23,6 @@ function OverflowImageContentSection({ title, content, image, link, linkText, im
     const containerVariants = {
         onscreen: {
             transition: {
-                type: "spring",
-                bounce: 0,
                 duration: 0.7,
                 delayChildren: 0.3,
                 staggerChildren: 0.05,
@@ -40,13 +38,15 @@ function OverflowImageContentSection({ title, content, image, link, linkText, im
             opacity: 1,
             scale: 1,
             y: 0,
-            transition: { type: "spring", stiffness: 300, damping: 24 }
+            transition: {
+                ease: "easeInOut",
+                duration: 0.5
+            }
         },
         offscreen: {
             opacity: 0,
-            scale: 0,
-            y: 20,
-            transition: { duration: 0.3 }
+            scale: 0.9,
+            y: 50
         }
     };
     const contentVariants = {
@@ -71,7 +71,7 @@ function OverflowImageContentSection({ title, content, image, link, linkText, im
                 imagealignment={imageAlignment}
                 initial="offscreen"
                 whileInView="onscreen"
-                viewport={{ amount: 0.6, once: true }}
+                viewport={{ amount: 0.7, once: true }}
                 variants={containerVariants}
             >
                 <motion.div variants={imgVariants}

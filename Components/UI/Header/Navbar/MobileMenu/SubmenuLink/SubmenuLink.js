@@ -70,7 +70,7 @@ function SubmenuLink({ title, subMenuLinks, onClickChild }) {
     })
 
     return (
-        <SubmenuWrapper style={{ background: showSubMenu ? "var( --sanger--theme--sys--light--surface-variant)" : "none" }}>
+        <SubmenuWrapper >
             <span className='title-large' onClick={() => setShowSubMenu(showSubMenu ? false : true)}>{title}
                 <motion.svg
                     animate={showSubMenu ? "show" : "hide"}
