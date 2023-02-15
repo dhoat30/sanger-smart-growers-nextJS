@@ -111,4 +111,8 @@ filter: saturate(130%);
   color: var( --sanger--theme--sys--light--on-surface-variant); 
   margin-bottom: 8px; 
     }
+    figcaption{ 
+        font-style: italic; 
+        font-size: 14px; 
+    }
 `

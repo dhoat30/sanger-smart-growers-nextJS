@@ -8,8 +8,11 @@ import RowTitle from '../../UI/Typography/RowTitle'
 import CircleSection from './CircleSection/CircleSection'
 import ImageContentSection from '../../UI/Sections/ImageContentSection'
 import { motion } from 'framer-motion';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 function AboutUsPage({ pageData }) {
+    const matches = useMediaQuery('(max-width:700px)');
+
     // card animation 
     const teamContainerVariant = {
         onscreen: {
@@ -164,11 +167,9 @@ function AboutUsPage({ pageData }) {
                     {
                         item.sections.map((data, i) => {
                             return (
-                                <Paper
-                                    component={motion.div}
-                                    variants={cardItemVariant}
-                                    elevation={1} key={i + 68}
-                                    className="surface">
+                                <div
+                                    className="surface"
+                                >
                                     <div className="image-container">
                                         <Image src={data.image.url} fill
                                             sizes="(min-width: 900px) 30vw,
@@ -181,7 +182,8 @@ function AboutUsPage({ pageData }) {
                                         <h4 className='headline-small'>{data.designation}</h4>
                                     </div>
                                     <div className="yellow-brick" />
-                                </Paper >
+                                </div>
+
                             )
                         })
                     }
@@ -233,28 +235,34 @@ h2{
     .flex-image-right{ 
     display: flex; 
     align-items: center; 
-    @media(max-width: 700px){ 
+    @media(max-width: 900px){ 
         flex-wrap: wrap ;
     }
 }
 .image-container{ 
     position: relative;
     width: 50%; 
-    height: 500px;
+    height: 600px;
     @media( max-width: 900px){ 
+    height: 400px; 
+}   
+@media( max-width: 500px){ 
     height: 350px; 
 }
     img{ 
         object-fit: cover; 
     }
-    @media(max-width: 700px){ 
+    @media(max-width: 900px){ 
         width: 100%; 
     }
 }
 .content-wrapper{ 
     width: 50%; 
     padding: 0 80px; 
-     @media(max-width: 700px){ 
+    @media(max-width: 1366px){ 
+        padding: 0 16px; 
+    }
+     @media(max-width: 900px){ 
         width: 100%; 
     }
     @media(max-width: 900px){ 
@@ -270,26 +278,25 @@ h2{
 `
 
 const CardWrapper = styled.section`
-display: flex; 
-gap: 32px; 
+display: grid; 
+grid-template-columns: 1fr 1fr 1fr; 
+gap: 40px; 
 justify-content: center; 
 align-items: center; 
 margin-top: 60px; 
 margin-bottom: 60px; 
-@media(max-width: 1100px){ 
-flex-wrap: wrap; 
-gap: 16px; 
-}
 
+@media(max-width: 1100px){ 
+gap: 16px; 
+grid-template-columns: 1fr 1fr ; 
+}
+@media(max-width: 700px){ 
+grid-template-columns:  1fr ; 
+}
 .surface{ 
-    width: 400px;
+    width: 100%;
     position: relative ;
-    @media(max-width: 900px){ 
-        width: 300px; 
-    }
-    @media(max-width: 650px){ 
-        width: 100%; 
-    }
+ background: white; 
 z-index:2; 
     .yellow-brick{ 
     position: absolute ;
@@ -307,12 +314,17 @@ z-index:2;
     position:  relative;
     width: 100%; 
     height: 400px; 
-    @media(max-width: 900px){ 
+
+
+    @media(max-width: 700px){ 
+        height: 500px; 
+    }
+    @media(max-width: 500px){ 
         height: 300px; 
     }
     img{ 
         object-fit: cover; 
-        object-position: center; 
+        object-position: top; 
     }
 }
 .content-wrapper{ 

@@ -10,7 +10,10 @@ import Paper from '@mui/material/Paper';
 import FacebookIcon from '../../UI/Icons/SocialMedia/FacebookIcon';
 
 function NewsPage({ postsData }) {
+    console.log(postsData.length)
+
     const newsCards = postsData.map((item, index) => {
+        console.log(item)
         let content = item.content.rendered.replace(/<\/?[^>]+(>|$)/g, "");
         return <Grid key={item.id} item sm={6} xs={12} lg={6} md={4} xl={4}>
             <Card
@@ -48,7 +51,6 @@ function NewsPage({ postsData }) {
                         container
                         justifyContent="flex-start"
                         spacing={3}>
-                        {newsCards}
                         {newsCards}
                     </Grid>
                 </div>

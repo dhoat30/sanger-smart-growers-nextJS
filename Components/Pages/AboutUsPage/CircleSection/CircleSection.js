@@ -82,9 +82,9 @@ function CircleSection({ data }) {
                 variants={circleItemVariant}
                 onMouseLeave={() => setShowBox({ index: null })}
                 onMouseEnter={e => setShowBox({ index: index })}
-                circleSize={circleSize}
-                zIndex={zIndex}
-                backgroundColor={backgroundColor}>
+                circlesize={circleSize}
+                zindex={zIndex}
+                backgroundcolor={backgroundColor}>
                 <div className='label'>{item.label}</div>
             </Circle>
             {showBox.index === index && !matches ?
@@ -189,7 +189,7 @@ const CircleSectionStyle = styled.section`
 const Circle = styled.div`
 
              position: absolute;
-            background: ${props => props.backgroundColor && props.backgroundColor}; 
+            background: ${props => props.backgroundcolor && props.backgroundcolor}; 
             border-radius: 50%;  
             top: 50%; 
             left: 50%; 
@@ -197,9 +197,9 @@ const Circle = styled.div`
             display: flex ;
             align-items: flex-start; 
             justify-content: center; 
-            width: ${props => props.circleSize && props.circleSize}; 
-            height: ${props => props.circleSize && props.circleSize}; 
-            z-index: ${props => props.zIndex && props.zIndex}; 
+            width: ${props => props.circlesize && props.circlesize}; 
+            height: ${props => props.circlesize && props.circlesize}; 
+            z-index: ${props => props.zindex && props.zindex}; 
             .label{ 
                 position: relative ;
                 top: 20px; 

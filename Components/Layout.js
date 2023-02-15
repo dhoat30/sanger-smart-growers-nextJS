@@ -10,6 +10,8 @@ import BackToTop from "./UI/Footer/BackToTop/BackToTop";
 import Consent from "./UI/Consent/Consent";
 
 function Layout(props) {
+
+
   return (
     <div>
       <Header
@@ -21,12 +23,10 @@ function Layout(props) {
         services={props.children.props.menuData && props.children.props.menuData.services}
       />
       <main>{props.children}</main>
-
-
-      <BackToTop />
       <Footer
         footerData={props.children.props.menuData && props.children.props.menuData} />
       <Consent />
+      <BackToTop />
     </div>
   );
 }

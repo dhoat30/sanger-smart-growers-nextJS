@@ -36,8 +36,8 @@ function TechCarousel({ logoArr }) {
 
 
     return (
-        <Container className="max-width">
-            <h6 className={`${matches ? 'display-medium' : 'headline-small'} `}> We work with trusted industry leaders </ h6>
+        <Container >
+            <h6 className={`${matches ? 'display-medium' : 'headline-small'} max-width`}> We work with trusted industry leaders </ h6>
             <Slider {...settings} >
                 {carousel}
             </Slider>
@@ -53,6 +53,10 @@ overflow: hidden;
  padding: 56px 0; 
     .slick-slider{ 
         margin-top: 32px; 
+    }
+
+    h6{ 
+        text-align: center; 
     }
 `
 const Card = styled.div`

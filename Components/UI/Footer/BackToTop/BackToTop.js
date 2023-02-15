@@ -1,68 +1,24 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import useScrollTrigger from '@mui/material/useScrollTrigger';
-import Box from '@mui/material/Box';
+import React, { useEffect } from 'react'
 import Fab from '@mui/material/Fab';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import Fade from '@mui/material/Fade';
+import NavigationIcon from '@mui/icons-material/Navigation';
+import ScrollToTop from "react-scroll-to-top";
 
-function ScrollTop(props) {
-    const { children, window } = props;
-    // Note that you normally won't need to set the window ref as useScrollTrigger
-    // will default to window.
-    // This is only being set here because the demo is in an iframe.
-    useEffect(() => {
-        console.log("use effect")
-        console.log(window)
-    }, [window])
-    const trigger = useScrollTrigger({
-        target: window ? window() : undefined,
-        disableHysteresis: true,
-        threshold: 100,
-    });
+function BackToTop() {
 
-    const handleClick = (event) => {
-        const anchor = (event.target.ownerDocument || document).querySelector(
-            '#back-to-top-anchor',
-        );
-
-        if (anchor) {
-            anchor.scrollIntoView({
-                block: 'center',
-            });
-        }
-    };
+    const styles = {
+        position: "fixed",
+        bottom: "16px",
+        right: "16px"
+    }
 
     return (
-        <Fade in={trigger}>
-            <Box
-                onClick={handleClick}
-                role="presentation"
-                sx={{ position: 'fixed', bottom: 16, right: 16 }}
-            >
-                {children}
-            </Box>
-        </Fade>
-    );
+
+
+        <ScrollToTop
+            style={{ background: "var(--sanger--theme--sys--dark--on-tertiary)", borderRadius: "50%" }}
+            smooth component={<NavigationIcon sx={{ color: "white", top: "2px", position: "relative" }} />} />
+
+    )
 }
 
-ScrollTop.propTypes = {
-    children: PropTypes.element.isRequired,
-    /**
-     * Injected by the documentation to work in an iframe.
-     * You won't need it on your project.
-     */
-    window: PropTypes.func,
-};
-
-export default function BackToTop(props) {
-    return (
-        <React.Fragment>
-            <ScrollTop {...props}>
-                <Fab size="small" aria-label="scroll back to top">
-                    <KeyboardArrowUpIcon />
-                </Fab>
-            </ScrollTop>
-        </React.Fragment>
-    );
-}
+export default BackToTop

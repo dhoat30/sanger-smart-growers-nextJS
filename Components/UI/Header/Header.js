@@ -1,7 +1,6 @@
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
@@ -17,6 +16,7 @@ import Navbar from './Navbar/Navbar';
 import styled from 'styled-components';
 import { useTheme } from '@mui/material/styles'
 import Grid from '@mui/material/Unstable_Grid2';
+import Toolbar from "@mui/material/Toolbar";
 
 
 
@@ -24,7 +24,7 @@ function Header({ logo, mainNav, services }) {
   const theme = useTheme();
   return (
     <AppBar position="fixed" sx={{ background: theme.palette.background.surface }}>
-      <div className="max-width">
+      <div className="max-width" >
 
         <Container disableGutters={true} maxWidth="false">
 
