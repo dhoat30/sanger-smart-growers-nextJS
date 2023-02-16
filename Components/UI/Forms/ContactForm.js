@@ -189,6 +189,7 @@ function ContactForm({ title, content, formName, emailTo, leadType, emailRoute, 
                             onBlur={firstNameBlurHandler}
                             value={firstName}
                             required
+                            autoComplete="given-name"
 
                         />
 
@@ -202,7 +203,7 @@ function ContactForm({ title, content, formName, emailTo, leadType, emailRoute, 
                             onBlur={lastNameBlurHandler}
                             value={lastName}
                             required
-
+                            autoComplete="family-name"
                         />
                     </InputDiv>
 
@@ -217,7 +218,7 @@ function ContactForm({ title, content, formName, emailTo, leadType, emailRoute, 
                             onBlur={emailAddressBlurHandler}
                             value={emailAddress}
                             required
-
+                            autoComplete="email"
                         />
                         <TextField id="filled-basic"
                             label="Phone number"
@@ -225,6 +226,7 @@ function ContactForm({ title, content, formName, emailTo, leadType, emailRoute, 
                             color="tertiary"
                             onChange={phoneNumberChangeHandler}
                             value={phoneNumber}
+                            autoComplete="phone"
 
                         />
 

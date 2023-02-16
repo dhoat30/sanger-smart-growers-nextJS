@@ -104,7 +104,7 @@ const ConsentSection = styled.section`
     bottom: 0; 
     left: 0;
     border-radius: 20px 20px 0 0 ; 
-    
+    z-index: 1000; 
     background: var(  --sanger--theme--sys--dark--on-secondary-container);
     .content-wrapper{ 
         padding: 24px 0; 

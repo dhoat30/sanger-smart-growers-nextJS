@@ -191,7 +191,7 @@ function PlantEnquiryForm({ title, content, formName, emailTo, leadType, emailRo
                             onBlur={firstNameBlurHandler}
                             value={firstName}
                             required
-                            autoComplete="true"
+                            autoComplete="given-name"
                         />
 
                         <TextField id="filled-basic"
@@ -204,7 +204,7 @@ function PlantEnquiryForm({ title, content, formName, emailTo, leadType, emailRo
                             onBlur={lastNameBlurHandler}
                             value={lastName}
                             required
-                            autoComplete="true"
+                            autoComplete="family-name"
                         />
                     </InputDiv>
 
@@ -219,7 +219,7 @@ function PlantEnquiryForm({ title, content, formName, emailTo, leadType, emailRo
                             onBlur={emailAddressBlurHandler}
                             value={emailAddress}
                             required
-                            autoComplete="true"
+                            autoComplete="email"
                         />
                         <TextField id="filled-basic"
                             label="Phone number"
@@ -227,7 +227,7 @@ function PlantEnquiryForm({ title, content, formName, emailTo, leadType, emailRo
                             color="tertiary"
                             onChange={phoneNumberChangeHandler}
                             value={phoneNumber}
-                            autoComplete="true"
+                            autoComplete="phone"
                         />
 
                     </InputDiv>
@@ -280,7 +280,6 @@ function PlantEnquiryForm({ title, content, formName, emailTo, leadType, emailRo
                     </div>
                     <PrimaryButton success={success} loading={loading} callToActionText="Enquire Now" variant="contained" onClick={submitHandler} />
                     {error && <Alert severity="error">Something went wrong, Please try again. </Alert>}
-
                 </form>
             </Paper>
         </Container >

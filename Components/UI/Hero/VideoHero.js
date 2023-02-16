@@ -51,6 +51,8 @@ function VideoHero({
             opacity: 0
         }
     }
+    console.log(matches)
+    console.log(heroContentVariant.show.transition)
     const heroContentItemsVariants = {
         show: {
             scale: 1,
@@ -68,7 +70,7 @@ function VideoHero({
     }
     return (
         <Container>
-            <div className='overlay'></div>
+
             <div className='video-box'>
                 <Image src={videoMatches ? mobileImage : desktopImage} fill alt={title} priority />
                 {showVideo &&

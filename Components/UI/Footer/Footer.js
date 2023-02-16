@@ -95,7 +95,7 @@ function Footer({ footerData }) {
 
         <CopyrightSection className="max-width">
           <div className="body-large">
-            © 2022 | All Rights Reserved.
+            © 2022 | All Rights Reserved
           </div>
           <div className="body-large">
             <a href="https://webduel.co.nz"
@@ -124,9 +124,13 @@ const FooterStyle = styled.section`
 
 const CopyrightSection = styled.div`
   border-top: 1px solid var(--sanger--theme--sys--dark--secondary);
+  @media(max-width: 500px){ 
+    border-top: none; 
+  }
   color: white; 
   display: flex; 
   padding-top: 16px; 
   justify-content: space-between; 
   margin-top: 32px; 
+  flex-wrap: wrap; 
 `

@@ -82,15 +82,12 @@ function JobForm({ title, content, formName, emailTo, leadType, emailRoute, form
     const emailAddressBlurHandler = (e) => {
         setEmailAddressTouched(true)
     }
-    const messageBlurHandler = (e) => {
-        setMessageTouched(true)
-    }
+
     // submit handler 
     const submitHandler = () => {
         setFirstNameTouched(true)
         setLastNameTouched(true)
         setEmailAddressTouched(true)
-        setMessageTouched(true)
 
         if (!firstName || !lastName || !emailAddress) {
             return
@@ -151,7 +148,6 @@ function JobForm({ title, content, formName, emailTo, leadType, emailRoute, form
                     setFirstNameTouched(false)
                     setLastNameTouched(false)
                     setEmailAddressTouched(false)
-                    setMessageTouched(false)
                     console.log(response)
                 }
                 else {
@@ -196,6 +192,7 @@ function JobForm({ title, content, formName, emailTo, leadType, emailRoute, form
                             onBlur={firstNameBlurHandler}
                             value={firstName}
                             required
+                            autoComplete="given-name"
 
                         />
 
@@ -209,6 +206,7 @@ function JobForm({ title, content, formName, emailTo, leadType, emailRoute, form
                             onBlur={lastNameBlurHandler}
                             value={lastName}
                             required
+                            autoComplete="family-name"
 
                         />
                     </InputDiv>
@@ -224,7 +222,7 @@ function JobForm({ title, content, formName, emailTo, leadType, emailRoute, form
                             onBlur={emailAddressBlurHandler}
                             value={emailAddress}
                             required
-
+                            autoComplete="email"
                         />
                         <TextField id="filled-basic"
                             label="Phone number"
@@ -232,6 +230,8 @@ function JobForm({ title, content, formName, emailTo, leadType, emailRoute, form
                             color="tertiary"
                             onChange={phoneNumberChangeHandler}
                             value={phoneNumber}
+                            autoComplete="phone"
+
                         />
                     </InputDiv>
 

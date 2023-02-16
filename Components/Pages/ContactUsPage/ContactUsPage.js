@@ -9,7 +9,7 @@ const ContactUsPage = ({ pageData }) => {
             <HeroJustImage
                 desktopImage={pageData.acf.hero_image.desktop_image.url}
                 mobileImage={pageData.acf.hero_image.mobile_image.url}
-                alt={pageData.acf.hero_image.desktop_image.alt}
+                alt="Contact Us"
             />
 
             <ContactFormStyle
@@ -19,6 +19,7 @@ const ContactUsPage = ({ pageData }) => {
                 emailTo="designer@webduel.co.nz"
                 leadType="lead"
                 emailRoute="/api/sendEmail"
+                formType="contact-form"
             />
         </>
     )

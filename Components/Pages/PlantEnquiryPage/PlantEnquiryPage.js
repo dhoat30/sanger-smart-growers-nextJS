@@ -17,6 +17,7 @@ const PlantEnquiryPage = ({ pageData }) => {
                 emailTo="designer@webduel.co.nz"
                 leadType="lead"
                 emailRoute="/api/sendEmail"
+                formType="plant-form"
             />
         </>
     )

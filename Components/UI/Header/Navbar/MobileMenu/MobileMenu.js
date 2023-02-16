@@ -67,11 +67,11 @@ function MobileMenu({ menuLinks }) {
         <MenuWrapper>
             <div className='icons-wrapper'>
                 {showDropDown ?
-                    <CloseIcon sx={{ fontSize: "3rem" }}
+                    <CloseIcon sx={{ fontSize: "2.5rem" }}
                         onClick={() => setShowDropDown(false)}
                     />
                     :
-                    <MenuIcon sx={{ fontSize: "3rem" }}
+                    <MenuIcon sx={{ fontSize: "2.5rem" }}
                         onClick={() => setShowDropDown(true)}
                     />
                 }
