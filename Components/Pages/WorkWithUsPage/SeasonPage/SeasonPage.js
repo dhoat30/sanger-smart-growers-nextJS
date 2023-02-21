@@ -29,6 +29,7 @@ function SeasonPage({ pageData }) {
                         formName={`Join ${pageData.title.rendered} Job Form`}
                         emailTo="designer@webduel.co.nz"
                         leadType="other"
+                        emailRoute="/api/sendJobEmail"
                     />
                 </div>
             )

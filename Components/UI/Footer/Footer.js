@@ -27,6 +27,10 @@ const footerLinks = {
     {
       slug: "/services/our-process",
       title: "Our Process",
+    },
+    {
+      slug: "/services/successful-orchards",
+      title: "Successful Orchards",
     }
   ],
   ourCompany: [

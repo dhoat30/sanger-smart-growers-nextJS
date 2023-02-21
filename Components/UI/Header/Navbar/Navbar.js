@@ -33,6 +33,10 @@ const menuLinks = [
         ]
     },
     {
+        slug: "/our-process",
+        title: "Our Process"
+    },
+    {
         slug: "/work-with-us",
         title: "Work With Us",
     },
@@ -45,8 +49,8 @@ const menuLinks = [
         title: "News",
     },
     {
-        slug: "/contact-us",
-        title: "Contact Us",
+        slug: "/services/successful-orchards",
+        title: "Successful Orchards",
     }
 ]
 

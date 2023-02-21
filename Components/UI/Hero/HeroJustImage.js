@@ -9,7 +9,6 @@ function HeroJustImage({
   desktopImage,
   mobileImage,
   title,
-
   alt
 }) {
 

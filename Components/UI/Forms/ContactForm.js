@@ -136,6 +136,7 @@ function ContactForm({ title, content, formName, emailTo, leadType, emailRoute, 
                     setSuccess(true)
                     // set initial state to empty string 
                     setFirstName('')
+                    setLastName('')
                     setEmailAddress('')
                     setPhoneNumber('')
                     setOrchardSize('')
@@ -157,6 +158,8 @@ function ContactForm({ title, content, formName, emailTo, leadType, emailRoute, 
                 console.log(error);
                 setLoading(false)
                 setSuccess(false)
+                setError(true)
+
             });
     }
 

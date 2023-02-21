@@ -162,7 +162,7 @@ function AboutUsPage({ pageData }) {
                 <motion.div
                     initial="offscreen"
                     whileInView="onscreen"
-                    viewport={{ amount: 0.4, once: true }}
+                    viewport={{ amount: 0.1, once: true }}
                     variants={iconContainerVariant}
                     className='max-width card-wrapper' key={index + 10}
                     onViewportEnter={() => setEntry("viewport entered")}

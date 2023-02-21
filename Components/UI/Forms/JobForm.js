@@ -140,11 +140,14 @@ function JobForm({ title, content, formName, emailTo, leadType, emailRoute, form
                     setSuccess(true)
                     // set initial state to empty string 
                     setFirstName('')
+                    setLastName('')
                     setEmailAddress('')
                     setPhoneNumber('')
-                    setOrchardSize('')
-                    setCompanyName('')
-                    setMessage('')
+
+                    setLegalStatus('')
+                    setTransport('')
+                    setAccommodation('')
+                    setFound('')
                     setFirstNameTouched(false)
                     setLastNameTouched(false)
                     setEmailAddressTouched(false)
@@ -160,6 +163,8 @@ function JobForm({ title, content, formName, emailTo, leadType, emailRoute, form
                 console.log(error);
                 setLoading(false)
                 setSuccess(false)
+                setError(true)
+
             });
     }
 

@@ -3,6 +3,7 @@ import HeroCenter from '../../../UI/Hero/HeroCenter'
 import styled from 'styled-components'
 import JustTextSection from '../../../UI/Sections/JustTextSection'
 import ImageContentSection from '../../../UI/Sections/ImageContentSection'
+import ContactForm from '../../../UI/Forms/ContactForm'
 
 function OurProcess({ pageData }) {
     const sections = pageData.acf.service_content.map((item, index) => {
@@ -31,6 +32,15 @@ function OurProcess({ pageData }) {
     return (
         <>
             {sections}
+            <ContactForm
+                title="Get In Touch"
+                content="Please fill out the form below, and one of our team member will respond to your inquiry as soon as possible."
+                formName="Kiwifruit Orchard Management"
+                emailTo="designer@webduel.co.nz"
+                leadType="lead"
+                emailRoute="/api/sendEmail"
+                formType="contact-form"
+            />
         </>
     )
 }
