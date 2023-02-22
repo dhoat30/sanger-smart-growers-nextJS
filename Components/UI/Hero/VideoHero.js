@@ -37,9 +37,9 @@ function VideoHero({
             opacity: 1,
             transform: "translate(-50%, -50%)",
             transition: {
-                delay: 35,
+                delay: 1,
                 duration: 0.4,
-                delayChildren: 35,
+                delayChildren: 1,
                 staggerChildren: 0.1,
             },
         },
@@ -104,7 +104,7 @@ const Container = styled.div`
         @media(max-width: 600px){ 
             top:56px;
         }
-
+        border: solid red; 
     .video-box{ 
        width: 100%; 
         padding-bottom: 56.25%; 
@@ -135,6 +135,8 @@ const Container = styled.div`
 
     }
     .content{ 
+        border: solid red; 
+
         position: absolute ;
         top: 50%; 
         left: 50%; 
@@ -142,9 +144,7 @@ const Container = styled.div`
         width: 100%;  
         z-index: 1; 
         color: white; 
-        @media(max-width: 1366px){ 
-            margin: 0 8px; 
-        }
+   
         h1{ 
             text-align: center; 
            @media(max-width: 350px){ 

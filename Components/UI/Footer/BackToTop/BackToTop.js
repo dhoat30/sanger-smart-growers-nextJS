@@ -16,8 +16,10 @@ function BackToTop() {
 
 
         <ScrollToTop
-            style={{ background: "var(--sanger--theme--sys--dark--on-tertiary)", borderRadius: "50%", zIndex: 1000, bottom: "70px", right: "16px" }}
-            smooth component={<NavigationIcon sx={{ color: "white", top: "2px", position: "relative" }} />} />
+            className=' className="elevation-light5"'
+
+            style={{ borderRadius: "50%", zIndex: 1000, bottom: "70px", right: "16px" }}
+            smooth component={<NavigationIcon sx={{ color: "var(--sanger--theme--sys--dark--on-tertiary)", top: "2px", position: "relative" }} />} />
 
     )
 }
