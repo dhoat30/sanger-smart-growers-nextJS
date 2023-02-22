@@ -52,13 +52,13 @@ const DesktopLogo = styled(Logo)`
 display: flex ;
 align-items: center; 
 
-@media(max-width: 900px){ 
+@media(max-width: 1000px){ 
   display: none;
 }
 `
 const MobileLogo = styled(Logo)`
 display: none;
-@media(max-width: 900px){ 
+@media(max-width: 1000px){ 
   display: block;
 }
 `

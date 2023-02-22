@@ -485,3 +485,7 @@ a {
     }
   }
 }
+
+.bottom-nav-item.Mui-selected {
+  color: #c00001 !important;
+}

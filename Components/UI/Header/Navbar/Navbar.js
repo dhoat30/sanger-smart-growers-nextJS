@@ -57,7 +57,7 @@ const menuLinks = [
 
 function Navbar({ menuData, services }) {
 
-    const matches = useMediaQuery('(min-width:900px)');
+    const matches = useMediaQuery('(min-width:1000px)');
 
 
     return (

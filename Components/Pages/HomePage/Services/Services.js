@@ -103,7 +103,7 @@ function Services({ servicesArr }) {
 
     })
     return (
-        <Section className='max-width section-gutter' >
+        <Section className='max-width section-gutter' id="our-services" >
             <RowTitle title="Our Services" align="center" animation={true} />
 
             {matches ?

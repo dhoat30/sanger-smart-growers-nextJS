@@ -8,14 +8,15 @@ function BackToTop() {
     const styles = {
         position: "fixed",
         bottom: "16px",
-        right: "16px"
+        right: "16px",
+        zIndex: 1000
     }
 
     return (
 
 
         <ScrollToTop
-            style={{ background: "var(--sanger--theme--sys--dark--on-tertiary)", borderRadius: "50%" }}
+            style={{ background: "var(--sanger--theme--sys--dark--on-tertiary)", borderRadius: "50%", zIndex: 1000, bottom: "70px", right: "16px" }}
             smooth component={<NavigationIcon sx={{ color: "white", top: "2px", position: "relative" }} />} />
 
     )
