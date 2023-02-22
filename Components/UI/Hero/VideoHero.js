@@ -104,7 +104,7 @@ const Container = styled.div`
         @media(max-width: 600px){ 
             top:56px;
         }
-        border: solid red; 
+        
     .video-box{ 
        width: 100%; 
         padding-bottom: 56.25%; 
@@ -135,7 +135,7 @@ const Container = styled.div`
 
     }
     .content{ 
-        border: solid red; 
+        
 
         position: absolute ;
         top: 50%; 
