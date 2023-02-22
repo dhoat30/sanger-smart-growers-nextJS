@@ -37,9 +37,9 @@ function VideoHero({
             opacity: 1,
             transform: "translate(-50%, -50%)",
             transition: {
-                delay: 1,
+                delay: 35,
                 duration: 0.4,
-                delayChildren: 1,
+                delayChildren: 35,
                 staggerChildren: 0.1,
             },
         },
