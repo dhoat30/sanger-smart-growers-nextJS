@@ -16,7 +16,7 @@ const ContactUsPage = ({ pageData }) => {
                 title={pageData.title.rendered}
                 content={pageData.content.rendered}
                 formName={pageData.title.rendered}
-                emailTo="designer@webduel.co.nz"
+                emailTo="info@sangergrowers.co.nz"
                 leadType="lead"
                 emailRoute="/api/sendEmail"
                 formType="contact-form"
