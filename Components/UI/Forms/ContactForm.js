@@ -102,6 +102,7 @@ function ContactForm({ title, content, formName, emailTo, leadType, emailRoute, 
             formName: formName,
             formType: formType
         }
+
         var config = {
             method: 'post',
             url: '/api/createContact',
@@ -112,13 +113,13 @@ function ContactForm({ title, content, formName, emailTo, leadType, emailRoute, 
         };
         setLoading(true)
 
-        axios(config)
-            .then(function (response) {
-                console.log(response)
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        // axios(config)
+        //     .then(function (response) {
+        //         console.log(response)
+        //     })
+        //     .catch(function (error) {
+        //         console.log(error);
+        //     });
 
         // send email 
         var config = {

@@ -92,6 +92,8 @@ function JobForm({ title, content, formName, emailTo, leadType, emailRoute, form
         if (!firstName || !lastName || !emailAddress) {
             return
         }
+        const msg = `Form Name: ${formName} \n First Name: ${firstName} \n Last Name: ${lastName} \n Phone Number: ${phoneNumber} \n Email: ${emailAddress} \n Transport: ${transport} \n Accommodation: ${accommodation} \n Found: ${found} \n Legal Status: ${legalStatus} `
+
         const formData = {
             firstName: firstName,
             lastName: lastName,
@@ -104,11 +106,12 @@ function JobForm({ title, content, formName, emailTo, leadType, emailRoute, form
             emailTo: emailTo,
             leadType: leadType,
             formName: formName,
-            formType: formType
+            formType: formType, 
+            msg: msg
         }
         var config = {
             method: 'post',
-            url: '/api/createContact',
+            url: `${emailRoute}`,
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -127,7 +130,7 @@ function JobForm({ title, content, formName, emailTo, leadType, emailRoute, form
         // send email 
         var config = {
             method: 'post',
-            url: `${emailRoute}`,
+            url: `/api/sendEmail`,
             headers: {
                 'Content-Type': 'application/json'
             },
