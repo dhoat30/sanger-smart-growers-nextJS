@@ -24,10 +24,10 @@ export default function handler(req, res) {
     .then((response) => {
       console.log(response);
       if(response.status === 200){ 
-        res.status(200).json({ data: response.data })
+        res.status(200).json({ data: response })
       }
       else{ 
-        res.status(400).json({ data: response.data })
+        res.status(400).json({ data: response })
       }
  
     })
