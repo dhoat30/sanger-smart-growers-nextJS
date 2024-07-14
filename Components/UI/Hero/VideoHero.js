@@ -17,6 +17,7 @@ function VideoHero({
     callToActionLink,
 }) {
     const [showVideo, setShowVideo] = useState(false)
+    const videoRef = useRef(null);
 
     const matches = useMediaQuery('(min-width:700px)');
     const videoMatches = useMediaQuery('(max-width:550px)');
@@ -28,6 +29,14 @@ function VideoHero({
             setShowVideo(true)
         }, 2000)
     }, [])
+    useEffect(() => {
+        if (videoRef.current) {
+            videoRef.current.muted = true;
+            videoRef.current.autoplay = true;
+            videoRef.current.playsInline = true;
+            videoRef.current.load();
+        }
+    }, [showVideo]);
     // animation variants 
     const heroContentVariant = {
         show: {
@@ -70,14 +79,13 @@ function VideoHero({
     }
     return (
         <Container>
-
             <div className='video-box'>
                 <Image src={videoMatches ? mobileImage : desktopImage} fill alt={title} priority />
-                {showVideo &&
-                    <video loop autoPlay muted>
+                {showVideo && (
+                    <video ref={videoRef} loop autoPlay muted playsInline>
                         <source src={videoMatches ? mobileVideo : desktopVideo} type="video/mp4" />
                     </video>
-                }
+                )}
             </div>
 
             <motion.div
@@ -86,14 +94,13 @@ function VideoHero({
                 variants={heroContentVariant}
                 className='content'>
                 <motion.h1 variants={heroContentItemsVariants} className="display-large">{title}</motion.h1>
-                <motion.h2 variants={heroContentItemsVariants} className={subtitleClass} >{subtitle}</motion.h2>
-                <motion.div variants={heroContentItemsVariants} >
+                <motion.h2 variants={heroContentItemsVariants} className={subtitleClass}>{subtitle}</motion.h2>
+                <motion.div variants={heroContentItemsVariants}>
                     <PrimaryButton callToActionText={callToActionText} href={callToActionLink} variant="contained" />
                 </motion.div>
             </motion.div>
         </Container>
-
-    )
+    );
 }
 
 export default VideoHero
